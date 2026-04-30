@@ -1,0 +1,28 @@
+{
+  "placeholderImages": [
+    {
+      "id": "profile",
+      "description": "Developer profile portrait",
+      "imageUrl": "https://picsum.photos/seed/ardy-profile/400/400",
+      "imageHint": "professional man portrait"
+    },
+    {
+      "id": "provident-fund",
+      "description": "System dashboard screenshot",
+      "imageUrl": "https://picsum.photos/seed/system-dashboard/800/600",
+      "imageHint": "software dashboard"
+    },
+    {
+      "id": "athlon-app",
+      "description": "Fitness application mobile view",
+      "imageUrl": "https://picsum.photos/seed/athlon/800/600",
+      "imageHint": "fitness app"
+    },
+    {
+      "id": "portfolio-site",
+      "description": "Clean minimalist portfolio",
+      "imageUrl": "https://picsum.photos/seed/portfolio/800/600",
+      "imageHint": "minimal website"
+    }
+  ]
+}
