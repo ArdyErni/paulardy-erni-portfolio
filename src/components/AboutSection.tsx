@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-24">
+    <section id="about" className="py-24 scroll-mt-24">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="order-2 lg:order-1 space-y-8">
@@ -14,7 +14,7 @@ export function AboutSection() {
             </div>
             
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I am a graduating Information Technology student from <span className="text-foreground font-semibold">Bataan Peninsula State University</span>. Unlike typical frontend designers, my passion lies in the "how" of software — the intricate pathways data takes through a system and the logic that governs it.
+              I am a graduating Information Technology student from <span className="text-foreground font-semibold">Bataan Peninsula State University</span>. My focus is on understanding how systems work beneath the surfac. How data flows, how logic is structured, and how reliable software is built from the ground up.
             </p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -23,19 +23,19 @@ export function AboutSection() {
                   <GraduationCap size={20} />
                 </div>
                 <h4 className="font-bold mb-2">Academic Foundation</h4>
-                <p className="text-sm text-muted-foreground">Rigorous IT training focusing on software engineering principles and system analysis.</p>
+                <p className="text-sm text-muted-foreground">Solid IT training centered on software engineering fundamentals, system design, and analytical problem-solving.</p>
               </div>
               <div className="p-6 rounded-2xl bg-white border border-border/60 hover:border-primary/40 transition-colors">
                 <div className="h-10 w-10 rounded-xl bg-secondary/20 text-foreground flex items-center justify-center mb-4">
                   <Cpu size={20} />
                 </div>
                 <h4 className="font-bold mb-2">Backend Logic First</h4>
-                <p className="text-sm text-muted-foreground">I prioritize clean architecture and scalable database schemas before polishing the UI.</p>
+                <p className="text-sm text-muted-foreground">I prioritize clear architecture, efficient data handling, and scalable database design before refining the user interface.</p>
               </div>
             </div>
 
             <p className="text-muted-foreground leading-relaxed italic border-l-4 border-primary/20 pl-6 py-2">
-              "My goal is to build software that doesn't just look good, but functions flawlessly under load and provides tangible value through efficient data processing."
+              "I aim to build software that is not only functional, but dependable, scalable, and designed with long-term performance in mind."
             </p>
           </div>
 

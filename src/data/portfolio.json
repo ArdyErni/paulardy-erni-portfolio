@@ -2,9 +2,9 @@
   "projects": [
     {
       "id": "provident-fund",
-      "title": "Provident Fund Online Reporting and Monitoring System",
+      "title": "SDO Provident Fund Online Reporting and Monitoring System",
       "description": "A comprehensive loan tracking and management system with advanced workflow logic and backend processing for institutional funds.",
-      "longDescription": "This system automates the manual tracking of loans and member contributions. It features complex interest calculation engines, approval workflow hierarchies, and real-time monitoring of fund health.",
+      "longDescription": "SDO PFORMS is a loan ledger and financial tracking system designed to streamline record management, automate payment monitoring, and improve accuracy in tracking balances and transactions for efficient administrative oversight.",
       "techStack": ["Next.js", "Node.js", "Firebase Studio", "MySQL", "Vercel", "Railway"],
       "status": "On Going",
       "featured": true,
@@ -17,7 +17,7 @@
     {
       "id": "athlon",
       "title": "Athlon",
-      "description": "A fitness and community engagement platform designed to bridge the gap between individual training and social interaction.",
+      "description": "Athlon is a fitness and performance tracking platform designed to streamline training management while fostering community engagement, with a gamified system that features customizable avatars to enhance user motivation and engagement.",
       "techStack": ["Android Studio", "Java/Kotlin", "Firebase"],
       "status": "Completed",
       "featured": false,

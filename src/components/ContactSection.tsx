@@ -24,7 +24,7 @@ export function ContactSection() {
             </div>
 
             <div className="space-y-6 pt-8">
-              <a href="paerni.it@gmail.com" className="flex items-center gap-4 group">
+              <a href="mailto:paerni.it@gmail.com" className="flex items-center gap-4 group">
                 <div className="h-14 w-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
                   <Mail size={24} />
                 </div>
@@ -35,10 +35,10 @@ export function ContactSection() {
               </a>
 
               <div className="flex gap-4">
-                <a href="#" className="h-14 w-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-foreground transition-all">
+                <a href="https://github.com/ArdyErni" className="h-14 w-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-foreground transition-all">
                   <Github size={24} />
                 </a>
-                <a href="#" className="h-14 w-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-foreground transition-all">
+                <a href="https://www.linkedin.com/in/ernipa-it/" className="h-14 w-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-foreground transition-all">
                   <Linkedin size={24} />
                 </a>
               </div>
@@ -46,32 +46,35 @@ export function ContactSection() {
           </div>
 
           <div className="bg-white/5 p-8 md:p-10 rounded-[2rem] border border-white/10 backdrop-blur-sm">
-            <form className="space-y-6">
+            <form action="https://formspree.io/f/mjglkkje" method="POST" className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-white/60 ml-1">Name</label>
-                  <Input 
-                    placeholder="John Doe" 
+                  <Input
+                    name="name"
+                    placeholder="John Doe"
                     className="bg-white/5 border-white/10 text-white placeholder:text-white/20 h-12 rounded-xl focus-visible:ring-primary"
                   />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-white/60 ml-1">Email</label>
-                  <Input 
-                    type="email" 
-                    placeholder="john@example.com" 
+                  <Input
+                    name="email"
+                    type="email"
+                    placeholder="john@example.com"
                     className="bg-white/5 border-white/10 text-white placeholder:text-white/20 h-12 rounded-xl focus-visible:ring-primary"
                   />
                 </div>
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-bold text-white/60 ml-1">Message</label>
-                <Textarea 
-                  placeholder="Tell me about your project..." 
+                <Textarea
+                  name="message"
+                  placeholder="Tell me about your project..."
                   className="bg-white/5 border-white/10 text-white placeholder:text-white/20 min-h-[150px] rounded-xl focus-visible:ring-primary"
                 />
               </div>
-              <Button size="lg" className="w-full h-14 rounded-xl bg-primary hover:bg-primary/90 text-white font-bold text-lg">
+              <Button type="submit" size="lg" className="w-full h-14 rounded-xl bg-primary hover:bg-primary/90 text-white font-bold text-lg">
                 Send Message
                 <Send className="ml-3 h-5 w-5" />
               </Button>

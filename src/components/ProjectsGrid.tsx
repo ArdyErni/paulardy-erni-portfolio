@@ -6,7 +6,7 @@ export function ProjectsGrid() {
   const otherProjects = portfolioData.projects.filter(p => !p.featured);
 
   return (
-    <section id="projects" className="py-24 bg-muted/30">
+    <section id="projects" className="py-24 bg-muted/30 scroll-mt-24">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-4">
           <div className="space-y-2">

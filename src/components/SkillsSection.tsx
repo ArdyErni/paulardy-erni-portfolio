@@ -3,7 +3,7 @@ import portfolioData from '@/data/portfolio.json';
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="py-24 bg-muted/20">
+    <section id="skills" className="py-24 bg-muted/20 scroll-mt-24">
       <div className="container mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="text-3xl font-black mb-4">Technical Proficiency</h2>
