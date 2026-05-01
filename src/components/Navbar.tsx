@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
 
 const navLinks = [
   { name: 'Home', href: '#home' },
@@ -29,8 +30,8 @@ export function Navbar() {
       scrolled ? "bg-background/80 backdrop-blur-md border-b py-3" : "bg-transparent py-5"
     )}>
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <a href="#home" className="text-2xl font-black tracking-tighter text-primary">
-          erknst<span className="text-foreground">.</span>
+        <a href="#home">
+          <Image src="/website_logo/portfolio_logo.png" alt="Logo" width={120} height={40} className="object-contain" />
         </a>
 
         {/* Desktop Nav */}

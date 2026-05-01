@@ -5,12 +5,12 @@
       "title": "Provident Fund Online Reporting and Monitoring System",
       "description": "A comprehensive loan tracking and management system with advanced workflow logic and backend processing for institutional funds.",
       "longDescription": "This system automates the manual tracking of loans and member contributions. It features complex interest calculation engines, approval workflow hierarchies, and real-time monitoring of fund health.",
-      "techStack": ["Next.js", "Node.js", "Firebase", "MySQL"],
-      "status": "Completed",
+      "techStack": ["Next.js", "Node.js", "Firebase Studio", "MySQL", "Vercel", "Railway"],
+      "status": "On Going",
       "featured": true,
       "links": {
-        "github": "#",
-        "live": "#"
+        "github": "https://github.com/ArdyErni/bookish-octo-train",
+        "live": "https://bookish-octo-train-zeta.vercel.app/login"
       },
       "image": "provident-fund"
     },
@@ -18,12 +18,12 @@
       "id": "athlon",
       "title": "Athlon",
       "description": "A fitness and community engagement platform designed to bridge the gap between individual training and social interaction.",
-      "techStack": ["React Native", "Express.js", "MongoDB"],
-      "status": "Ongoing",
+      "techStack": ["Android Studio", "Java/Kotlin", "Firebase"],
+      "status": "Completed",
       "featured": false,
       "links": {
-        "github": "#",
-        "live": "#"
+        "github": "https://github.com/JimuelBartolome/Athlon---Finals-Revision",
+        "live": ""
       },
       "image": "athlon-app"
     },
@@ -32,13 +32,13 @@
       "title": "Minimalist Portfolio Website",
       "description": "The current responsive portfolio showcasing my projects and technical expertise as a full-stack developer.",
       "techStack": ["Next.js", "Tailwind CSS", "TypeScript"],
-      "status": "Completed",
+      "status": "On Going",
       "featured": false,
       "links": {
-        "github": "#",
-        "live": "#"
+        "github": "https://github.com/ArdyErni/paulardy-erni-portfolio",
+        "live": "https://paulardy-erni-portfolio.vercel.app/"
       },
-      "image": "portfolio-site"
+      "image": "portfolio-v1"
     }
   ],
   "skills": [
@@ -48,15 +48,15 @@
     },
     {
       "category": "Backend",
-      "items": ["Node.js", "Express.js", "RESTful APIs"]
+      "items": ["Node.js"]
     },
     {
       "category": "Database",
-      "items": ["MySQL", "Firebase", "MongoDB"]
+      "items": ["MySQL", "Firebase"]
     },
     {
       "category": "Tools",
-      "items": ["Git", "Figma", "Docker", "Postman"]
+      "items": ["Git/GitHub", "VS Code","Figma"]
     }
   ],
   "certifications": [

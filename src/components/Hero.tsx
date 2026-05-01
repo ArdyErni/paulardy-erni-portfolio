@@ -8,20 +8,20 @@ export function Hero() {
   const profileImage = PlaceHolderImages.find(img => img.id === 'profile');
 
   return (
-    <section id="home" className="relative pt-32 pb-20 overflow-hidden bg-dot-pattern">
+    <section id="home" className="relative pt-44 pb-20 overflow-hidden bg-dot-pattern">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
           <div className="flex-1 space-y-6 max-w-2xl text-center md:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
+            {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
               Available for opportunities
-            </div>
+            </div> */}
             
             <h1 className="text-5xl md:text-7xl font-black leading-tight tracking-tight">
-              Hi, I'm <span className="text-primary">Paul Ardy</span>
+              Hi, I'm <span className="text-primary">Paul Ardy Erni</span>
             </h1>
             
             <p className="text-2xl md:text-3xl font-semibold text-muted-foreground">

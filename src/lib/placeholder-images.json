@@ -1,3 +1,8 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    { "id": "athlon-app", "description": "Athlon App", "imageUrl": "/projects_imgs/athlon_web_screenshot.png", "imageHint": "fitness app" },
+    { "id": "provident-fund", "description": "SDO PForms", "imageUrl": "/projects_imgs/sdo_pforms_screenshot.png", "imageHint": "document system" },
+    { "id": "portfolio-v1", "description": "Portfolio V1", "imageUrl": "/projects_imgs/website_v1_screenshot.png", "imageHint": "portfolio website" }
+  ]
 }
+

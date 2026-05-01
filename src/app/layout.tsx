@@ -2,6 +2,9 @@ import type {Metadata} from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
+  icons: {
+    icon: '/website_logo/portfolio_logo.png',
+  },
   title: 'Ardy | Full-Stack Web Developer',
   description: 'Full-Stack Web Developer focused on building workflow-driven systems and scalable web applications.',
 };

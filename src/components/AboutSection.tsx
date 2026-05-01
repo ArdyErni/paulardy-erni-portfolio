@@ -1,5 +1,6 @@
 import React from 'react';
 import { User, GraduationCap, Cpu } from 'lucide-react';
+import Image from 'next/image';
 
 export function AboutSection() {
   return (
@@ -43,8 +44,8 @@ export function AboutSection() {
             <div className="relative">
               <div className="bg-secondary/10 absolute inset-0 -m-8 rounded-[3rem] -rotate-3" />
               <div className="bg-white p-4 rounded-[2.5rem] border shadow-2xl relative">
-                <div className="bg-muted rounded-[2rem] aspect-square flex items-center justify-center text-primary/20 p-20">
-                  <User size={200} strokeWidth={0.5} />
+                <div className="bg-muted rounded-[2rem] overflow-hidden w-64 h-64 mx-auto">
+                  <Image src="/user_profile/Formal Picture.jpg" alt="Paul Ardy Erni" width={256} height={256} className="object-cover w-full h-full" />
                 </div>
                 <div className="absolute -bottom-4 -right-4 bg-primary text-white p-6 rounded-2xl shadow-xl max-w-[200px]">
                   <p className="text-xs font-bold uppercase tracking-widest opacity-80 mb-1">Focus</p>
