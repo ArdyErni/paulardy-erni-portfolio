@@ -2,6 +2,7 @@ import Image from "next/image";
 import { SocialLinks } from "./SocialLinks";
 import { TechStackStrip } from "./TechStackStrip";
 import type { Profile } from "@/types/portfolio";
+import { GithubActivity } from "./GithubActivity";
 
 interface HeroSectionProps {
   profile: Profile;
@@ -55,6 +56,7 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
 
               {/* Compact tech stack */}
               <TechStackStrip technologies={profile.techStack} />
+              <GithubActivity username="ArdyErni" />
             </div>
           </div>
         </div>
