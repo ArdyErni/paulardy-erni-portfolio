@@ -1,5 +1,6 @@
 import type {Metadata} from 'next';
 import './globals.css';
+import { LoadingScreen } from '@/components/LoadingScreen'; // add this
 
 export const metadata: Metadata = {
   icons: {
@@ -22,6 +23,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased">
+        <LoadingScreen /> {/* add this */}
         {children}
       </body>
     </html>

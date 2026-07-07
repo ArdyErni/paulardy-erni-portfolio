@@ -1,72 +1,350 @@
 {
+  "profile": {
+    "name": "Paul Ardy Erni",
+    "title": "Full-Stack Developer & AI Automation Engineer",
+    "tagline": "I build backend systems and AI-powered workflows that eliminate manual work.",
+    "introduction": "Passionate full-stack developer specializing in backend systems, workflow automation, and AI integrations. I enjoy building software that solves real operational problems through scalable architecture and thoughtful user experiences.",
+    "location": "Bataan, Philippines",
+    "avatar": "/profile.png",
+    "resume": "/resume.pdf",
+    "techStack": [
+      "Next.js", "React.js", "TypeScript", "Node.js",
+      "MySQL", "Firebase", "Supabase", "n8n",
+      "Tailwind CSS", "Git / GitHub"
+    ],
+    "currentFocus": [
+      "AI Automation",
+      "Backend Systems",
+      "Workflow Automation",
+      "API Development"
+    ],
+    "quickFacts": [
+      "BSIT Graduate",
+      "Dean's Lister",
+      "Full-Stack Developer",
+      "AI Automation Engineer"
+    ],
+    "socials": {
+      "github": "https://github.com/ArdyErni",
+      "linkedin": "https://linkedin.com/in/ernipa-it",
+      "email": "paerni.it@gmail.com",
+      "website": ""
+    }
+  },
+
+  "education": [
+    {
+      "institution": "Bataan Peninsula State University",
+      "degree": "Bachelor of Science in Information Technology",
+      "duration": "2022 – Present",
+      "achievements": ["Dean's Lister (2022–2025)"]
+    }
+  ],
+
+  "certifications": [
+    {
+      "name": "IBM Enterprise Design Thinking Practitioner",
+      "logo": "/certification_logos/enterprise-design-thinking-practitioner.1.png"
+    },
+    {
+      "name": "IC3 Digital Literacy Certification GS6 Level 1",
+      "logo": "/certification_logos/ic3-digital-literacy-certification-gs6-level-1.png"
+    },
+    {
+      "name": "IT Specialist — Cybersecurity",
+      "logo": "/certification_logos/it-specialist-cybersecurity.png"
+    },
+    {
+      "name": "IT Specialist — Device Configuration & Management",
+      "logo": "/certification_logos/it-specialist-device-configuration-and-management.png"
+    },
+    {
+      "name": "IT Specialist — Network Security",
+      "logo": "/certification_logos/it-specialist-network-security.png"
+    },
+    {
+      "name": "IT Specialist — Software Development",
+      "logo": "/certification_logos/it-specialist-software-development.png"
+    },
+    {
+      "name": "Microsoft Office Specialist Associate – Microsoft 365 Apps",
+      "logo": "/certification_logos/microsoft-office-specialist-associate-microsoft-365-apps.png"
+    },
+    {
+      "name": "Microsoft Office Specialist Excel Associate",
+      "logo": "/certification_logos/microsoft-office-specialist-excel-associate-microsoft-365-apps.png"
+    },
+    {
+      "name": "Microsoft Office Specialist PowerPoint Associate",
+      "logo": "/certification_logos/microsoft-office-specialist-powerpoint-associate-microsoft-365-apps.png"
+    },
+    {
+      "name": "Microsoft Office Specialist Word Associate",
+      "logo": "/certification_logos/microsoft-office-specialist-word-associate-microsoft-365-apps.png"
+    },
+    {
+      "name": "PMI Project Management Ready",
+      "logo": "/certification_logos/pmi-project-management-ready.png"
+    }
+  ],
+
+  "expertise": {
+    "featuredProject": "provident-fund",
+
+    "categories": [
+      {
+        "name": "AI & Automation",
+        "items": [
+          "n8n Workflow Automation",
+          "AI Agent Design",
+          "LLM Integration",
+          "Prompt Engineering",
+          "API Integration"
+        ]
+      },
+      {
+        "name": "Backend & Data",
+        "items": ["Node.js", "MySQL", "Firebase", "REST APIs", "Supabase"]
+      },
+      {
+        "name": "Frontend",
+        "items": ["Next.js", "React.js", "TypeScript", "Tailwind CSS"]
+      },
+      {
+        "name": "Tools & Platforms",
+        "items": ["Git / GitHub", "Figma", "Google Workspace", "VS Code"]
+      }
+    ],
+
+    "philosophy": {
+      "title": "Building software that solves real business problems",
+      "description": "I believe good software should reduce manual work, improve operational efficiency, and remain maintainable long after deployment. My focus is on building practical systems that create measurable impact."
+    }
+  },
+
   "projects": [
     {
       "id": "provident-fund",
-      "title": "SDO Provident Fund Online Reporting and Monitoring System",
-      "description": "A comprehensive loan tracking and management system with advanced workflow logic and backend processing for institutional funds.",
-      "longDescription": "SDO PFORMS is a loan ledger and financial tracking system designed to streamline record management, automate payment monitoring, and improve accuracy in tracking balances and transactions for efficient administrative oversight.",
-      "techStack": ["Next.js", "Node.js", "Firebase Studio", "MySQL", "Vercel", "Railway"],
-      "status": "On Going",
       "featured": true,
+
+      "title": "SDO Provident Fund Online Reporting and Monitoring System",
+
+      "summary": "A digital loan management and financial tracking platform for the Schools Division Office of Balanga City.",
+
+      "description": "Designed to replace manual recordkeeping with an automated, role-based platform for tracking loan applications, balances, repayments, and reporting.",
+
+      "problem": "",
+
+      "solution": "",
+
+      "highlights": [],
+
+      "features": [],
+
+      "impact": [],
+
+      "categories": ["web", "management"],
+
+      "techStack": [
+        "Next.js",
+        "Node.js",
+        "Firebase",
+        "MySQL",
+        "Vercel",
+        "Railway"
+      ],
+
+      "status": "ongoing",
+
+      "thumbnail": "/projects_imgs/sdo_pforms_screenshot.png",
+
+      "gallery": ["/projects_imgs/sdo_pforms_screenshot.png"],
+
       "links": {
         "github": "https://github.com/ArdyErni/bookish-octo-train",
         "live": "https://bookish-octo-train-zeta.vercel.app/login"
-      },
-      "image": "provident-fund"
+      }
     },
+
+    {
+      "id": "invoice-automation",
+      "featured": false,
+
+      "title": "Invoice Collection & Escalation Automation",
+
+      "summary": "Automated invoice follow-up and escalation workflow with AI-generated financial reporting.",
+
+      "description": "An end-to-end invoice follow-up system that categorizes outstanding invoices by aging thresholds and automatically escalates through multi-stage notification routing — from client email reminders to internal Slack alerts. Includes AI-generated executive financial summaries delivered as weekly Google Docs reports.",
+
+      "categories": ["automation", "ai"],
+
+      "techStack": ["n8n", "Supabase", "Gemini AI", "Gmail", "Slack"],
+
+      "status": "completed",
+
+      "thumbnail": "",
+
+      "gallery": ["/projects_imgs/n8n_1_AIM_and_CS.png"],
+
+      "links": {
+        "github": "",
+        "live": ""
+      }
+    },
+
+    {
+      "id": "feedback-intelligence",
+      "featured": false,
+
+      "title": "Client Feedback Intelligence Automation",
+
+      "summary": "Automated multilingual customer feedback analysis with AI-powered reporting.",
+
+      "description": "An automated feedback analysis pipeline that consolidates weekly customer submissions, processes multilingual input (English, Tagalog, Taglish), and generates department-specific performance reports. Delivers color-coded HTML email dashboards with sentiment scores.",
+
+      "problem": "",
+
+      "solution": "",
+
+      "highlights": [],
+
+      "features": [],
+
+      "impact": [],
+
+      "categories": ["automation", "ai"],
+
+      "techStack": ["n8n", "Groq Llama 3.1", "Gmail"],
+
+      "status": "completed",
+
+      "thumbnail": "",
+
+      "gallery": ["/projects_imgs/n8n_2_ACFC.png"],
+
+      "links": {
+        "github": "",
+        "live": ""
+      }
+    },
+
     {
       "id": "athlon",
-      "title": "Athlon",
-      "description": "Athlon is a fitness and performance tracking platform designed to streamline training management while fostering community engagement, with a gamified system that features customizable avatars to enhance user motivation and engagement.",
-      "techStack": ["Android Studio", "Java/Kotlin", "Firebase"],
-      "status": "Completed",
       "featured": false,
+
+      "title": "Athlon — Fitness & Community App",
+
+      "summary": "Gamified fitness platform designed to improve motivation and training consistency.",
+
+      "description": "A fitness and community engagement platform with a gamified avatar system. Served as Project Leader and UI/UX Designer, leading wireframing, prototyping, team coordination, and research presentation.",
+
+      "problem": "",
+
+      "solution": "",
+
+      "highlights": [],
+
+      "features": [],
+
+      "impact": [],
+
+      "categories": ["web", "mobile"],
+
+      "techStack": ["Android Studio", "Java", "Kotlin", "Firebase"],
+
+      "status": "completed",
+
+      "thumbnail": "/projects_imgs/athlon_web_screenshot.png",
+
+      "gallery": ["/projects_imgs/athlon_web_screenshot.png"],
+
       "links": {
         "github": "https://github.com/JimuelBartolome/Athlon---Finals-Revision",
         "live": ""
-      },
-      "image": "athlon-app"
+      }
     },
+
     {
       "id": "portfolio-v1",
-      "title": "Minimalist Portfolio Website",
-      "description": "The current responsive portfolio showcasing my projects and technical expertise as a full-stack developer.",
-      "techStack": ["Next.js", "Tailwind CSS", "TypeScript"],
-      "status": "On Going",
       "featured": false,
+
+      "title": "Portfolio Website",
+
+      "summary": "Personal portfolio showcasing projects, technical expertise, and professional experience.",
+
+      "description": "The current responsive portfolio showcasing my projects and technical expertise as a full-stack developer and AI automation engineer.",
+
+      "problem": "",
+
+      "solution": "",
+
+      "highlights": [],
+
+      "features": [],
+
+      "impact": [],
+
+      "categories": ["web"],
+
+      "techStack": ["Next.js", "Tailwind CSS", "TypeScript"],
+
+      "status": "ongoing",
+
+      "thumbnail": "/projects_imgs/website_v1_screenshot.png",
+
+      "gallery": ["/projects_imgs/website_v1_screenshot.png"],
+
       "links": {
         "github": "https://github.com/ArdyErni/paulardy-erni-portfolio",
         "live": "https://paulardy-erni-portfolio.vercel.app/"
-      },
-      "image": "portfolio-v1"
+      }
     }
   ],
-  "skills": [
+
+  "services": [
     {
-      "category": "Frontend",
-      "items": ["React.js", "Next.js", "TypeScript", "Tailwind CSS"]
+      "title": "AI Automation",
+      "description": "Design and develop AI-powered workflows that eliminate repetitive manual tasks.",
+      "deliverables": ["AI Agents", "Workflow Automation", "LLM Integration"],
+      "technologies": ["n8n", "OpenAI", "Gemini", "Supabase"]
     },
     {
-      "category": "Backend",
-      "items": ["Node.js"]
+      "title": "Backend Development",
+      "description": "Develop scalable backend systems with secure APIs and database architecture.",
+      "deliverables": ["REST APIs", "Authentication", "Database Design"],
+      "technologies": ["Node.js", "MySQL", "Firebase", "Supabase"]
     },
     {
-      "category": "Database",
-      "items": ["MySQL", "Firebase"]
-    },
-    {
-      "category": "Tools",
-      "items": ["Git/GitHub", "VS Code","Figma"]
+      "title": "Full-Stack Web Applications",
+      "description": "Build modern web applications from concept to deployment.",
+      "deliverables": [
+        "Frontend Development",
+        "Backend Development",
+        "Deployment"
+      ],
+      "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS"]
     }
   ],
-  "certifications": [
-    "Cisco Computer Hardware Basics",
-    "Cisco Cyber Threat Management",
-    "PMI Project Management Ready",
-    "IC3 Digital Literacy Certification",
-    "IT Specialist – Cybersecurity",
-    "IT Specialist – Software Development",
-    "Microsoft Office Specialist",
-    "IBM Design Thinking Practitioner"
+  "process": [
+    {
+      "id": "discover",
+      "title": "Discover",
+      "description": "Understand the business problem, goals, and constraints before proposing a solution."
+    },
+    {
+      "id": "design",
+      "title": "Design",
+      "description": "Plan the system architecture, user experience, and technical approach."
+    },
+    {
+      "id": "build",
+      "title": "Build",
+      "description": "Develop scalable, maintainable solutions through iterative implementation."
+    },
+    {
+      "id": "deploy",
+      "title": "Deploy",
+      "description": "Launch, monitor, and continuously improve the solution based on feedback."
+    }
   ]
 }

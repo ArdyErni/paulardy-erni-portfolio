@@ -1,27 +1,26 @@
+'use client';
+
 import { Navbar } from '@/components/Navbar';
-import { Hero } from '@/components/Hero';
-import { ResumeSection } from '@/components/ResumeSection';
-import { FeaturedProject } from '@/components/FeaturedProject';
-import { ProjectsGrid } from '@/components/ProjectsGrid';
-import { AboutSection } from '@/components/AboutSection';
-import { SkillsSection } from '@/components/SkillsSection';
-import { CertificationsSection } from '@/components/CertificationsSection';
-import { ContactSection } from '@/components/ContactSection';
 import { Footer } from '@/components/Footer';
+import { ProfileView } from '@/views/ProfileView';
+import { BackgroundView } from '@/views/BackgroundView';
+import { ProjectsView } from '@/views/ProjectsView';
+import { ServicesView } from '@/views/ServicesView';
+import { useView } from '@/hooks/useView';
 
 export default function Home() {
+  const { activeView, setActiveView } = useView('profile');
+
   return (
-    <main className="min-h-screen">
-      <Navbar />
-      <Hero />
-      <ResumeSection />
-      <FeaturedProject />
-      <ProjectsGrid />
-      <AboutSection />
-      <SkillsSection />
-      <CertificationsSection />
-      <ContactSection />
+    <div className="min-h-screen flex flex-col">
+      <Navbar activeView={activeView} onViewChange={setActiveView} />
+      <main className="flex-1">
+        {activeView === 'profile' && <ProfileView onNavigate={setActiveView} />}
+        {activeView === 'background' && <BackgroundView />}
+        {activeView === 'projects' && <ProjectsView />}
+        {activeView === 'services' && <ServicesView />}
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "entries": {
+    "public/certification_logos/enterprise-design-thinking-practitioner.1.png": {
+      "description": "certificate 1 for enterprise design thinking practioner"
+    },
+    "docs/blueprint.md": {
+      "description": "description 999 added for blueprint.md"
+    },
+    "src": {
+      "description": "Application source code"
+    },
+    "src/components": {
+      "description": "Reusable UI components"
+    }
+  }
+}

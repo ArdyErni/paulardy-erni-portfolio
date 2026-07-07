@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 137 38% 97%;
+    --background: 0 0% 100%;
     --foreground: 0 0% 20%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 20%;
@@ -34,12 +34,35 @@
   body {
     @apply bg-background text-foreground font-body antialiased selection:bg-primary/20;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-headline font-bold;
   }
 }
 
 .bg-dot-pattern {
-  background-image: radial-gradient(circle, #00BF6322 1px, transparent 1px);
+  background-image: radial-gradient(circle, #00bf6322 1px, transparent 1px);
   background-size: 24px 24px;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  animation: marquee 5s linear infinite;
+}
+
+.marquee:hover {
+  animation-play-state: paused;
 }
