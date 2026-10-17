@@ -3,8 +3,6 @@ import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { LoadingScreen } from "@/components/LoadingScreen";
 
-// DM Sans is the redesign's typeface. next/font self-hosts it, so there is no
-// layout shift and no request to fonts.googleapis.com at runtime.
 const dmSans = DM_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
@@ -13,6 +11,9 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  verification: {
+    google: "39ZNBUqFVccZBg2mHqo6wGu0G9OI3kO_-Q1Q3U5Xvws",
+  },
   icons: {
     icon: "/website_logo/portfolio_logo.png",
   },
