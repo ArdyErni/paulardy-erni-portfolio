@@ -11,13 +11,17 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://paulardy-erni-portfolio.vercel.app"),
+  alternates: {
+    canonical: "/",
+  },
   verification: {
     google: "39ZNBUqFVccZBg2mHqo6wGu0G9OI3kO_-Q1Q3U5Xvws",
   },
   icons: {
     icon: "/website_logo/portfolio_logo.png",
   },
-  title: "Paul Ardy Erni",
+  title: "Ardy Erni | Full-Stack Web Developer",
   description:
     "Full-Stack Web Developer focused on building workflow-driven systems and scalable web applications.",
 };
