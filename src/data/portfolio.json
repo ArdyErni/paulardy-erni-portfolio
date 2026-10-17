@@ -49,7 +49,7 @@
       "degree": "Bachelor of Science in Information Technology",
       "duration": "2022 – 2026",
       "achievements": ["Cum Laude", "Dean's Lister"],
-      "logo": "/history/Bataan_Peninsula_State_University_Logo.png"
+      "logo": "/history/Bataan_Peninsula_State_University_logo.png"
     }
   ],
 
@@ -393,7 +393,7 @@
     {
       "id": "sdo-balanga",
       "organization": "Schools Division Office, Balanga City",
-      "logo": "/history/SDO_Balanga_City_Logo.png",
+      "logo": "/history/SDO_Balanga_City_logo.png",
       "roles": [
         {
           "title": "IT Intern, Web Developer",
