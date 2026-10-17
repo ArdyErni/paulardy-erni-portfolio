@@ -62,22 +62,22 @@ export function ProjectsView() {
         </div>
 
         {/* Controls */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-6">
+        {/* <div className="flex flex-col sm:flex-row gap-4 mb-6">
           <SearchInput value={searchQuery} onChange={setSearchQuery} />
           <FilterChips
             categories={allCategories}
             selected={selectedCategory}
             onSelect={setSelectedCategory}
           />
-        </div>
+        </div> */}
 
         {/* Results count */}
-        <p className="text-xs text-muted-foreground font-medium mb-6">
+        {/* <p className="text-xs text-muted-foreground font-medium mb-6">
           {filteredProjects.length} project
           {filteredProjects.length !== 1 ? "s" : ""}
           {selectedCategory !== "all" && ` in "${selectedCategory}"`}
           {searchQuery && ` matching "${searchQuery}"`}
-        </p>
+        </p> */}
 
         {/* Grid or empty state */}
         {filteredProjects.length > 0 ? (

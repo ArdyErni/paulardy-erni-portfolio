@@ -3,14 +3,21 @@
     "name": "Paul Ardy Erni",
     "title": "Full-Stack Developer & AI Automation Engineer",
     "tagline": "I build backend systems and AI-powered workflows that eliminate manual work.",
-    "introduction": "Passionate full-stack developer specializing in backend systems, workflow automation, and AI integrations. I enjoy building software that solves real operational problems through scalable architecture and thoughtful user experiences.",
+    "introduction": "Based in Bataan, Philippines, I'm currently Lead AI Automation Engineer at AgentGenius.ai. I build backend systems, workflow automations and AI integrations that solve real operational problems.",
     "location": "Bataan, Philippines",
     "avatar": "/profile.png",
     "resume": "/resume.pdf",
     "techStack": [
-      "Next.js", "React.js", "TypeScript", "Node.js",
-      "MySQL", "Firebase", "Supabase", "n8n",
-      "Tailwind CSS", "Git / GitHub"
+      "Next.js",
+      "React.js",
+      "TypeScript",
+      "Node.js",
+      "MySQL",
+      "Firebase",
+      "Supabase",
+      "n8n",
+      "Tailwind CSS",
+      "Git / GitHub"
     ],
     "currentFocus": [
       "AI Automation",
@@ -24,6 +31,10 @@
       "Full-Stack Developer",
       "AI Automation Engineer"
     ],
+    "about": "[ADD A PERSONAL PARAGRAPH: what you enjoy outside of work, what you're learning, what drives you.]",
+    "interests": "[ADD INTERESTS]",
+    "about": "[ADD A PERSONAL PARAGRAPH: what you enjoy outside of work, what you're learning, what drives you.]",
+    "interests": "[ADD INTERESTS]",
     "socials": {
       "github": "https://github.com/ArdyErni",
       "linkedin": "https://linkedin.com/in/ernipa-it",
@@ -36,8 +47,9 @@
     {
       "institution": "Bataan Peninsula State University",
       "degree": "Bachelor of Science in Information Technology",
-      "duration": "2022 – Present",
-      "achievements": ["Dean's Lister (2022–2025)"]
+      "duration": "2022 – 2026",
+      "achievements": ["Cum Laude", "Dean's Lister"],
+      "logo": "/history/Bataan_Peninsula_State_University_Logo.png"
     }
   ],
 
@@ -182,7 +194,7 @@
 
       "status": "completed",
 
-      "thumbnail": "",
+      "thumbnail": "/projects_imgs/n8n_1_AIM_and_CS.png",
 
       "gallery": ["/projects_imgs/n8n_1_AIM_and_CS.png"],
 
@@ -218,7 +230,7 @@
 
       "status": "completed",
 
-      "thumbnail": "",
+      "thumbnail": "/projects_imgs/n8n_2_ACFC.png",
 
       "gallery": ["/projects_imgs/n8n_2_ACFC.png"],
 
@@ -345,6 +357,102 @@
       "id": "deploy",
       "title": "Deploy",
       "description": "Launch, monitor, and continuously improve the solution based on feedback."
+    }
+  ],
+
+  "experience": [
+    {
+      "id": "agentgenius",
+      "organization": "AgentGenius.ai",
+      "logo": "/history/Agent_Genius_logo.png",
+      "current": true,
+      "roles": [
+        {
+          "title": "Lead AI Automation Engineer",
+          "period": "Aug 2026 – Present",
+          "bullets": [
+            "Lead module development and integration across production applications.",
+            "Work with clients and team to clarify requirements and support delivery."
+          ]
+        },
+        {
+          "title": "AI Automation Engineer",
+          "period": "May 2026 – Aug 2026",
+          "bullets": [
+            "Built n8n workflows integrating LLMs, APIs and databases for invoice management and feedback intelligence.",
+            "Shipped AI-powered collection generation on a production SaaS platform."
+          ]
+        }
+      ],
+      "stack": ["n8n", "Next.js", "Supabase", "Gemini AI"],
+      "project": {
+        "label": "Invoice Automation, Client Feedback",
+        "href": "/projects"
+      }
+    },
+    {
+      "id": "sdo-balanga",
+      "organization": "Schools Division Office, Balanga City",
+      "logo": "/history/SDO_Balanga_City_Logo.png",
+      "roles": [
+        {
+          "title": "IT Intern, Web Developer",
+          "period": "Jan 2026 – Apr 2026",
+          "bullets": [
+            "Built PFORMS to digitize loan application, repayment and reporting.",
+            "Gave ICT Unit support: maintenance, troubleshooting, system deployment."
+          ]
+        }
+      ],
+      "stack": ["Next.js", "Node.js", "Firebase", "MySQL"],
+      "project": {
+        "label": "PFORMS",
+        "href": "/projects"
+      }
+    }
+  ],
+  "gear": [
+    {
+      "id": "viewplus-ml-22",
+      "category": "Main monitor",
+      "name": "ViewPlus ML-22",
+      "image": "/gears/viewplus_ml_22.png"
+    },
+    {
+      "id": "arzopa",
+      "category": "Second monitor",
+      "name": "Arzopa Z1C",
+      "image": "/gears/arzopa_z1c.png"
+    },
+    {
+      "id": "vxe-r1-se-plus",
+      "category": "Mouse",
+      "name": "VXE R1 SE+",
+      "image": "/gears/vxe_r1_se+.png"
+    },
+    {
+      "id": "generic-mic",
+      "category": "Microphone",
+      "name": "Generic Microphone",
+      "image": "/gears/generic_mic.png"
+    },
+    {
+      "id": "moondrop-chu-ii",
+      "category": "Earphones",
+      "name": "Moondrop Chu 2",
+      "image": "/gears/moondrop_chu_2.png"
+    },
+    {
+      "id": "system-unit",
+      "category": "System unit",
+      "name": "Ryzen 5 5600G 16GB",
+      "image": "/gears/system_unit.png"
+    },
+    {
+      "id": "rakk-pluma-1",
+      "category": "Keyboard",
+      "name": "Rakk Pluma V1 (Black)",
+      "image": "/gears/rakk_pluma_1.png"
     }
   ]
 }

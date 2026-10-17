@@ -12,6 +12,9 @@
     },
     "src/components": {
       "description": "Reusable UI components"
+    },
+    "src/components/profile/CertificationsSection.tsx": {
+      "description": "certifications section are for certificates"
     }
   }
 }

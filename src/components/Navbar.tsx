@@ -1,102 +1,110 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import {
+  Briefcase,
+  LayoutGrid,
+  Monitor,
+  User,
+  type LucideIcon,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
-import { NAV_ITEMS, type ViewId } from "@/hooks/useView";
+import { NAV_ITEMS, type NavId, type ViewId } from "@/hooks/useView";
 
 interface NavbarProps {
   activeView: ViewId;
   onViewChange: (view: ViewId) => void;
 }
 
+const ICONS: Record<NavId, LucideIcon> = {
+  profile: User,
+  background: Briefcase,
+  projects: LayoutGrid,
+  gear: Monitor,
+};
+
 export function Navbar({ activeView, onViewChange }: NavbarProps) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  function handleNav(id: ViewId) {
-    onViewChange(id);
-    setIsOpen(false);
-  }
-
   return (
-    <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b">
-      <div className="container mx-auto max-w-7xl px-6 flex items-center h-16">
-        {/* Logo — fixed width so it never gets compressed */}
-        <button
-          onClick={() => handleNav("profile")}
-          className="flex-shrink-0 w-48"
-          aria-label="Go to Profile"
-        >
-          <Image
-            src="/website_logo/portfolio_logo.png"
-            alt="Ardy Portfolio"
-            width={118}
-            height={30}
-            className="object-contain object-left"
-          />
-        </button>
-
-        {/* Desktop nav — centered in remaining space */}
-        <div className="hidden md:flex ml-auto items-center gap-1">
-          {NAV_ITEMS.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => handleNav(item.id)}
-              aria-current={activeView === item.id ? "page" : undefined}
-              className={cn(
-                "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200",
-                activeView === item.id
-                  ? "bg-primary text-white"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted",
-              )}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Mobile toggle */}
-        <div className="flex-1 flex justify-end md:hidden">
+    <>
+      {/* Top bar: logo on every screen, pill tabs from md and up */}
+      <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur-md">
+        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-5 md:h-16 md:px-6">
           <button
-            className="p-2 text-foreground"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
+            onClick={() => onViewChange("profile")}
+            className="flex-shrink-0 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            aria-label="Go to Profile"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            <Image
+              src="/website_logo/portfolio_logo.png"
+              alt="erknst."
+              width={350}
+              height={350}
+              priority
+              className="h-40 w-auto md:h-11"
+            />
           </button>
-        </div>
-      </div>
 
-      {/* Mobile drawer */}
-      <div
-        className={cn(
-          "fixed inset-0 top-16 bg-background md:hidden transition-transform duration-300 ease-in-out z-40 px-6 py-8",
-          isOpen ? "translate-x-0" : "translate-x-full",
-        )}
+          <nav
+            aria-label="Main"
+            className="hidden items-center gap-1.5 md:flex"
+          >
+            {NAV_ITEMS.map((item) => {
+              const active = activeView === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => onViewChange(item.id)}
+                  aria-current={active ? "page" : undefined}
+                  className={cn(
+                    "rounded-full px-4 py-2 text-sm transition-colors",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                    active
+                      ? "bg-primary font-semibold text-primary-foreground"
+                      : "font-medium text-muted-foreground hover:bg-muted hover:text-foreground",
+                  )}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
+          </nav>
+        </div>
+      </header>
+
+      {/* Bottom tab bar: phones only */}
+      <nav
+        aria-label="Main"
+        className="fixed inset-x-0 bottom-0 z-50 flex border-t bg-background/95 px-2 pt-2 shadow-[0_-4px_16px_rgba(0,0,0,0.05)] backdrop-blur md:hidden pb-[max(env(safe-area-inset-bottom),12px)]"
       >
-        <div className="flex flex-col space-y-4">
-          {NAV_ITEMS.map((item) => (
+        {NAV_ITEMS.map((item) => {
+          const active = activeView === item.id;
+          const Icon = ICONS[item.id];
+          return (
             <button
               key={item.id}
-              onClick={() => handleNav(item.id)}
-              aria-current={activeView === item.id ? "page" : undefined}
+              onClick={() => onViewChange(item.id)}
+              aria-current={active ? "page" : undefined}
               className={cn(
-                "text-2xl font-bold text-left py-2 transition-colors",
-                activeView === item.id ? "text-primary" : "hover:text-primary",
+                "flex flex-1 flex-col items-center gap-1 rounded-lg text-[11px]",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                active
+                  ? "font-bold text-primary"
+                  : "font-medium text-muted-foreground",
               )}
             >
+              <span
+                className={cn(
+                  "flex h-[30px] w-14 items-center justify-center rounded-full transition-colors",
+                  active && "bg-secondary",
+                )}
+              >
+                <Icon size={22} aria-hidden="true" />
+              </span>
               {item.label}
             </button>
-          ))}
-          <button
-            onClick={() => handleNav("services")}
-            className="bg-primary text-white py-4 rounded-xl text-center font-bold mt-4"
-          >
-            Get in touch
-          </button>
-        </div>
-      </div>
-    </nav>
+          );
+        })}
+      </nav>
+    </>
   );
 }

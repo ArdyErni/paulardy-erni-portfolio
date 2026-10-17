@@ -16,6 +16,8 @@ export interface Profile {
   techStack: string[];
   currentFocus: string[];
   quickFacts: string[];
+  about: string;
+  interests: string;
   socials: SocialLinks;
 }
 
@@ -24,6 +26,8 @@ export interface Education {
   degree: string;
   duration: string;
   achievements: string[];
+  /** NEW: school seal shown beside the entry on the Background page */
+  logo?: string;
 }
 
 export interface Certification {
@@ -87,6 +91,39 @@ export interface ProcessStep {
   description: string;
 }
 
+/* ---------- NEW: Background page (work history) ---------- */
+
+export interface ExperienceRole {
+  title: string;
+  /** Display text, e.g. "Aug 2026 – Present" */
+  period: string;
+  bullets: string[];
+}
+
+export interface Experience {
+  id: string;
+  organization: string;
+  logo: string;
+  /** Shows the green "Present" badge */
+  current?: boolean;
+  /** Newest role first. Two roles = a promotion shown under one company. */
+  roles: ExperienceRole[];
+  stack: string[];
+  /** Optional link to a related project */
+  project?: { label: string; href: string };
+}
+
+/* ---------- NEW: Gear page ---------- */
+
+export interface GearItem {
+  id: string;
+  /** Small label above the name, e.g. "Main monitor" */
+  category: string;
+  name: string;
+  /** Optional photo under /public/gear_img. Missing = neutral placeholder. */
+  image?: string;
+}
+
 export interface PortfolioData {
   profile: Profile;
   education: Education[];
@@ -95,4 +132,8 @@ export interface PortfolioData {
   projects: Project[];
   services: Service[];
   process: ProcessStep[];
+  /** NEW */
+  experience: Experience[];
+  /** NEW */
+  gear: GearItem[];
 }

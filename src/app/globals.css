@@ -4,25 +4,26 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 20%;
+    /* Redesign palette (values come from the wireframes) */
+    --background: 120 14% 98%; /* page      #fafbfa */
+    --foreground: 120 4% 14%; /* text      #232623 */
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 20%;
+    --card-foreground: 120 4% 14%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 20%;
-    --primary: 151 100% 37.5%;
+    --popover-foreground: 120 4% 14%;
+    --primary: 149 87% 29%; /* green     #0a8a47 (white text passes contrast) */
     --primary-foreground: 0 0% 100%;
-    --secondary: 98 83% 61%;
-    --secondary-foreground: 0 0% 20%;
-    --muted: 137 15% 90%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 151 100% 37.5%;
+    --secondary: 144 52% 90%; /* soft green #d9f2e3 (status pills, active tab) */
+    --secondary-foreground: 153 87% 21%; /* dark green #07643a */
+    --muted: 120 14% 91%; /* sage      #e6ece6 (image placeholders, chips) */
+    --muted-foreground: 120 4% 37%; /* gray text #5b625b */
+    --accent: 149 87% 29%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 137 20% 88%;
-    --input: 137 20% 88%;
-    --ring: 151 100% 37.5%;
+    --border: 120 7% 88%; /* #dfe3df */
+    --input: 120 7% 88%;
+    --ring: 149 87% 29%;
     --radius: 0.75rem;
   }
 }
