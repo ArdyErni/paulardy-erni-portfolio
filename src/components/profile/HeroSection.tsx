@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Github, Linkedin, Mail, MoreHorizontal, X } from "lucide-react";
 import type { Profile } from "@/types/portfolio";
 import type { ViewId } from "@/hooks/useView";
@@ -15,35 +15,198 @@ const FACTS = (profile: Profile) => [
   { label: "Based in", value: profile.location },
   { label: "Now", value: "Lead AI Automation Engineer, AgentGenius.ai" },
   { label: "Education", value: "BSIT, Bataan Peninsula State University" },
-  { label: "Recognition", value: "Dean's Lister, 2022–2025" },
+  { label: "Recognition", value: "Dean's Lister, 2022–2026" },
   { label: "Outside work", value: profile.interests },
 ];
 
-// Photo stack: 5 cards fanned out, center card is the real photo
-const STACK = [
-  { z: 8, w: 132, h: 176, bg: "rgb(207,224,212)", rotate: -7, tx: -140, ty: -20 },
-  { z: 9, w: 172, h: 228, bg: "rgb(217,230,220)", rotate: -4, tx: -90, ty: -10 },
-  { z: 10, w: 220, h: 290, bg: "rgb(227,236,229)", rotate: 0, tx: 0, ty: 0, isPhoto: true },
-  { z: 9, w: 172, h: 228, bg: "rgb(217,230,220)", rotate: 4, tx: 90, ty: -10 },
-  { z: 8, w: 132, h: 176, bg: "rgb(207,224,212)", rotate: 7, tx: 140, ty: -20 },
+const PHOTOS = [
+  "/shuffle_imgs/grad_guitar.JPG",
+  "/shuffle_imgs/grad_formal.jpg",
+  "/shuffle_imgs/food.jpg",
+  "/shuffle_imgs/pc_setup.jpg",
+  "/shuffle_imgs/with_shane.jpg",
 ];
+
+const STACK = [
+  {
+    z: 8,
+    w: 152,
+    h: 210,
+    bg: "rgb(207,224,212)",
+    rotate: -7,
+    tx: -155,
+    ty: -20,
+  },
+  {
+    z: 9,
+    w: 196,
+    h: 268,
+    bg: "rgb(217,230,220)",
+    rotate: -4,
+    tx: -100,
+    ty: -10,
+  },
+  { z: 10, w: 252, h: 340, bg: "rgb(227,236,229)", rotate: 0, tx: 0, ty: 0 },
+  { z: 9, w: 196, h: 268, bg: "rgb(217,230,220)", rotate: 4, tx: 100, ty: -10 },
+  { z: 8, w: 152, h: 210, bg: "rgb(207,224,212)", rotate: 7, tx: 155, ty: -20 },
+];
+
+const SOCIAL_ICONS = (profile: Profile) => [
+  {
+    el: "a" as const,
+    href: profile.socials.github,
+    icon: <Github size={20} />,
+    label: "GitHub",
+  },
+  {
+    el: "a" as const,
+    href: profile.socials.linkedin,
+    icon: <Linkedin size={20} />,
+    label: "LinkedIn",
+  },
+  {
+    el: "a" as const,
+    href: `mailto:${profile.socials.email}`,
+    icon: <Mail size={20} />,
+    label: "Email",
+  },
+];
+
+// Reusable reveal wrapper — fades + slides up on mount with a delay
+function Reveal({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (reduced) return;
+
+    el.style.opacity = "0";
+    el.style.transform = "translateY(20px)";
+
+    const t = setTimeout(() => {
+      el.style.transition = "opacity 550ms ease, transform 550ms ease";
+      el.style.opacity = "1";
+      el.style.transform = "translateY(0)";
+    }, delay);
+
+    return () => clearTimeout(t);
+  }, [delay]);
+
+  return (
+    <div ref={ref} className={className}>
+      {children}
+    </div>
+  );
+}
 
 export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
   const [showModal, setShowModal] = useState(false);
-  const [activeIdx, setActiveIdx] = useState(2); // center card on top
+  const [modalVisible, setModalVisible] = useState(false);
+  const [activeIdx, setActiveIdx] = useState(2);
+  // photoIdx tracks which photo is shown on the center card; fading tracks transition
+  const [photoIdx, setPhotoIdx] = useState(0);
+  const [fading, setFading] = useState(false);
 
-  const shuffleStack = () => setActiveIdx((i) => (i + 1) % STACK.length);
+  // Modal: trigger CSS entrance after mount
+  useEffect(() => {
+    if (showModal) {
+      const t = setTimeout(() => setModalVisible(true), 16);
+      return () => clearTimeout(t);
+    } else {
+      setModalVisible(false);
+    }
+  }, [showModal]);
+
+  // Auto-shuffle photo every 3 seconds while modal is open
+  useEffect(() => {
+    if (!showModal) return;
+    const interval = setInterval(() => {
+      setFading(true);
+      setTimeout(() => {
+        setPhotoIdx((i) => (i + 1) % PHOTOS.length);
+        setActiveIdx((i) => (i + 1) % STACK.length);
+        setFading(false);
+      }, 500);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [showModal]);
+
+  const closeModal = () => {
+    setModalVisible(false);
+    setTimeout(() => setShowModal(false), 280);
+  };
+
+  const shuffleStack = () => {
+    setFading(true);
+    setTimeout(() => {
+      setPhotoIdx((i) => (i + 1) % PHOTOS.length);
+      setActiveIdx((i) => (i + 1) % STACK.length);
+      setFading(false);
+    }, 300);
+  };
 
   return (
     <>
+      {/* Floating photo keyframe */}
+      <style>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50%       { transform: translateY(-10px); }
+        }
+        @keyframes shimmer {
+          from { transform: translateX(-100%) skewX(-12deg); }
+          to   { transform: translateX(220%) skewX(-12deg); }
+        }
+        .cta-shimmer {
+          position: relative;
+          overflow: hidden;
+        }
+        .cta-shimmer::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.28) 50%, transparent 100%);
+          transform: translateX(-100%) skewX(-12deg);
+          pointer-events: none;
+        }
+        .cta-shimmer:hover::before {
+          animation: shimmer 600ms ease forwards;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .float-photo { animation: none !important; }
+          .cta-shimmer::before { display: none; }
+        }
+      `}</style>
+
       <section className="bg-[#fafbfa] min-h-[calc(100vh-50px)] flex items-center">
         <div className="mx-auto w-full px-6 py-14" style={{ maxWidth: 1100 }}>
-          <div className="grid items-center gap-14" style={{ gridTemplateColumns: "340px 1fr" }}>
-            {/* LEFT */}
-            <div className="flex flex-col items-center gap-5">
+          <div
+            className="grid items-center gap-14"
+            style={{ gridTemplateColumns: "340px 1fr" }}
+          >
+            {/* LEFT — photo + social icons */}
+            <Reveal delay={0} className="flex flex-col items-center gap-5">
+              {/* Effect 1 — photo float */}
               <div
-                className="relative overflow-hidden bg-white rounded-[28px] border border-[#dfe3df]"
-                style={{ width: 300, height: 300, boxShadow: "rgba(10,60,30,0.12) 0px 12px 32px 0px" }}
+                className="float-photo relative overflow-hidden bg-white rounded-[28px] border border-[#dfe3df]"
+                style={{
+                  width: 300,
+                  height: 300,
+                  boxShadow: "rgba(10,60,30,0.12) 0px 12px 32px 0px",
+                  animation: "float 4s ease-in-out infinite",
+                }}
               >
                 <Image
                   src="/user_profile/Formal Picture.jpg"
@@ -53,71 +216,148 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
                 />
               </div>
 
+              {/* Effect 4 — social icons stagger-in */}
               <div className="flex items-center gap-3">
-                <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" className="w-[46px] h-[46px] rounded-full border border-[#cfd6cf] bg-white flex items-center justify-center text-foreground hover:text-primary hover:border-primary transition-colors">
-                  <Github size={20} />
-                </a>
-                <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" className="w-[46px] h-[46px] rounded-full border border-[#cfd6cf] bg-white flex items-center justify-center text-foreground hover:text-primary hover:border-primary transition-colors">
-                  <Linkedin size={20} />
-                </a>
-                <a href={`mailto:${profile.socials.email}`} className="w-[46px] h-[46px] rounded-full border border-[#cfd6cf] bg-white flex items-center justify-center text-foreground hover:text-primary hover:border-primary transition-colors">
-                  <Mail size={20} />
-                </a>
-                <button onClick={() => setShowModal(true)} className="w-[46px] h-[46px] rounded-full border border-[#cfd6cf] bg-white flex items-center justify-center text-foreground hover:text-primary hover:border-primary transition-colors">
-                  <MoreHorizontal size={20} />
-                </button>
+                {SOCIAL_ICONS(profile).map(({ el, href, icon, label }, i) => (
+                  <Reveal key={label} delay={200 + i * 60}>
+                    <a
+                      href={href}
+                      target={href.startsWith("mailto") ? undefined : "_blank"}
+                      rel={
+                        href.startsWith("mailto")
+                          ? undefined
+                          : "noopener noreferrer"
+                      }
+                      aria-label={label}
+                      className="w-[46px] h-[46px] rounded-full border border-[#cfd6cf] bg-white flex items-center justify-center text-foreground hover:text-primary hover:border-primary transition-colors"
+                    >
+                      {icon}
+                    </a>
+                  </Reveal>
+                ))}
+                <Reveal delay={200 + 3 * 60}>
+                  <button
+                    onClick={() => setShowModal(true)}
+                    aria-label="More"
+                    className="w-[46px] h-[46px] rounded-full border border-[#cfd6cf] bg-white flex items-center justify-center text-foreground hover:text-primary hover:border-primary transition-colors"
+                  >
+                    <MoreHorizontal size={20} />
+                  </button>
+                </Reveal>
               </div>
-            </div>
+            </Reveal>
 
-            {/* RIGHT */}
+            {/* RIGHT — text content, staggered reveals */}
             <div className="flex flex-col gap-[18px]">
-              <span className="self-start text-[13px] font-bold px-[14px] py-[6px] rounded-full" style={{ backgroundColor: "rgb(217,242,227)", color: "rgb(7,100,58)" }}>
-                ● Open to opportunities
-              </span>
-              <h1 className="font-black leading-[1.05] tracking-[-2px]" style={{ fontSize: 60 }}>
-                Hi, I&apos;m <span className="text-primary">{profile.name}</span>
-              </h1>
-              <div className="font-medium" style={{ fontSize: 22, color: "rgb(91,98,91)" }}>
-                {profile.title}
-              </div>
-              <p className="leading-[1.65]" style={{ fontSize: 17, color: "rgb(59,63,59)", maxWidth: 560 }}>
-                Based in <b>{profile.location}</b>, I&apos;m currently <b>Lead AI Automation Engineer</b> at AgentGenius.ai.{" "}
-                {profile.introduction.split(". ").slice(1).join(". ")}
-              </p>
-              <div className="flex flex-wrap gap-[10px]">
-                <button onClick={() => onNavigate("projects")} className="px-[18px] py-[10px] rounded-full text-[14px] font-semibold text-white" style={{ backgroundColor: "#0a8a47" }}>
-                  View Projects
-                </button>
-                <a href={profile.resume} target="_blank" rel="noopener noreferrer" className="px-[18px] py-[10px] rounded-full text-[14px] font-semibold border" style={{ color: "#0a8a47", borderColor: "#0a8a47" }}>
-                  Download Resume
-                </a>
-              </div>
+              <Reveal delay={80}>
+                <span
+                  className="self-start text-[13px] font-bold px-[14px] py-[6px] rounded-full"
+                  style={{
+                    backgroundColor: "rgb(217,242,227)",
+                    color: "rgb(7,100,58)",
+                  }}
+                >
+                  ● Open to opportunities
+                </span>
+              </Reveal>
+
+              <Reveal delay={150}>
+                <h1
+                  className="font-black leading-[1.05] tracking-[-2px]"
+                  style={{ fontSize: 60 }}
+                >
+                  Hi, I&apos;m{" "}
+                  <span className="text-primary">{profile.name}</span>
+                  {/* Effect 3 — blinking cursor */}
+                  <span
+                    className="inline-block w-[3px] h-[52px] bg-primary ml-2 align-middle animate-pulse"
+                    style={{ borderRadius: 2, animationDuration: "900ms" }}
+                  />
+                </h1>
+              </Reveal>
+
+              <Reveal delay={220}>
+                <div
+                  className="font-medium"
+                  style={{ fontSize: 22, color: "rgb(91,98,91)" }}
+                >
+                  {profile.title}
+                </div>
+              </Reveal>
+
+              <Reveal delay={290}>
+                <p
+                  className="leading-[1.65]"
+                  style={{
+                    fontSize: 17,
+                    color: "rgb(59,63,59)",
+                    maxWidth: 560,
+                  }}
+                >
+                  Based in <b>{profile.location}</b>, I&apos;m currently{" "}
+                  <b>Lead AI Automation Engineer</b> at AgentGenius.ai.{" "}
+                  {profile.introduction.split(". ").slice(1).join(". ")}
+                </p>
+              </Reveal>
+
+              {/* Effect 2 — CTA shimmer */}
+              <Reveal delay={360}>
+                <div className="flex flex-wrap gap-[10px]">
+                  <button
+                    onClick={() => onNavigate("projects")}
+                    className="cta-shimmer px-[18px] py-[10px] rounded-full text-[14px] font-semibold text-white"
+                    style={{ backgroundColor: "#0a8a47" }}
+                  >
+                    View Projects
+                  </button>
+                  <a
+                    href={profile.resume}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cta-shimmer px-[18px] py-[10px] rounded-full text-[14px] font-semibold border"
+                    style={{ color: "#0a8a47", borderColor: "#0a8a47" }}
+                  >
+                    Download Resume
+                  </a>
+                </div>
+              </Reveal>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Full modal overlay */}
+      {/* Modal — scale+fade entrance */}
       {showModal && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center"
-          style={{ backgroundColor: "rgba(0,0,0,0.45)" }}
-          onClick={() => setShowModal(false)}
+          style={{
+            backgroundColor: modalVisible
+              ? "rgba(0,0,0,0.45)"
+              : "rgba(0,0,0,0)",
+            transition: "background-color 280ms ease",
+          }}
+          onClick={closeModal}
         >
           <div
             className="relative bg-white"
             style={{
               borderRadius: 24,
               boxShadow: "rgba(0,0,0,0.35) 0px 30px 80px 0px",
-              padding: 44,
+              padding: "52px 44px",
               width: 1040,
               maxWidth: "calc(100vw - 32px)",
+              opacity: modalVisible ? 1 : 0,
+              transform: modalVisible
+                ? "scale(1) translateY(0)"
+                : "scale(0.94) translateY(16px)",
+              transition:
+                "opacity 280ms ease, transform 280ms cubic-bezier(0.32,0.72,0,1)",
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close button */}
+            {/* Close */}
             <button
-              onClick={() => setShowModal(false)}
+              onClick={closeModal}
               className="absolute flex items-center justify-center rounded-full border border-[#e4e6e4] bg-white hover:bg-gray-50 transition-colors"
               style={{ top: 16, right: 16, width: 40, height: 40 }}
             >
@@ -125,18 +365,37 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
             </button>
 
             {/* Two-column grid */}
-            <div className="grid items-center" style={{ gridTemplateColumns: "1fr 1fr", gap: 40 }}>
-              {/* Left: text */}
+            <div
+              className="grid items-center"
+              style={{ gridTemplateColumns: "1fr 1fr", gap: 40 }}
+            >
+              {/* Left */}
               <div className="flex flex-col" style={{ gap: 14 }}>
-                <h2 style={{ font: "700 36px \"DM Sans\", system-ui, sans-serif", letterSpacing: "-1px", margin: 0 }}>
+                <h2
+                  style={{
+                    font: '700 36px "DM Sans", system-ui, sans-serif',
+                    letterSpacing: "-1px",
+                    margin: 0,
+                  }}
+                >
                   More about me
                 </h2>
-                <p style={{ fontSize: 15, lineHeight: "24px", color: "rgb(91,98,91)", margin: 0 }}>
+                <p
+                  style={{
+                    fontSize: 15,
+                    lineHeight: "24px",
+                    color: "rgb(91,98,91)",
+                    margin: 0,
+                  }}
+                >
                   {profile.about}
                 </p>
-
-                {/* Facts table */}
-                <div style={{ marginTop: 6, borderBottom: "1px solid rgb(228,230,228)" }}>
+                <div
+                  style={{
+                    marginTop: 6,
+                    borderBottom: "1px solid rgb(228,230,228)",
+                  }}
+                >
                   {FACTS(profile).map(({ label, value }) => (
                     <div
                       key={label}
@@ -150,49 +409,63 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
                         gap: 16,
                       }}
                     >
-                      <span style={{ color: "rgb(91,98,91)", flexShrink: 0, width: 96 }}>{label}</span>
+                      <span
+                        style={{
+                          color: "rgb(91,98,91)",
+                          flexShrink: 0,
+                          width: 96,
+                        }}
+                      >
+                        {label}
+                      </span>
                       <span style={{ fontWeight: 600 }}>{value}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Right: photo stack */}
+              {/* Right — photo stack */}
               <div className="flex flex-col items-center" style={{ gap: 14 }}>
-                {/* Stack */}
-                <div className="relative" style={{ width: 512, height: 320 }}>
-                  {STACK.map((card, i) => (
-                    <div
-                      key={i}
-                      onClick={shuffleStack}
-                      className="absolute flex items-center justify-center cursor-pointer overflow-hidden"
-                      style={{
-                        width: card.w,
-                        height: card.h,
-                        backgroundColor: card.bg,
-                        borderRadius: 16,
-                        border: "3.64px solid white",
-                        boxShadow: "rgba(10,60,30,0.15) 0px 6px 18px 0px",
-                        top: "50%",
-                        left: "50%",
-                        transform: `translate(calc(-50% + ${card.tx}px), calc(-50% + ${card.ty}px)) rotate(${card.rotate}deg)`,
-                        zIndex: i === activeIdx ? 11 : card.z,
-                        transition: "z-index 0s",
-                      }}
-                    >
-                      {card.isPhoto && (
-                        <Image
-                          src="/user_profile/Formal Picture.jpg"
-                          alt={profile.name}
-                          fill
-                          className="object-cover object-bottom"
-                        />
-                      )}
-                    </div>
-                  ))}
+                <div className="relative" style={{ width: 560, height: 390 }}>
+                  {STACK.map((card, i) => {
+                    const isFront = i === activeIdx;
+                    return (
+                      <div
+                        key={i}
+                        onClick={shuffleStack}
+                        className="absolute flex items-center justify-center cursor-pointer overflow-hidden"
+                        style={{
+                          width: card.w,
+                          height: card.h,
+                          backgroundColor: card.bg,
+                          borderRadius: 16,
+                          border: "3.64px solid white",
+                          boxShadow: "rgba(10,60,30,0.15) 0px 6px 18px 0px",
+                          top: "50%",
+                          left: "50%",
+                          transform: `translate(calc(-50% + ${card.tx}px), calc(-50% + ${card.ty}px)) rotate(${card.rotate}deg)`,
+                          zIndex: isFront ? 11 : card.z,
+                          transition: "z-index 0s",
+                        }}
+                      >
+                        {isFront && (
+                          <Image
+                            src={PHOTOS[photoIdx]}
+                            alt={`Photo ${photoIdx + 1}`}
+                            fill
+                            className="object-cover object-center"
+                            style={{
+                              opacity: fading ? 0 : 1,
+                              transform: fading ? "scale(1.04)" : "scale(1)",
+                              transition: "opacity 300ms ease, transform 300ms ease",
+                            }}
+                          />
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
 
-                {/* Dot indicators */}
                 <div className="flex items-center" style={{ gap: 6 }}>
                   {STACK.map((_, i) => (
                     <span
@@ -202,14 +475,19 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
                         width: i === activeIdx ? 22 : 6,
                         height: 6,
                         borderRadius: 999,
-                        backgroundColor: i === activeIdx ? "rgb(10,138,71)" : "rgb(207,214,207)",
+                        backgroundColor:
+                          i === activeIdx
+                            ? "rgb(10,138,71)"
+                            : "rgb(207,214,207)",
                         transition: "width 0.2s",
                       }}
                     />
                   ))}
                 </div>
 
-                <div style={{ fontSize: 13, color: "rgb(91,98,91)" }}>Click the stack to shuffle</div>
+                <div style={{ fontSize: 13, color: "rgb(91,98,91)" }}>
+                  Click the stack to shuffle
+                </div>
               </div>
             </div>
           </div>

@@ -31,15 +31,13 @@
       "Full-Stack Developer",
       "AI Automation Engineer"
     ],
-    "about": "[ADD A PERSONAL PARAGRAPH: what you enjoy outside of work, what you're learning, what drives you.]",
-    "interests": "[ADD INTERESTS]",
-    "about": "[ADD A PERSONAL PARAGRAPH: what you enjoy outside of work, what you're learning, what drives you.]",
-    "interests": "[ADD INTERESTS]",
+    "about": "Outside of coding, I’m just someone who enjoys music, good conversations with friends, and going out to try good food. I like playing games, even if I’m not exactly good at them hahaha. I’m also a coffee and matcha person who enjoys a good walk whenever I can.",
+    "interests": "Food, Music, People, Coffee, Matcha, and Boredom",
     "socials": {
       "github": "https://github.com/ArdyErni",
       "linkedin": "https://linkedin.com/in/ernipa-it",
       "email": "paerni.it@gmail.com",
-      "website": ""
+      "website": "https://paulardy-erni-portfolio.vercel.app/"
     }
   },
 

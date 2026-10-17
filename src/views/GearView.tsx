@@ -20,26 +20,26 @@ export function GearView() {
           {data.gear.map((item) => (
             <article
               key={item.id}
-              className="flex flex-col rounded-2xl border border-border bg-white overflow-hidden"
+              className="group flex flex-col rounded-2xl border border-border bg-white overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
             >
-              <div className="aspect-square bg-[#e6ece6] flex items-center justify-center text-muted-foreground text-sm">
+              <div className="aspect-square bg-[#e6ece6] flex items-center justify-center text-muted-foreground text-sm overflow-hidden">
                 {item.image ? (
                   <Image
                     src={item.image}
                     alt={item.name}
                     width={260}
                     height={260}
-                    className="object-contain w-full h-full"
+                    className="object-contain w-full h-full transition-transform duration-500 group-hover:scale-105"
                   />
                 ) : (
-                  <span>[PRODUCT IMAGE]</span>
+                  <span className="transition-transform duration-500 group-hover:scale-105">[PRODUCT IMAGE]</span>
                 )}
               </div>
               <div className="flex flex-col gap-1.5 border-t border-border px-5 py-[18px]">
                 <span className="text-[12px] font-bold uppercase tracking-[1.2px] text-muted-foreground">
                   {item.category}
                 </span>
-                <h3 className="text-[17px] font-bold leading-snug">
+                <h3 className="text-[17px] font-bold leading-snug group-hover:text-primary transition-colors">
                   {item.name}
                 </h3>
               </div>
