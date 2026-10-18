@@ -40,30 +40,14 @@ export default function Home() {
         }}
       >
         {/* Logo mark shown while screen is covered */}
-        <svg
-          width="48"
-          height="48"
-          viewBox="0 0 48 48"
-          fill="none"
-          aria-hidden="true"
-        >
-          <rect width="48" height="48" rx="12" fill="rgba(255,255,255,0.15)" />
-          <path
-            d="M14 34 L24 14 L34 34"
-            stroke="white"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            fill="none"
-          />
-          <path
-            d="M17.5 27.5 H30.5"
-            stroke="white"
-            strokeWidth="3"
-            strokeLinecap="round"
-            fill="none"
-          />
-        </svg>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/website_logo/portfolio_inverted.png"
+          alt=""
+          width={256}
+          height={256}
+          style={{ objectFit: "contain" }}
+        />
       </div>
     </div>
   );

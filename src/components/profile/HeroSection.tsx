@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Github, Linkedin, Mail, MoreHorizontal, X } from "lucide-react";
 import type { Profile } from "@/types/portfolio";
 import type { ViewId } from "@/hooks/useView";
@@ -27,20 +27,21 @@ const PHOTOS = [
   "/shuffle_imgs/with_shane.jpg",
 ];
 
+// PHOTOS.length must equal the number of slots in STACK / STACK_MOBILE
 const STACK = [
-  { z: 8,  w: 152, h: 210, bg: "rgb(207,224,212)", rotate: -7, tx: -155, ty: -20 },
-  { z: 9,  w: 196, h: 268, bg: "rgb(217,230,220)", rotate: -4, tx: -100, ty: -10 },
-  { z: 10, w: 252, h: 340, bg: "rgb(227,236,229)", rotate:  0, tx:    0, ty:   0 },
-  { z: 9,  w: 196, h: 268, bg: "rgb(217,230,220)", rotate:  4, tx:  100, ty: -10 },
-  { z: 8,  w: 152, h: 210, bg: "rgb(207,224,212)", rotate:  7, tx:  155, ty: -20 },
+  { z: 8,  w: 152, h: 210, rotate: -7, tx: -155, ty: -20 },
+  { z: 9,  w: 196, h: 268, rotate: -4, tx: -100, ty: -10 },
+  { z: 10, w: 252, h: 340, rotate:  0, tx:    0, ty:   0 },
+  { z: 9,  w: 196, h: 268, rotate:  4, tx:  100, ty: -10 },
+  { z: 8,  w: 152, h: 210, rotate:  7, tx:  155, ty: -20 },
 ];
 
 const STACK_MOBILE = [
-  { z: 8,  w: 91,  h: 126, bg: "rgb(207,224,212)", rotate: -7, tx: -93, ty: -12 },
-  { z: 9,  w: 118, h: 161, bg: "rgb(217,230,220)", rotate: -4, tx: -60, ty: -6  },
-  { z: 10, w: 151, h: 204, bg: "rgb(227,236,229)", rotate:  0, tx:   0, ty:  0  },
-  { z: 9,  w: 118, h: 161, bg: "rgb(217,230,220)", rotate:  4, tx:  60, ty: -6  },
-  { z: 8,  w: 91,  h: 126, bg: "rgb(207,224,212)", rotate:  7, tx:  93, ty: -12 },
+  { z: 8,  w: 91,  h: 126, rotate: -7, tx: -93, ty: -12 },
+  { z: 9,  w: 118, h: 161, rotate: -4, tx: -60, ty: -6  },
+  { z: 10, w: 151, h: 204, rotate:  0, tx:   0, ty:  0  },
+  { z: 9,  w: 118, h: 161, rotate:  4, tx:  60, ty: -6  },
+  { z: 8,  w: 91,  h: 126, rotate:  7, tx:  93, ty: -12 },
 ];
 
 const SOCIAL_ICONS = (profile: Profile) => [
@@ -74,9 +75,9 @@ function Reveal({ children, delay = 0, className = "" }: {
 export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
   const [showModal, setShowModal]       = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const [activeIdx, setActiveIdx]       = useState(2);
-  const [photoIdx, setPhotoIdx]         = useState(0);
-  const [fading, setFading]             = useState(false);
+  const [carousel, setCarousel]         = useState({ active: 0, jumping: -1 });
+  const { active, jumping }             = carousel;
+  const N                               = PHOTOS.length;
   const [isMobile, setIsMobile]         = useState(false);
 
   useEffect(() => {
@@ -96,31 +97,31 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
     }
   }, [showModal]);
 
+  const advance = useCallback(() => {
+    setCarousel((c) => ({
+      active: (c.active + 1) % N,
+      jumping: (c.active - 2 + N) % N,
+    }));
+  }, [N]);
+
+  // Clear the jumping flag after one frame so the card can fade back in
+  useEffect(() => {
+    if (jumping === -1) return;
+    const t = setTimeout(() => setCarousel((c) => ({ ...c, jumping: -1 })), 30);
+    return () => clearTimeout(t);
+  }, [jumping]);
+
   useEffect(() => {
     if (!showModal) return;
-    const interval = setInterval(() => {
-      setFading(true);
-      setTimeout(() => {
-        setPhotoIdx((i) => (i + 1) % PHOTOS.length);
-        setActiveIdx((i) => (i + 1) % STACK.length);
-        setFading(false);
-      }, 300);
-    }, 3000);
+    if (typeof window !== "undefined" &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const interval = setInterval(advance, 3000);
     return () => clearInterval(interval);
-  }, [showModal]);
+  }, [showModal, advance]);
 
   const closeModal = () => {
     setModalVisible(false);
     setTimeout(() => setShowModal(false), 280);
-  };
-
-  const shuffleStack = () => {
-    setFading(true);
-    setTimeout(() => {
-      setPhotoIdx((i) => (i + 1) % PHOTOS.length);
-      setActiveIdx((i) => (i + 1) % STACK.length);
-      setFading(false);
-    }, 300);
   };
 
   const stack  = isMobile ? STACK_MOBILE : STACK;
@@ -354,56 +355,62 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
 
               {/* Photo stack */}
               <div className="flex flex-col items-center" style={{ gap: 14 }}>
-                <div className="relative" style={{ width: stackW, height: stackH }}>
-                  {stack.map((card, i) => {
-                    const isFront = i === activeIdx;
+                <div
+                  className="relative cursor-pointer"
+                  style={{ width: stackW, height: stackH }}
+                  role="button"
+                  tabIndex={0}
+                  aria-label="Shuffle photos"
+                  onClick={advance}
+                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); advance(); } }}
+                >
+                  {PHOTOS.map((src, i) => {
+                    const offset = ((i - active + 2 + N) % N) - 2;
+                    const slot   = stack[offset + 2];
+                    const isJumping = jumping === i;
                     return (
                       <div
                         key={i}
-                        onClick={shuffleStack}
-                        className="absolute flex items-center justify-center cursor-pointer overflow-hidden"
+                        className="absolute overflow-hidden"
                         style={{
-                          width: card.w,
-                          height: card.h,
-                          backgroundColor: card.bg,
+                          width: slot.w,
+                          height: slot.h,
                           borderRadius: 16,
                           border: "3px solid white",
                           boxShadow: "rgba(10,60,30,0.15) 0px 6px 18px 0px",
                           top: "50%",
                           left: "50%",
-                          transform: `translate(calc(-50% + ${card.tx}px), calc(-50% + ${card.ty}px)) rotate(${card.rotate}deg)`,
-                          zIndex: isFront ? 11 : card.z,
-                          transition: "z-index 0s",
+                          transform: `translate(calc(-50% + ${slot.tx}px), calc(-50% + ${slot.ty}px)) rotate(${slot.rotate}deg)`,
+                          zIndex: slot.z,
+                          opacity: isJumping ? 0 : 1,
+                          transition: isJumping
+                            ? "none"
+                            : "transform 500ms cubic-bezier(0.32,0.72,0,1), width 500ms cubic-bezier(0.32,0.72,0,1), height 500ms cubic-bezier(0.32,0.72,0,1), opacity 300ms ease",
                         }}
                       >
-                        {isFront && (
-                          <Image
-                            src={PHOTOS[photoIdx]}
-                            alt={`Photo ${photoIdx + 1}`}
-                            fill
-                            className="object-cover object-center"
-                            style={{
-                              opacity: fading ? 0 : 1,
-                              transform: fading ? "scale(1.04)" : "scale(1)",
-                              transition: "opacity 300ms ease, transform 300ms ease",
-                            }}
-                          />
-                        )}
+                        <Image
+                          src={src}
+                          alt={`Photo ${i + 1}`}
+                          fill
+                          className="object-cover object-center"
+                          sizes="(max-width: 767px) 160px, 260px"
+                          draggable={false}
+                        />
                       </div>
                     );
                   })}
                 </div>
 
                 <div className="flex items-center" style={{ gap: 6 }}>
-                  {STACK.map((_, i) => (
+                  {PHOTOS.map((_, i) => (
                     <span
                       key={i}
                       style={{
                         display: "block",
-                        width: i === activeIdx ? 22 : 6,
+                        width: i === active ? 22 : 6,
                         height: 6,
                         borderRadius: 999,
-                        backgroundColor: i === activeIdx ? "rgb(10,138,71)" : "rgb(207,214,207)",
+                        backgroundColor: i === active ? "rgb(10,138,71)" : "rgb(207,214,207)",
                         transition: "width 0.2s",
                       }}
                     />

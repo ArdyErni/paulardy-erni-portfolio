@@ -35,12 +35,12 @@ export function Navbar({ activeView, onViewChange }: NavbarProps) {
             aria-label="Go to Profile"
           >
             <Image
-              src="/website_logo/portfolio_logo.png"
+              src="/website_logo/portfolio_logo_trimmed.png"
               alt="erknst."
-              width={350}
-              height={350}
+              width={447}
+              height={314}
               priority
-              className="h-40 w-auto md:h-11"
+              className="h-10 w-auto md:h-12"
             />
           </button>
 
