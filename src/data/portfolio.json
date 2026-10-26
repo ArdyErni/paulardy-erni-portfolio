@@ -134,6 +134,58 @@
 
   "projects": [
     {
+      "id": "hunter-license-studio",
+      "featured": true,
+
+      "title": "Hunter License Studio",
+
+      "summary": "An interactive Hunter × Hunter-inspired license generator featuring customizable designs and holographic visual effects.",
+
+      "description": "A fan-made web application inspired by the Hunter License from Hunter × Hunter. Users can create personalized digital licenses with distinctive card designs, character-inspired details, and interactive visual effects. The project focuses on recreating the iconic license aesthetic through frontend development, CSS effects, and interactive UI elements.",
+
+      "problem": "Creating a convincing digital recreation of the Hunter License requires more than displaying static artwork. The challenge is to reproduce its distinctive visual identity, intricate details, and holographic appearance while keeping the experience interactive and responsive.",
+
+      "solution": "Built an interactive license studio that combines customizable card designs with layered visual styling and holographic effects to create a more immersive, personalized experience.",
+
+      "highlights": [
+        "Hunter × Hunter-inspired digital license creation",
+        "Multiple license designs with distinct visual identities",
+        "Holographic effects and interactive card presentation",
+        "Customizable license details",
+        "Responsive, browser-based user experience"
+      ],
+
+      "features": [
+        "Interactive license customization",
+        "Multiple card color and design variations",
+        "Holographic visual effects",
+        "Detailed card styling inspired by the original anime",
+        "Interactive card presentation"
+      ],
+
+      "impact": [
+        "Explores advanced CSS styling and layered visual effects",
+        "Demonstrates interactive frontend development beyond conventional CRUD interfaces",
+        "Combines fandom-inspired design with a functional web application"
+      ],
+
+      "categories": ["web", "creative"],
+
+      "techStack": ["React", "Vite", "JavaScript", "CSS"],
+
+      "status": "ongoing",
+
+      "thumbnail": "/projects_imgs/hunter_license_studio.png",
+
+      "gallery": ["/projects_imgs/hunter_license_studio.png"],
+
+      "links": {
+        "github": "",
+        "live": "https://hunter-license-studio.vercel.app/"
+      }
+    },
+
+    {
       "id": "provident-fund",
       "featured": true,
 
@@ -172,7 +224,7 @@
 
       "links": {
         "github": "https://github.com/ArdyErni/bookish-octo-train",
-        "live": "https://bookish-octo-train-zeta.vercel.app/login"
+        "live": ""
       }
     },
 
