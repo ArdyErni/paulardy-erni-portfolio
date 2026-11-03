@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { Reveal } from "@/components/Reveal";
 import portfolioData from "@/data/portfolio.json";
 import type { PortfolioData } from "@/types/portfolio";
 import { useProjectModal } from "@/hooks/useProjectModal";
@@ -53,13 +54,13 @@ export function ProjectsView() {
 
   return (
     <section className="py-16">
-      <div className="container mx-auto px-6 max-w-7xl">
+      <div className="page-container">
         {/* Header */}
-        <div className="mb-10">
+        <Reveal className="mb-10">
           <h1 className="text-4xl font-black tracking-tight mb-2">
             Recent Projects
           </h1>
-        </div>
+        </Reveal>
 
         {/* Controls */}
         {/* <div className="flex flex-col sm:flex-row gap-4 mb-6">
@@ -86,11 +87,13 @@ export function ProjectsView() {
             onProjectClick={openProject}
           />
         ) : (
-          <EmptyState
-            query={searchQuery}
-            category={selectedCategory}
-            onReset={handleReset}
-          />
+          <Reveal>
+            <EmptyState
+              query={searchQuery}
+              category={selectedCategory}
+              onReset={handleReset}
+            />
+          </Reveal>
         )}
       </div>
 

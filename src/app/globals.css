@@ -29,6 +29,17 @@
 }
 
 @layer base {
+  html {
+    /* Keep centered layouts in place when tabs have different content heights. */
+    scrollbar-gutter: stable;
+  }
+
+  @supports not (scrollbar-gutter: stable) {
+    html {
+      overflow-y: scroll;
+    }
+  }
+
   * {
     @apply border-border;
   }
@@ -42,6 +53,12 @@
   h5,
   h6 {
     @apply font-headline font-bold;
+  }
+}
+
+@layer components {
+  .page-container {
+    @apply mx-auto w-full max-w-7xl px-5 md:px-6;
   }
 }
 

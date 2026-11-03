@@ -28,7 +28,7 @@ export function Navbar({ activeView, onViewChange }: NavbarProps) {
     <>
       {/* Top bar: logo on every screen, pill tabs from md and up */}
       <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur-md">
-        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-5 md:h-16 md:px-6">
+        <div className="page-container flex h-14 items-center justify-between md:h-16">
           <button
             onClick={() => onViewChange("profile")}
             className="flex-shrink-0 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"

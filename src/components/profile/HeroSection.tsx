@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { Reveal } from "@/components/Reveal";
+import { useState, useEffect, useCallback } from "react";
 import { Github, Linkedin, Mail, MoreHorizontal, X } from "lucide-react";
 import type { Profile } from "@/types/portfolio";
 import type { ViewId } from "@/hooks/useView";
@@ -49,28 +50,6 @@ const SOCIAL_ICONS = (profile: Profile) => [
   { href: profile.socials.linkedin,          icon: <Linkedin size={18} />, label: "LinkedIn" },
   { href: `mailto:${profile.socials.email}`, icon: <Mail size={18} />,     label: "Email"    },
 ];
-
-function Reveal({ children, delay = 0, className = "" }: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    el.style.opacity = "0";
-    el.style.transform = "translateY(20px)";
-    const t = setTimeout(() => {
-      el.style.transition = "opacity 550ms ease, transform 550ms ease";
-      el.style.opacity = "1";
-      el.style.transform = "translateY(0)";
-    }, delay);
-    return () => clearTimeout(t);
-  }, [delay]);
-  return <div ref={ref} className={className}>{children}</div>;
-}
 
 export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
   const [showModal, setShowModal]       = useState(false);
@@ -157,7 +136,7 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
 
       {/* HERO */}
       <section className="bg-[#fafbfa] min-h-[calc(100vh-56px)] flex items-start md:items-center pb-20 md:pb-0">
-        <div className="mx-auto w-full px-5 py-8 md:px-6 md:py-14" style={{ maxWidth: 1100 }}>
+        <div className="page-container py-8 md:py-14">
 
           {/* Mobile: single column centered | Desktop: two-column grid */}
           <div

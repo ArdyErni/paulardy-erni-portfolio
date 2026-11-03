@@ -2,76 +2,25 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { Reveal } from "@/components/Reveal";
 import portfolioData from "@/data/portfolio.json";
 import type { PortfolioData } from "@/types/portfolio";
 
 const data = portfolioData as unknown as PortfolioData;
 
-// Scroll-reveal: sets initial hidden state then fades+slides up on intersection
-function RevealDiv({
-  children,
-  delay = 0,
-  className = "",
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    // Set initial hidden state
-    el.style.opacity = "0";
-    el.style.transform = "translateY(24px)";
-    el.style.transition = `opacity 500ms ease ${delay}ms, transform 500ms ease ${delay}ms`;
-
-    // Respect prefers-reduced-motion
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      el.style.opacity = "1";
-      el.style.transform = "none";
-      el.style.transition = "none";
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.style.opacity = "1";
-          el.style.transform = "translateY(0)";
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.08 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [delay]);
-
-  return (
-    <div ref={ref} className={className}>
-      {children}
-    </div>
-  );
-}
-
 export function BackgroundView() {
   return (
     <section className="py-12">
-      <div className="container mx-auto px-6 max-w-7xl">
+      <div className="page-container">
         {/* Header */}
-        <RevealDiv>
+        <Reveal>
           <div className="mb-10">
             <h1 className="text-4xl font-black tracking-tight mb-2">Background</h1>
             <p className="text-muted-foreground text-[17px]">
               AI automation engineer with production experience, currently leading module development.
             </p>
           </div>
-        </RevealDiv>
+        </Reveal>
 
         {/* Two-column layout */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8 items-start">
@@ -79,7 +28,7 @@ export function BackgroundView() {
           {/* Left — Experience */}
           <div className="flex flex-col gap-6 border-r border-[#cfe9d9] pr-7">
             {data.experience.map((org, orgIdx) => (
-              <RevealDiv key={org.id} delay={orgIdx * 80}>
+              <Reveal key={org.id} delay={orgIdx * 80}>
                 <section className="bg-white rounded-2xl border border-border p-7 flex flex-col gap-5 shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
                   {/* Org header */}
                   <div className="flex flex-wrap items-center justify-between gap-2">
@@ -150,12 +99,12 @@ export function BackgroundView() {
                     </Link>
                   )}
                 </section>
-              </RevealDiv>
+              </Reveal>
             ))}
 
             {/* Education */}
             {data.education.map((edu, i) => (
-              <RevealDiv key={i} delay={data.experience.length * 80 + i * 80}>
+              <Reveal key={i} delay={data.experience.length * 80 + i * 80}>
                 <section className="bg-white rounded-2xl border border-border px-7 py-5 flex flex-wrap items-center justify-between gap-2 shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
                   <div className="flex items-center gap-3.5">
                     {edu.logo && (
@@ -174,12 +123,12 @@ export function BackgroundView() {
                   </div>
                   <span className="text-muted-foreground text-sm">{edu.duration}</span>
                 </section>
-              </RevealDiv>
+              </Reveal>
             ))}
           </div>
 
           {/* Right — Certifications sidebar */}
-          <RevealDiv delay={120}>
+          <Reveal delay={120}>
             <aside className="bg-white rounded-2xl border border-border flex flex-col px-6 pt-6 pb-2.5">
               <div className="flex items-baseline justify-between pb-3">
                 <h2 className="text-[20px] font-bold">Certifications</h2>
@@ -209,7 +158,7 @@ export function BackgroundView() {
                 </div>
               ))}
             </aside>
-          </RevealDiv>
+          </Reveal>
         </div>
       </div>
     </section>
