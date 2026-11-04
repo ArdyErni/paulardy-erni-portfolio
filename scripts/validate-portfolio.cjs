@@ -38,6 +38,24 @@ for (const value of [data.profile.socials.github, data.profile.socials.linkedin,
   assert.match(new URL(value).protocol, /^https?:$/, 'Social URLs must use HTTP(S)');
 }
 assert.match(data.profile.socials.email, /^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Invalid contact email');
+const certificationNames = new Set();
+const certificationUrls = new Set();
+for (const cert of data.certifications) {
+  const name = cert.name.trim().toLowerCase();
+  assert.ok(name, 'Every certification needs a name');
+  assert.ok(!certificationNames.has(name), `Duplicate certification: ${cert.name}`);
+  certificationNames.add(name);
+  assert.ok(cert.logo.startsWith('/certification_logos/'), `Certification badge must reference a local image: ${cert.name}`);
+  if (!cert.credentialUrl) continue;
+  const url = new URL(cert.credentialUrl);
+  assert.equal(url.protocol, 'https:', `Certification URL must use HTTPS: ${cert.name}`);
+  assert.ok(!url.username && !url.password, `Certification URL must not contain credentials: ${cert.name}`);
+  if (url.hostname === 'credly.com' || url.hostname.endsWith('.credly.com')) {
+    assert.match(cert.credentialUrl, /^https:\/\/www\.credly\.com\/badges\/[a-f\d]{8}(?:-[a-f\d]{4}){3}-[a-f\d]{12}\/public_url$/, `Invalid Credly badge URL: ${cert.name}`);
+  }
+  assert.ok(!certificationUrls.has(url.href), `Duplicate certification URL: ${cert.name}`);
+  certificationUrls.add(url.href);
+}
 const tokens = new Set(['name', 'title', 'location', 'interests', 'currentRole', 'currentOrganization', 'educationInstitution', 'query', 'category']);
 const assets = new Set();
 function inspect(value) {
@@ -49,4 +67,4 @@ function inspect(value) {
 }
 inspect(data);
 for (const asset of assets) assert.ok(fs.existsSync(path.join(root, 'public', asset.slice(1))), `Missing public asset: ${asset}`);
-console.log(`Portfolio content valid: typed structure, references, unique IDs, placeholders, contact links, and ${assets.size} local assets.`);
+console.log(`Portfolio content valid: typed structure, references, unique IDs, placeholders, contact links, ${certificationNames.size} unique certifications (${certificationUrls.size} verification links), and ${assets.size} local assets.`);

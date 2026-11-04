@@ -151,7 +151,10 @@ export interface PortfolioData {
   gear: GearItem[];
 }
 
-export interface LabelValue { label: string; value: string; }
+export interface LabelValue {
+  label: string;
+  value: string;
+}
 
 export interface ContactFieldContent {
   label: string;
@@ -176,7 +179,10 @@ export interface ContactContent {
   emailSubject: string;
   fields: Record<"name" | "email" | "message", ContactFieldContent>;
 }
-export interface PortfolioPhoto { src: string; alt: string; }
+export interface PortfolioPhoto {
+  src: string;
+  alt: string;
+}
 export interface SiteContent {
   title: string;
   description: string;
@@ -215,6 +221,7 @@ export type PortfolioLabel =
   | "email"
   | "website"
   | "backgroundDescription"
+  | "projectsDescription"
   | "present"
   | "certifications"
   | "earned"

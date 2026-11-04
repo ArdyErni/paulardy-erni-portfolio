@@ -57,6 +57,9 @@ export function ProjectsView() {
           <h1 className="text-4xl font-black tracking-tight mb-2">
             {data.labels.projectsHeading}
           </h1>
+          <p className="text-muted-foreground text-[17px]">
+            {data.labels.projectsDescription}
+          </p>
         </Reveal>
 
         {/* Controls */}

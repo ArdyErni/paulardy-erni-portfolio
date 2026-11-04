@@ -92,10 +92,7 @@
       "institution": "Bataan Peninsula State University",
       "degree": "Bachelor of Science in Information Technology",
       "duration": "2022–2026",
-      "achievements": [
-        "Cum Laude",
-        "Dean's Lister"
-      ],
+      "achievements": ["Cum Laude", "Dean's Lister"],
       "logo": "/history/Bataan_Peninsula_State_University_logo.png",
       "description": "Served as Project Lead and UI/UX Designer for our thesis project, Athlon, handling project coordination and interface design.",
       "stack": [
@@ -114,47 +111,68 @@
   "certifications": [
     {
       "name": "IBM Enterprise Design Thinking Practitioner",
-      "logo": "/certification_logos/enterprise-design-thinking-practitioner.1.png"
+      "logo": "/certification_logos/enterprise-design-thinking-practitioner.1.png",
+      "credentialUrl": "https://www.credly.com/badges/469da5c4-3902-4a76-a14e-1394a0d6d51f/public_url"
     },
     {
       "name": "IC3 Digital Literacy Certification GS6 Level 1",
-      "logo": "/certification_logos/ic3-digital-literacy-certification-gs6-level-1.png"
+      "logo": "/certification_logos/ic3-digital-literacy-certification-gs6-level-1.png",
+      "credentialUrl": "https://www.credly.com/badges/6c01ee30-cb7a-423b-a696-1a25045adc7f/public_url"
     },
     {
       "name": "IT Specialist — Cybersecurity",
-      "logo": "/certification_logos/it-specialist-cybersecurity.png"
+      "logo": "/certification_logos/it-specialist-cybersecurity.png",
+      "credentialUrl": "https://www.credly.com/badges/a9ebab70-fb35-4680-90d1-c8f57f762ea7/public_url"
     },
     {
       "name": "IT Specialist — Device Configuration & Management",
-      "logo": "/certification_logos/it-specialist-device-configuration-and-management.png"
+      "logo": "/certification_logos/it-specialist-device-configuration-and-management.png",
+      "credentialUrl": "https://www.credly.com/badges/46abde00-6a65-4341-8226-08e21b0f66bf/public_url"
     },
     {
       "name": "IT Specialist — Network Security",
-      "logo": "/certification_logos/it-specialist-network-security.png"
+      "logo": "/certification_logos/it-specialist-network-security.png",
+      "credentialUrl": "https://www.credly.com/badges/552cb408-3eb9-4736-89cc-96a0a22376e7/public_url"
     },
     {
       "name": "IT Specialist — Software Development",
-      "logo": "/certification_logos/it-specialist-software-development.png"
+      "logo": "/certification_logos/it-specialist-software-development.png",
+      "credentialUrl": "https://www.credly.com/badges/1bb008f6-84e0-4b41-b557-4abe891343fa/public_url"
     },
     {
       "name": "Microsoft Office Specialist Associate – Microsoft 365 Apps",
-      "logo": "/certification_logos/microsoft-office-specialist-associate-microsoft-365-apps.png"
+      "logo": "/certification_logos/microsoft-office-specialist-associate-microsoft-365-apps.png",
+      "credentialUrl": "https://www.credly.com/badges/2b670e62-4f8d-4ce2-824f-dcc0042563f2/public_url"
     },
     {
       "name": "Microsoft Office Specialist Excel Associate",
-      "logo": "/certification_logos/microsoft-office-specialist-excel-associate-microsoft-365-apps.png"
+      "logo": "/certification_logos/microsoft-office-specialist-excel-associate-microsoft-365-apps.png",
+      "credentialUrl": "https://www.credly.com/badges/1e94c207-75f8-4a91-8a2b-983531622bf0/public_url"
     },
     {
       "name": "Microsoft Office Specialist PowerPoint Associate",
-      "logo": "/certification_logos/microsoft-office-specialist-powerpoint-associate-microsoft-365-apps.png"
+      "logo": "/certification_logos/microsoft-office-specialist-powerpoint-associate-microsoft-365-apps.png",
+      "credentialUrl": "https://www.credly.com/badges/7241edb7-437a-47de-af1a-71260f6ab8c7/public_url"
     },
     {
       "name": "Microsoft Office Specialist Word Associate",
-      "logo": "/certification_logos/microsoft-office-specialist-word-associate-microsoft-365-apps.png"
+      "logo": "/certification_logos/microsoft-office-specialist-word-associate-microsoft-365-apps.png",
+      "credentialUrl": "https://www.credly.com/badges/c3b65e5c-05b0-4b38-9431-05823e731377/public_url"
     },
     {
       "name": "PMI Project Management Ready",
-      "logo": "/certification_logos/pmi-project-management-ready.png"
+      "logo": "/certification_logos/pmi-project-management-ready.png",
+      "credentialUrl": "https://www.credly.com/badges/7cc1060a-7116-4024-93e8-1f05852612e5/public_url"
+    },
+    {
+      "name": "Computer Hardware Basics",
+      "logo": "/certification_logos/computer-hardware-basics.png",
+      "credentialUrl": "https://www.credly.com/badges/8efd8665-211c-4bb5-8426-ebb77aa22e62/public_url"
+    },
+    {
+      "name": "Cyber Threat Management",
+      "logo": "/certification_logos/cyber-threat-management.png",
+      "credentialUrl": "https://www.credly.com/badges/4d87118c-8a26-4bdb-b50f-6cb017cbe762/public_url"
     }
   ],
   "expertise": {
@@ -172,31 +190,15 @@
       },
       {
         "name": "Backend & Data",
-        "items": [
-          "Node.js",
-          "MySQL",
-          "Firebase",
-          "REST APIs",
-          "Supabase"
-        ]
+        "items": ["Node.js", "MySQL", "Firebase", "REST APIs", "Supabase"]
       },
       {
         "name": "Frontend",
-        "items": [
-          "Next.js",
-          "React.js",
-          "TypeScript",
-          "Tailwind CSS"
-        ]
+        "items": ["Next.js", "React.js", "TypeScript", "Tailwind CSS"]
       },
       {
         "name": "Tools & Platforms",
-        "items": [
-          "Git / GitHub",
-          "Figma",
-          "Google Workspace",
-          "VS Code"
-        ]
+        "items": ["Git / GitHub", "Figma", "Google Workspace", "VS Code"]
       }
     ],
     "philosophy": {
@@ -232,21 +234,11 @@
         "Demonstrates interactive frontend development beyond conventional CRUD interfaces",
         "Combines fandom-inspired design with a functional web application"
       ],
-      "categories": [
-        "web",
-        "creative"
-      ],
-      "techStack": [
-        "React",
-        "Vite",
-        "JavaScript",
-        "CSS"
-      ],
+      "categories": ["web", "creative"],
+      "techStack": ["React", "Vite", "JavaScript", "CSS"],
       "status": "completed",
       "thumbnail": "/projects_imgs/hunter_license_studio.png",
-      "gallery": [
-        "/projects_imgs/hunter_license_studio.png"
-      ],
+      "gallery": ["/projects_imgs/hunter_license_studio.png"],
       "links": {
         "github": "",
         "live": "https://hunter-license-studio.vercel.app/"
@@ -258,22 +250,11 @@
       "title": "Invoice Collection & Escalation Automation",
       "summary": "Automated invoice follow-up and escalation workflow with AI-generated financial reporting.",
       "description": "An end-to-end invoice follow-up system that categorizes outstanding invoices by aging thresholds and automatically escalates through multi-stage notification routing — from client email reminders to internal Slack alerts. Includes AI-generated executive financial summaries delivered as weekly Google Docs reports.",
-      "categories": [
-        "automation",
-        "ai"
-      ],
-      "techStack": [
-        "n8n",
-        "Supabase",
-        "Gemini AI",
-        "Gmail",
-        "Slack"
-      ],
+      "categories": ["automation", "ai"],
+      "techStack": ["n8n", "Supabase", "Gemini AI", "Gmail", "Slack"],
       "status": "completed",
       "thumbnail": "/projects_imgs/n8n_1_AIM_and_CS.png",
-      "gallery": [
-        "/projects_imgs/n8n_1_AIM_and_CS.png"
-      ],
+      "gallery": ["/projects_imgs/n8n_1_AIM_and_CS.png"],
       "links": {
         "github": "",
         "live": ""
@@ -290,20 +271,11 @@
       "highlights": [],
       "features": [],
       "impact": [],
-      "categories": [
-        "automation",
-        "ai"
-      ],
-      "techStack": [
-        "n8n",
-        "Groq Llama 3.1",
-        "Gmail"
-      ],
+      "categories": ["automation", "ai"],
+      "techStack": ["n8n", "Groq Llama 3.1", "Gmail"],
       "status": "completed",
       "thumbnail": "/projects_imgs/n8n_2_ACFC.png",
-      "gallery": [
-        "/projects_imgs/n8n_2_ACFC.png"
-      ],
+      "gallery": ["/projects_imgs/n8n_2_ACFC.png"],
       "links": {
         "github": "",
         "live": ""
@@ -320,21 +292,11 @@
       "highlights": [],
       "features": [],
       "impact": [],
-      "categories": [
-        "web",
-        "mobile"
-      ],
-      "techStack": [
-        "Android Studio",
-        "Java",
-        "Kotlin",
-        "Firebase"
-      ],
+      "categories": ["web", "mobile"],
+      "techStack": ["Android Studio", "Java", "Kotlin", "Firebase"],
       "status": "completed",
       "thumbnail": "/projects_imgs/athlon_web_screenshot.png",
-      "gallery": [
-        "/projects_imgs/athlon_web_screenshot.png"
-      ],
+      "gallery": ["/projects_imgs/athlon_web_screenshot.png"],
       "links": {
         "github": "https://github.com/JimuelBartolome/Athlon---Finals-Revision",
         "live": ""
@@ -351,19 +313,11 @@
       "highlights": [],
       "features": [],
       "impact": [],
-      "categories": [
-        "web"
-      ],
-      "techStack": [
-        "Next.js",
-        "Tailwind CSS",
-        "TypeScript"
-      ],
+      "categories": ["web"],
+      "techStack": ["Next.js", "Tailwind CSS", "TypeScript"],
       "status": "ongoing",
       "thumbnail": "/projects_imgs/website_v1_screenshot.png",
-      "gallery": [
-        "/projects_imgs/website_v1_screenshot.png"
-      ],
+      "gallery": ["/projects_imgs/website_v1_screenshot.png"],
       "links": {
         "github": "https://github.com/ArdyErni/paulardy-erni-portfolio",
         "live": "https://paulardy-erni-portfolio.vercel.app/"
@@ -374,32 +328,14 @@
     {
       "title": "AI Automation",
       "description": "Design and develop AI-powered workflows that eliminate repetitive manual tasks.",
-      "deliverables": [
-        "AI Agents",
-        "Workflow Automation",
-        "LLM Integration"
-      ],
-      "technologies": [
-        "n8n",
-        "OpenAI",
-        "Gemini",
-        "Supabase"
-      ]
+      "deliverables": ["AI Agents", "Workflow Automation", "LLM Integration"],
+      "technologies": ["n8n", "OpenAI", "Gemini", "Supabase"]
     },
     {
       "title": "Backend Development",
       "description": "Develop scalable backend systems with secure APIs and database architecture.",
-      "deliverables": [
-        "REST APIs",
-        "Authentication",
-        "Database Design"
-      ],
-      "technologies": [
-        "Node.js",
-        "MySQL",
-        "Firebase",
-        "Supabase"
-      ]
+      "deliverables": ["REST APIs", "Authentication", "Database Design"],
+      "technologies": ["Node.js", "MySQL", "Firebase", "Supabase"]
     },
     {
       "title": "Full-Stack Web Applications",
@@ -409,12 +345,7 @@
         "Backend Development",
         "Deployment"
       ],
-      "technologies": [
-        "Next.js",
-        "React",
-        "TypeScript",
-        "Tailwind CSS"
-      ]
+      "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS"]
     }
   ],
   "process": [
@@ -481,12 +412,7 @@
           ]
         }
       ],
-      "stack": [
-        "n8n",
-        "Next.js",
-        "Supabase",
-        "Gemini AI"
-      ]
+      "stack": ["n8n", "Next.js", "Supabase", "Gemini AI"]
     },
     {
       "id": "sdo-balanga",
@@ -631,11 +557,12 @@
     "linkedin": "LinkedIn",
     "email": "Email",
     "website": "Website",
-    "backgroundDescription": "AI automation engineer with production experience, currently leading module development.",
+    "backgroundDescription": "Fresh IT graduate with hands-on experience in software development and AI-assisted workflows.",
     "present": "Present",
     "certifications": "Certifications",
     "earned": "earned",
     "projectsHeading": "Recent Projects",
+    "projectsDescription": "A selection of projects that demonstrate my technical expertise and problem-solving skills.",
     "automationWorkflow": "Automation Workflow",
     "viewDetails": "View details for {title}",
     "viewDetailsHint": "View details",

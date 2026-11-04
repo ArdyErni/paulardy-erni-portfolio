@@ -151,26 +151,35 @@ export function BackgroundView() {
                 </span>
               </div>
 
-              {data.certifications.map((cert, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-3 border-t border-border py-3.5 rounded-lg px-1 transition-colors duration-200 hover:bg-[#f0f7f3] group"
-                >
-                  <Image
-                    src={cert.logo}
-                    alt={`${cert.name} badge`}
-                    width={44}
-                    height={44}
-                    className="object-contain flex-shrink-0 transition-transform duration-200 group-hover:scale-110"
-                  />
-                  <div className="flex flex-col gap-0.5">
-                    <span className="text-[14px] font-bold leading-[1.3]">{cert.name}</span>
-                    {cert.issuer && (
-                      <span className="text-muted-foreground text-[13px]">{cert.issuer}</span>
-                    )}
-                  </div>
-                </div>
-              ))}
+              {data.certifications.map((cert) => {
+                const Card = cert.credentialUrl ? "a" : "div";
+                return (
+                  <Card
+                    key={cert.name}
+                    {...(cert.credentialUrl ? {
+                      href: cert.credentialUrl,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                      "aria-label": cert.name,
+                    } : {})}
+                    className="flex items-center gap-3 border-t border-border py-3.5 rounded-lg px-1 transition-colors duration-200 hover:bg-[#f0f7f3] focus-visible:bg-[#f0f7f3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none group"
+                  >
+                    <Image
+                      src={cert.logo}
+                      alt={`${cert.name} badge`}
+                      width={44}
+                      height={44}
+                      className="object-contain flex-shrink-0 transition-transform duration-200 group-hover:scale-110"
+                    />
+                    <div className="flex flex-col gap-0.5">
+                      <span className="text-[14px] font-bold leading-[1.3]">{cert.name}</span>
+                      {cert.issuer && (
+                        <span className="text-muted-foreground text-[13px]">{cert.issuer}</span>
+                      )}
+                    </div>
+                  </Card>
+                );
+              })}
             </aside>
           </Reveal>
         </div>
