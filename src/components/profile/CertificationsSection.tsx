@@ -1,5 +1,7 @@
 "use client";
 
+import { portfolio } from "@/lib/portfolio";
+
 import Image from "next/image";
 import { ShieldCheck, Award } from "lucide-react";
 import type { Certification } from "@/types/portfolio";
@@ -17,13 +19,13 @@ export function CertificationsSection({
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="flex items-center gap-3 mb-8">
             <ShieldCheck className="text-primary" size={24} />
-            <h2 className="text-3xl font-black">Certifications</h2>
+            <h2 className="text-3xl font-black">{portfolio.labels.certifications}</h2>
           </div>
 
           <div className="flex flex-col items-center justify-center py-16 rounded-2xl border border-dashed border-border bg-muted/20 gap-4">
             <Award size={40} className="text-muted-foreground/40" />
             <p className="text-sm text-muted-foreground">
-              Certifications will appear here.
+              {portfolio.labels.emptyCertifications}
             </p>
           </div>
         </div>

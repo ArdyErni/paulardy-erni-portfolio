@@ -7,12 +7,6 @@
       "imageHint": "professional man portrait"
     },
     {
-      "id": "provident-fund",
-      "description": "System dashboard screenshot",
-      "imageUrl": "https://picsum.photos/seed/system-dashboard/800/600",
-      "imageHint": "software dashboard"
-    },
-    {
       "id": "athlon-app",
       "description": "Fitness application mobile view",
       "imageUrl": "https://picsum.photos/seed/athlon/800/600",

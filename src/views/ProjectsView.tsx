@@ -2,16 +2,13 @@
 
 import { useState, useMemo } from "react";
 import { Reveal } from "@/components/Reveal";
-import portfolioData from "@/data/portfolio.json";
-import type { PortfolioData } from "@/types/portfolio";
+import { portfolio as data } from "@/lib/portfolio";
 import { useProjectModal } from "@/hooks/useProjectModal";
 import { SearchInput } from "@/components/projects/SearchInput";
 import { FilterChips } from "@/components/projects/FilterChips";
 import { ProjectsGrid } from "@/components/projects/ProjectsGrid";
 import { ProjectModal } from "@/components/projects/ProjectModal";
 import { EmptyState } from "@/components/projects/EmptyState";
-
-const data = portfolioData as unknown as PortfolioData;
 
 // Derive unique categories from all projects — no hardcoding
 const allCategories = Array.from(
@@ -58,7 +55,7 @@ export function ProjectsView() {
         {/* Header */}
         <Reveal className="mb-10">
           <h1 className="text-4xl font-black tracking-tight mb-2">
-            Recent Projects
+            {data.labels.projectsHeading}
           </h1>
         </Reveal>
 

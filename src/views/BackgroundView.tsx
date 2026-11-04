@@ -1,12 +1,23 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
-import portfolioData from "@/data/portfolio.json";
-import type { PortfolioData } from "@/types/portfolio";
+import { portfolio as data } from "@/lib/portfolio";
 
-const data = portfolioData as unknown as PortfolioData;
+function TechnologyBadges({ technologies }: { technologies: string[] }) {
+  return (
+    <div className="flex flex-wrap gap-2">
+      {technologies.map((tech) => (
+        <span
+          key={tech}
+          className="bg-[#eef1ee] text-[#444] text-[12px] rounded-full px-2.5 py-1 transition-colors duration-200 hover:bg-primary/10 hover:text-primary cursor-default"
+        >
+          {tech}
+        </span>
+      ))}
+    </div>
+  );
+}
 
 export function BackgroundView() {
   return (
@@ -15,9 +26,9 @@ export function BackgroundView() {
         {/* Header */}
         <Reveal>
           <div className="mb-10">
-            <h1 className="text-4xl font-black tracking-tight mb-2">Background</h1>
+            <h1 className="text-4xl font-black tracking-tight mb-2">{data.labels.background}</h1>
             <p className="text-muted-foreground text-[17px]">
-              AI automation engineer with production experience, currently leading module development.
+              {data.labels.backgroundDescription}
             </p>
           </div>
         </Reveal>
@@ -32,7 +43,7 @@ export function BackgroundView() {
                 <section className="bg-white rounded-2xl border border-border p-7 flex flex-col gap-5 shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
                   {/* Org header */}
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <div className="flex items-center gap-3.5">
+                    <div className="flex flex-wrap items-center gap-3.5">
                       <Image
                         src={org.logo}
                         alt={`${org.organization} logo`}
@@ -40,13 +51,13 @@ export function BackgroundView() {
                         height={56}
                         className="rounded-xl object-cover flex-shrink-0"
                       />
-                      <div className="flex items-center gap-2">
+                      <div className="flex flex-wrap items-center gap-2">
                         <div className="text-[20px] font-bold">{org.organization}</div>
                         {/* Effect 3 — "Present" pulse badge */}
                         {org.current && (
                           <span className="flex items-center gap-1.5 text-[11px] font-bold text-primary bg-[#e6f4ec] px-2.5 py-1 rounded-full">
                             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse inline-block" />
-                            Present
+                            {data.labels.present}
                           </span>
                         )}
                       </div>
@@ -73,31 +84,12 @@ export function BackgroundView() {
                             <li key={j}>{b}</li>
                           ))}
                         </ul>
+                        <TechnologyBadges
+                          technologies={role.stack?.length ? role.stack : org.stack}
+                        />
                       </div>
                     ))}
                   </div>
-
-                  {/* Effect 2 — Tech stack pill hover */}
-                  <div className="flex flex-wrap gap-2">
-                    {org.stack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="bg-[#eef1ee] text-[#444] text-[12px] rounded-full px-2.5 py-1 transition-colors duration-200 hover:bg-primary/10 hover:text-primary cursor-default"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Related project link */}
-                  {org.project && (
-                    <Link
-                      href={org.project.href}
-                      className="text-[13px] font-semibold text-primary"
-                    >
-                      Related projects: {org.project.label} →
-                    </Link>
-                  )}
                 </section>
               </Reveal>
             ))}
@@ -106,7 +98,7 @@ export function BackgroundView() {
             {data.education.map((edu, i) => (
               <Reveal key={i} delay={data.experience.length * 80 + i * 80}>
                 <section className="bg-white rounded-2xl border border-border px-7 py-5 flex flex-wrap items-center justify-between gap-2 shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
-                  <div className="flex items-center gap-3.5">
+                  <div className="flex min-w-0 items-center gap-3.5">
                     {edu.logo && (
                       <Image
                         src={edu.logo}
@@ -116,12 +108,34 @@ export function BackgroundView() {
                         className="object-contain flex-shrink-0"
                       />
                     )}
-                    <div>
+                    <div className="min-w-0">
                       <div className="text-[18px] font-bold">{edu.institution}</div>
                       <div className="text-muted-foreground text-[15px]">{edu.degree}&nbsp;</div>
                     </div>
                   </div>
                   <span className="text-muted-foreground text-sm">{edu.duration}</span>
+                  {edu.achievements.length > 0 && (
+                    <div className="flex basis-full flex-wrap gap-2 mt-1">
+                      {edu.achievements.map((achievement) => (
+                        <span
+                          key={achievement}
+                          className="rounded-full bg-[#e6f4ec] px-2.5 py-1 text-[12px] font-semibold text-primary"
+                        >
+                          {achievement}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  {edu.description && (
+                    <p className="basis-full text-sm leading-relaxed text-muted-foreground">
+                      {edu.description}
+                    </p>
+                  )}
+                  {edu.stack && edu.stack.length > 0 && (
+                    <div className="basis-full">
+                      <TechnologyBadges technologies={edu.stack} />
+                    </div>
+                  )}
                 </section>
               </Reveal>
             ))}
@@ -131,9 +145,9 @@ export function BackgroundView() {
           <Reveal delay={120}>
             <aside className="bg-white rounded-2xl border border-border flex flex-col px-6 pt-6 pb-2.5">
               <div className="flex items-baseline justify-between pb-3">
-                <h2 className="text-[20px] font-bold">Certifications</h2>
+                <h2 className="text-[20px] font-bold">{data.labels.certifications}</h2>
                 <span className="text-muted-foreground text-[13px]">
-                  {data.certifications.length} earned
+                  {data.certifications.length} {data.labels.earned}
                 </span>
               </div>
 

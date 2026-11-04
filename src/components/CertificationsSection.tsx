@@ -1,28 +1,18 @@
 'use client';
 
+import { portfolio } from "@/lib/portfolio";
+
 import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { ShieldCheck, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const certifications = [
-  { name: 'IBM Enterprise Design Thinking Practitioner', logo: '/certification_logos/enterprise-design-thinking-practitioner.1.png' },
-  { name: 'IC3 Digital Literacy Certification GS6 Level 1', logo: '/certification_logos/ic3-digital-literacy-certification-gs6-level-1.png' },
-  { name: 'IT Specialist — Cybersecurity', logo: '/certification_logos/it-specialist-cybersecurity.png' },
-  { name: 'IT Specialist — Device Configuration & Management', logo: '/certification_logos/it-specialist-device-configuration-and-management.png' },
-  { name: 'IT Specialist — Network Security', logo: '/certification_logos/it-specialist-network-security.png' },
-  { name: 'IT Specialist — Software Development', logo: '/certification_logos/it-specialist-software-development.png' },
-  { name: 'Microsoft Office Specialist Associate – Microsoft 365 Apps', logo: '/certification_logos/microsoft-office-specialist-associate-microsoft-365-apps.png' },
-  { name: 'Microsoft Office Specialist Excel Associate', logo: '/certification_logos/microsoft-office-specialist-excel-associate-microsoft-365-apps.png' },
-  { name: 'Microsoft Office Specialist PowerPoint Associate', logo: '/certification_logos/microsoft-office-specialist-powerpoint-associate-microsoft-365-apps.png' },
-  { name: 'Microsoft Office Specialist Word Associate', logo: '/certification_logos/microsoft-office-specialist-word-associate-microsoft-365-apps.png' },
-  { name: 'PMI Project Management Ready', logo: '/certification_logos/pmi-project-management-ready.png' },
-];
+const certifications = portfolio.certifications;
 
 const VISIBLE = 4;
 
 export function CertificationsSection() {
   const [index, setIndex] = useState(0);
-  const max = certifications.length - VISIBLE;
+  const max = Math.max(0, certifications.length - VISIBLE);
 
   const prev = () => setIndex(i => Math.max(i - 1, 0));
   const next = () => setIndex(i => Math.min(i + 1, max));
@@ -36,8 +26,8 @@ export function CertificationsSection() {
           <div className="flex items-center gap-3">
             <ShieldCheck className="text-primary" size={28} />
             <div>
-              <h2 className="text-3xl font-bold tracking-tight">Verified Credentials</h2>
-              <p className="text-sm text-muted-foreground mt-1">Industry certifications across cybersecurity, development, and project management.</p>
+              <h2 className="text-3xl font-bold tracking-tight">{portfolio.labels.verifiedCredentials}</h2>
+              <p className="text-sm text-muted-foreground mt-1">{portfolio.labels.credentialsDescription}</p>
             </div>
           </div>
 
@@ -85,7 +75,7 @@ export function CertificationsSection() {
 
         <div className="mt-8 text-center">
           <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground bg-muted px-4 py-2 rounded-full inline-block">
-            Verified Educational Credentials
+            {portfolio.labels.verifiedEducation}
           </p>
         </div>
       </div>

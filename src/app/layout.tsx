@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { LoadingScreen } from "@/components/LoadingScreen";
+import { portfolio, siteUrl } from "@/lib/portfolio";
+import { ContactProvider } from "@/components/contact/ContactProvider";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -11,7 +13,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://paulardy-erni-portfolio.vercel.app"),
+  metadataBase: new URL(siteUrl),
   alternates: {
     canonical: "/",
   },
@@ -19,11 +21,10 @@ export const metadata: Metadata = {
     google: "39ZNBUqFVccZBg2mHqo6wGu0G9OI3kO_-Q1Q3U5Xvws",
   },
   icons: {
-    icon: "/website_logo/portfolio_logo.png",
+    icon: portfolio.site.favicon,
   },
-  title: "Ardy Erni | Full-Stack Web Developer",
-  description:
-    "Full-Stack Web Developer focused on building workflow-driven systems and scalable web applications.",
+  title: portfolio.site.title,
+  description: portfolio.site.description,
 };
 
 export default function RootLayout({
@@ -35,7 +36,7 @@ export default function RootLayout({
     <html lang="en" className={`${dmSans.variable} scroll-smooth`}>
       <body className="font-body antialiased">
         <LoadingScreen />
-        {children}
+        <ContactProvider>{children}</ContactProvider>
       </body>
     </html>
   );

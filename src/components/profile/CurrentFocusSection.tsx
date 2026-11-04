@@ -1,3 +1,4 @@
+import { portfolio } from "@/lib/portfolio";
 import { Zap } from 'lucide-react';
 
 interface CurrentFocusSectionProps {
@@ -11,7 +12,7 @@ export function CurrentFocusSection({ items }: CurrentFocusSectionProps) {
         <div className="flex items-center gap-2 mb-6">
           <Zap size={16} className="text-primary" />
           <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-            Currently focused on
+            {portfolio.labels.currentFocus}
           </span>
         </div>
         <div className="flex flex-wrap gap-3">

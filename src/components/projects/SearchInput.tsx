@@ -1,3 +1,4 @@
+import { portfolio } from "@/lib/portfolio";
 import { Search, X } from 'lucide-react';
 
 interface SearchInputProps {
@@ -16,14 +17,14 @@ export function SearchInput({ value, onChange }: SearchInputProps) {
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="Search projects..."
-        aria-label="Search projects"
+        placeholder={portfolio.labels.searchPlaceholder}
+        aria-label={portfolio.labels.searchProjects}
         className="w-full h-10 pl-9 pr-9 rounded-full border border-border bg-white text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
       />
       {value && (
         <button
           onClick={() => onChange('')}
-          aria-label="Clear search"
+          aria-label={portfolio.labels.clearSearch}
           className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
         >
           <X size={14} />

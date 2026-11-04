@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { portfolio } from "@/lib/portfolio";
 
 /**
  * "services" is no longer a tab, but it stays a valid view so existing code
@@ -17,10 +18,10 @@ export type ViewId =
 export type NavId = Exclude<ViewId, "services">;
 
 export const NAV_ITEMS: { id: NavId; label: string }[] = [
-  { id: "profile", label: "Profile" },
-  { id: "background", label: "Background" },
-  { id: "projects", label: "Projects" },
-  { id: "gear", label: "Gear" },
+  { id: "profile", label: portfolio.labels.profile },
+  { id: "background", label: portfolio.labels.background },
+  { id: "projects", label: portfolio.labels.projects },
+  { id: "gear", label: portfolio.labels.gear },
 ];
 
 export function useView(initial: ViewId = "profile") {

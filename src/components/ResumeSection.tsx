@@ -1,3 +1,4 @@
+import { portfolio } from "@/lib/portfolio";
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { FileDown, GraduationCap } from 'lucide-react';
@@ -12,16 +13,16 @@ export function ResumeSection() {
               <GraduationCap size={32} />
             </div>
             <div>
-              <h3 className="text-xl font-bold mb-1">Looking for my detailed history?</h3>
+              <h3 className="text-xl font-bold mb-1">{portfolio.labels.resumeHeading}</h3>
               <p className="text-muted-foreground text-sm max-w-md">
-                Download my full professional resume to see more about my education, experience, and certifications in Information Technology.
+                {portfolio.labels.resumeDescription}
               </p>
             </div>
           </div>
           <Button size="lg" className="h-14 px-10 text-base font-bold rounded-2xl bg-foreground hover:bg-foreground/90 text-white" asChild>
-            <a href="/resume.pdf" download>
+            <a href={portfolio.profile.resume} download>
               <FileDown className="mr-3 h-5 w-5" />
-              Download Resume
+              {portfolio.labels.downloadResume}
             </a>
           </Button>
         </div>

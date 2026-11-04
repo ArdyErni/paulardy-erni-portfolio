@@ -1,3 +1,4 @@
+import { portfolio } from "@/lib/portfolio";
 import { ServiceCard } from "./ServiceCard";
 import type { Service } from "@/types/portfolio";
 
@@ -10,10 +11,9 @@ export function ServicesGrid({ services }: ServicesGridProps) {
     <section className="py-20">
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="mb-10">
-          <h1 className="text-4xl font-black tracking-tight mb-2">Services</h1>
+          <h1 className="text-4xl font-black tracking-tight mb-2">{portfolio.labels.services}</h1>
           <p className="text-muted-foreground max-w-xl">
-            Practical solutions built around your business goals — not just
-            technology for its own sake.
+            {portfolio.labels.servicesDescription}
           </p>
         </div>
 

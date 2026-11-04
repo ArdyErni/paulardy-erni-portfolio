@@ -1,3 +1,4 @@
+import { portfolio } from "@/lib/portfolio";
 interface TechStackStripProps {
   technologies: string[];
 }
@@ -6,7 +7,7 @@ export function TechStackStrip({ technologies }: TechStackStripProps) {
   return (
     <div className="space-y-2">
       <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-        Tools I work with
+        {portfolio.labels.tools}
       </p>
       <div className="flex flex-wrap gap-2 justify-center md:justify-start">
         {technologies.map((tech) => (

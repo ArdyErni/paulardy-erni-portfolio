@@ -19,6 +19,11 @@ export interface Profile {
   about: string;
   interests: string;
   socials: SocialLinks;
+  currentExperienceId: string;
+  greeting: string;
+  availability: string;
+  facts: LabelValue[];
+  photos: PortfolioPhoto[];
 }
 
 export interface Education {
@@ -26,7 +31,11 @@ export interface Education {
   degree: string;
   duration: string;
   achievements: string[];
-  /** NEW: school seal shown beside the entry on the Background page */
+  /** Optional thesis contribution or other supporting academic detail. */
+  description?: string;
+  /** Optional academic technologies and tools. */
+  stack?: string[];
+  /** School seal shown beside the entry on the Background page. */
   logo?: string;
 }
 
@@ -91,13 +100,15 @@ export interface ProcessStep {
   description: string;
 }
 
-/* ---------- NEW: Background page (work history) ---------- */
+/* ---------- Background page (work history) ---------- */
 
 export interface ExperienceRole {
   title: string;
   /** Display text, e.g. "Aug 2026 – Present" */
   period: string;
   bullets: string[];
+  /** Role-specific badges; omitted or empty stacks use organization technologies. */
+  stack?: string[];
 }
 
 export interface Experience {
@@ -109,22 +120,26 @@ export interface Experience {
   /** Newest role first. Two roles = a promotion shown under one company. */
   roles: ExperienceRole[];
   stack: string[];
-  /** Optional link to a related project */
-  project?: { label: string; href: string };
 }
 
-/* ---------- NEW: Gear page ---------- */
+/* ---------- Gear page ---------- */
 
 export interface GearItem {
   id: string;
   /** Small label above the name, e.g. "Main monitor" */
   category: string;
   name: string;
-  /** Optional photo under /public/gear_img. Missing = neutral placeholder. */
+  /** Asset path under public; missing images use the existing placeholder. */
   image?: string;
+  description?: string;
+  specifications?: LabelValue[];
 }
 
 export interface PortfolioData {
+  contact: ContactContent;
+  site: SiteContent;
+  about: AboutContent;
+  labels: PortfolioLabels;
   profile: Profile;
   education: Education[];
   certifications: Certification[];
@@ -132,8 +147,126 @@ export interface PortfolioData {
   projects: Project[];
   services: Service[];
   process: ProcessStep[];
-  /** NEW */
   experience: Experience[];
-  /** NEW */
   gear: GearItem[];
 }
+
+export interface LabelValue { label: string; value: string; }
+
+export interface ContactFieldContent {
+  label: string;
+  required: string;
+  tooLong: string;
+  invalid: string;
+}
+
+export interface ContactContent {
+  title: string;
+  description: string;
+  send: string;
+  sending: string;
+  close: string;
+  successTitle: string;
+  successDescription: string;
+  sendAnother: string;
+  error: string;
+  rateLimited: string;
+  invalid: string;
+  honeypotLabel: string;
+  emailSubject: string;
+  fields: Record<"name" | "email" | "message", ContactFieldContent>;
+}
+export interface PortfolioPhoto { src: string; alt: string; }
+export interface SiteContent {
+  title: string;
+  description: string;
+  logo: string;
+  logoAlt: string;
+  favicon: string;
+  brand: string;
+  brandSuffix: string;
+  loadingText: string;
+  footerCredit: string;
+}
+export interface AboutContent {
+  title: string;
+  paragraphs: string[];
+  principles: { icon: string; title: string; description: string }[];
+  quote: string;
+  focus: string;
+}
+export type PortfolioLabel =
+  | "profile"
+  | "background"
+  | "projects"
+  | "gear"
+  | "viewProjects"
+  | "downloadResume"
+  | "contactMe"
+  | "more"
+  | "aboutMe"
+  | "shufflePhotos"
+  | "shuffleHint"
+  | "portraitAlt"
+  | "goToProfile"
+  | "mainNavigation"
+  | "github"
+  | "linkedin"
+  | "email"
+  | "website"
+  | "backgroundDescription"
+  | "present"
+  | "certifications"
+  | "earned"
+  | "projectsHeading"
+  | "automationWorkflow"
+  | "viewDetails"
+  | "viewDetailsHint"
+  | "closeProject"
+  | "problem"
+  | "solution"
+  | "impact"
+  | "highlights"
+  | "features"
+  | "viewCode"
+  | "code"
+  | "liveDemo"
+  | "demo"
+  | "featuredProject"
+  | "gearDescription"
+  | "productImage"
+  | "currentFocus"
+  | "tools"
+  | "contributions"
+  | "education"
+  | "educationDescription"
+  | "academicSnapshot"
+  | "degree"
+  | "institution"
+  | "duration"
+  | "emptyCertifications"
+  | "verifiedCredentials"
+  | "credentialsDescription"
+  | "verifiedEducation"
+  | "resumeHeading"
+  | "resumeDescription"
+  | "focus"
+  | "services"
+  | "servicesDescription"
+  | "deliverables"
+  | "technologies"
+  | "processHeading"
+  | "processDescription"
+  | "contactHeading"
+  | "contactDescription"
+  | "searchPlaceholder"
+  | "searchProjects"
+  | "clearSearch"
+  | "filterProjects"
+  | "all"
+  | "noProjects"
+  | "noQueryCategory"
+  | "noQuery"
+  | "noCategory"
+  | "clearFilters";
+export type PortfolioLabels = Record<PortfolioLabel, string>;

@@ -1,10 +1,6 @@
-import portfolioData from "@/data/portfolio.json";
-import type { PortfolioData } from "@/types/portfolio";
+import { portfolio as data } from "@/lib/portfolio";
 import type { ViewId } from "@/hooks/useView";
 import { HeroSection } from "@/components/profile/HeroSection";
-import { GithubActivity } from "@/components/profile/GithubActivity";
-
-const data = portfolioData as unknown as PortfolioData;
 
 interface ProfileViewProps {
   onNavigate: (view: ViewId) => void;

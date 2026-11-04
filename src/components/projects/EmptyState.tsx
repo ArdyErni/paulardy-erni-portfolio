@@ -1,3 +1,5 @@
+import { portfolio } from "@/lib/portfolio";
+import { formatContent } from '@/lib/portfolio';
 import { SearchX } from 'lucide-react';
 
 interface EmptyStateProps {
@@ -13,20 +15,20 @@ export function EmptyState({ query, category, onReset }: EmptyStateProps) {
         <SearchX size={28} />
       </div>
       <div className="space-y-1">
-        <p className="font-bold text-foreground">No projects found</p>
+        <p className="font-bold text-foreground">{portfolio.labels.noProjects}</p>
         <p className="text-sm text-muted-foreground">
           {query && category !== 'all'
-            ? `No results for "${query}" in "${category}"`
+            ? formatContent(portfolio.labels.noQueryCategory, { query, category })
             : query
-            ? `No results for "${query}"`
-            : `No projects in "${category}"`}
+            ? formatContent(portfolio.labels.noQuery, { query })
+            : formatContent(portfolio.labels.noCategory, { category })}
         </p>
       </div>
       <button
         onClick={onReset}
         className="text-sm font-semibold text-primary hover:underline underline-offset-4"
       >
-        Clear filters
+        {portfolio.labels.clearFilters}
       </button>
     </div>
   );

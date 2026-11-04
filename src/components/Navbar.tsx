@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { portfolio } from "@/lib/portfolio";
 import {
   Briefcase,
   LayoutGrid,
@@ -32,11 +33,11 @@ export function Navbar({ activeView, onViewChange }: NavbarProps) {
           <button
             onClick={() => onViewChange("profile")}
             className="flex-shrink-0 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            aria-label="Go to Profile"
+            aria-label={portfolio.labels.goToProfile}
           >
             <Image
-              src="/website_logo/portfolio_logo_trimmed.png"
-              alt="erknst."
+              src={portfolio.site.logo}
+              alt={portfolio.site.logoAlt}
               width={447}
               height={314}
               priority
@@ -45,7 +46,7 @@ export function Navbar({ activeView, onViewChange }: NavbarProps) {
           </button>
 
           <nav
-            aria-label="Main"
+            aria-label={portfolio.labels.mainNavigation}
             className="hidden items-center gap-1.5 md:flex"
           >
             {NAV_ITEMS.map((item) => {
@@ -73,7 +74,7 @@ export function Navbar({ activeView, onViewChange }: NavbarProps) {
 
       {/* Bottom tab bar: phones only */}
       <nav
-        aria-label="Main"
+        aria-label={portfolio.labels.mainNavigation}
         className="fixed inset-x-0 bottom-0 z-50 flex border-t bg-background/95 px-2 pt-2 shadow-[0_-4px_16px_rgba(0,0,0,0.05)] backdrop-blur md:hidden pb-[max(env(safe-area-inset-bottom),12px)]"
       >
         {NAV_ITEMS.map((item) => {

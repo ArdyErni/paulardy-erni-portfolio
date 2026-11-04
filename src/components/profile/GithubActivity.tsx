@@ -1,5 +1,7 @@
 "use client";
 
+import { portfolio } from "@/lib/portfolio";
+
 import React from "react";
 import dynamic from "next/dynamic";
 
@@ -17,15 +19,15 @@ const GitHubCalendar = dynamic(
 );
 
 interface GithubActivityProps {
-  username: string;
+  username?: string;
 }
 
-export function GithubActivity({ username }: GithubActivityProps) {
+export function GithubActivity({ username = new URL(portfolio.profile.socials.github).pathname.split("/").filter(Boolean)[0] }: GithubActivityProps) {
   return (
     <section className="mt-8">
       {/* Card */}
       <div className="flex flex-col items-center">
-        <p className="text-lg font-bold mt-1">My Github Contributions</p>
+        <p className="text-lg font-bold mt-1">{portfolio.labels.contributions}</p>
         <div className="github-calendar flex justify-center overflow-x-auto scrollbar-hide">
           <GitHubCalendar
             username={username}

@@ -3,9 +3,9 @@
     "name": "Paul Ardy Erni",
     "title": "Full-Stack Developer & AI Automation Engineer",
     "tagline": "I build backend systems and AI-powered workflows that eliminate manual work.",
-    "introduction": "Based in Bataan, Philippines, I'm currently Lead AI Automation Engineer at AgentGenius.ai. I build backend systems, workflow automations and AI integrations that solve real operational problems.",
+    "introduction": "Based in **{location}**, I'm a **{currentRole}** at {currentOrganization}, working with an international team to develop and lead project modules across time zones.",
     "location": "Bataan, Philippines",
-    "avatar": "/profile.png",
+    "avatar": "/user_profile/Formal Picture.jpg",
     "resume": "/resume.pdf",
     "techStack": [
       "Next.js",
@@ -38,19 +38,79 @@
       "linkedin": "https://linkedin.com/in/ernipa-it",
       "email": "paerni.it@gmail.com",
       "website": "https://paulardy-erni-portfolio.vercel.app/"
-    }
+    },
+    "currentExperienceId": "agentgenius",
+    "greeting": "Hi, I'm",
+    "availability": "● Open to opportunities",
+    "facts": [
+      {
+        "label": "Based in",
+        "value": "{location}"
+      },
+      {
+        "label": "Now",
+        "value": "{currentRole}, {currentOrganization}"
+      },
+      {
+        "label": "Education",
+        "value": "BSIT, {educationInstitution}"
+      },
+      {
+        "label": "Recognition",
+        "value": "Dean's Lister, 2022–2025"
+      },
+      {
+        "label": "Outside work",
+        "value": "{interests}"
+      }
+    ],
+    "photos": [
+      {
+        "src": "/shuffle_imgs/grad_guitar.JPG",
+        "alt": "Photo 1"
+      },
+      {
+        "src": "/shuffle_imgs/grad_formal.jpg",
+        "alt": "Photo 2"
+      },
+      {
+        "src": "/shuffle_imgs/food.jpg",
+        "alt": "Photo 3"
+      },
+      {
+        "src": "/shuffle_imgs/pc_setup.jpg",
+        "alt": "Photo 4"
+      },
+      {
+        "src": "/shuffle_imgs/with_shane.jpg",
+        "alt": "Photo 5"
+      }
+    ]
   },
-
   "education": [
     {
       "institution": "Bataan Peninsula State University",
       "degree": "Bachelor of Science in Information Technology",
-      "duration": "2022 – 2026",
-      "achievements": ["Cum Laude", "Dean's Lister"],
-      "logo": "/history/Bataan_Peninsula_State_University_logo.png"
+      "duration": "2022–2026",
+      "achievements": [
+        "Cum Laude",
+        "Dean's Lister"
+      ],
+      "logo": "/history/Bataan_Peninsula_State_University_logo.png",
+      "description": "Served as Project Lead and UI/UX Designer for our thesis project, Athlon, handling project coordination and interface design.",
+      "stack": [
+        "UI/UX",
+        "Figma",
+        "Hardware Troubleshooting",
+        "Visual Studio",
+        "VS Code",
+        "HTML5",
+        "CSS3",
+        "MySQL",
+        "Java"
+      ]
     }
   ],
-
   "certifications": [
     {
       "name": "IBM Enterprise Design Thinking Practitioner",
@@ -97,10 +157,8 @@
       "logo": "/certification_logos/pmi-project-management-ready.png"
     }
   ],
-
   "expertise": {
-    "featuredProject": "provident-fund",
-
+    "featuredProject": "",
     "categories": [
       {
         "name": "AI & Automation",
@@ -114,39 +172,47 @@
       },
       {
         "name": "Backend & Data",
-        "items": ["Node.js", "MySQL", "Firebase", "REST APIs", "Supabase"]
+        "items": [
+          "Node.js",
+          "MySQL",
+          "Firebase",
+          "REST APIs",
+          "Supabase"
+        ]
       },
       {
         "name": "Frontend",
-        "items": ["Next.js", "React.js", "TypeScript", "Tailwind CSS"]
+        "items": [
+          "Next.js",
+          "React.js",
+          "TypeScript",
+          "Tailwind CSS"
+        ]
       },
       {
         "name": "Tools & Platforms",
-        "items": ["Git / GitHub", "Figma", "Google Workspace", "VS Code"]
+        "items": [
+          "Git / GitHub",
+          "Figma",
+          "Google Workspace",
+          "VS Code"
+        ]
       }
     ],
-
     "philosophy": {
       "title": "Building software that solves real business problems",
       "description": "I believe good software should reduce manual work, improve operational efficiency, and remain maintainable long after deployment. My focus is on building practical systems that create measurable impact."
     }
   },
-
   "projects": [
     {
       "id": "hunter-license-studio",
       "featured": true,
-
       "title": "Hunter License Studio",
-
       "summary": "An interactive Hunter × Hunter-inspired license generator featuring customizable designs and holographic visual effects.",
-
       "description": "A fan-made web application inspired by the Hunter License from Hunter × Hunter. Users can create personalized digital licenses with distinctive card designs, character-inspired details, and interactive visual effects. The project focuses on recreating the iconic license aesthetic through frontend development, CSS effects, and interactive UI elements.",
-
       "problem": "Creating a convincing digital recreation of the Hunter License requires more than displaying static artwork. The challenge is to reproduce its distinctive visual identity, intricate details, and holographic appearance while keeping the experience interactive and responsive.",
-
       "solution": "Built an interactive license studio that combines customizable card designs with layered visual styling and holographic effects to create a more immersive, personalized experience.",
-
       "highlights": [
         "Hunter × Hunter-inspired digital license creation",
         "Multiple license designs with distinct visual identities",
@@ -154,7 +220,6 @@
         "Customizable license details",
         "Responsive, browser-based user experience"
       ],
-
       "features": [
         "Interactive license customization",
         "Multiple card color and design variations",
@@ -162,219 +227,179 @@
         "Detailed card styling inspired by the original anime",
         "Interactive card presentation"
       ],
-
       "impact": [
         "Explores advanced CSS styling and layered visual effects",
         "Demonstrates interactive frontend development beyond conventional CRUD interfaces",
         "Combines fandom-inspired design with a functional web application"
       ],
-
-      "categories": ["web", "creative"],
-
-      "techStack": ["React", "Vite", "JavaScript", "CSS"],
-
+      "categories": [
+        "web",
+        "creative"
+      ],
+      "techStack": [
+        "React",
+        "Vite",
+        "JavaScript",
+        "CSS"
+      ],
       "status": "completed",
-
       "thumbnail": "/projects_imgs/hunter_license_studio.png",
-
-      "gallery": ["/projects_imgs/hunter_license_studio.png"],
-
+      "gallery": [
+        "/projects_imgs/hunter_license_studio.png"
+      ],
       "links": {
         "github": "",
         "live": "https://hunter-license-studio.vercel.app/"
       }
     },
-
-    {
-      "id": "provident-fund",
-      "featured": true,
-
-      "title": "SDO Provident Fund Online Reporting and Monitoring System",
-
-      "summary": "A digital loan management and financial tracking platform for the Schools Division Office of Balanga City.",
-
-      "description": "Designed to replace manual recordkeeping with an automated, role-based platform for tracking loan applications, balances, repayments, and reporting.",
-
-      "problem": "",
-
-      "solution": "",
-
-      "highlights": [],
-
-      "features": [],
-
-      "impact": [],
-
-      "categories": ["web", "management"],
-
-      "techStack": [
-        "Next.js",
-        "Node.js",
-        "Firebase",
-        "MySQL",
-        "Vercel",
-        "Railway"
-      ],
-
-      "status": "ongoing",
-
-      "thumbnail": "/projects_imgs/sdo_pforms_screenshot.png",
-
-      "gallery": ["/projects_imgs/sdo_pforms_screenshot.png"],
-
-      "links": {
-        "github": "https://github.com/ArdyErni/bookish-octo-train",
-        "live": ""
-      }
-    },
-
     {
       "id": "invoice-automation",
       "featured": false,
-
       "title": "Invoice Collection & Escalation Automation",
-
       "summary": "Automated invoice follow-up and escalation workflow with AI-generated financial reporting.",
-
       "description": "An end-to-end invoice follow-up system that categorizes outstanding invoices by aging thresholds and automatically escalates through multi-stage notification routing — from client email reminders to internal Slack alerts. Includes AI-generated executive financial summaries delivered as weekly Google Docs reports.",
-
-      "categories": ["automation", "ai"],
-
-      "techStack": ["n8n", "Supabase", "Gemini AI", "Gmail", "Slack"],
-
+      "categories": [
+        "automation",
+        "ai"
+      ],
+      "techStack": [
+        "n8n",
+        "Supabase",
+        "Gemini AI",
+        "Gmail",
+        "Slack"
+      ],
       "status": "completed",
-
       "thumbnail": "/projects_imgs/n8n_1_AIM_and_CS.png",
-
-      "gallery": ["/projects_imgs/n8n_1_AIM_and_CS.png"],
-
+      "gallery": [
+        "/projects_imgs/n8n_1_AIM_and_CS.png"
+      ],
       "links": {
         "github": "",
         "live": ""
       }
     },
-
     {
       "id": "feedback-intelligence",
       "featured": false,
-
       "title": "Client Feedback Intelligence Automation",
-
       "summary": "Automated multilingual customer feedback analysis with AI-powered reporting.",
-
       "description": "An automated feedback analysis pipeline that consolidates weekly customer submissions, processes multilingual input (English, Tagalog, Taglish), and generates department-specific performance reports. Delivers color-coded HTML email dashboards with sentiment scores.",
-
       "problem": "",
-
       "solution": "",
-
       "highlights": [],
-
       "features": [],
-
       "impact": [],
-
-      "categories": ["automation", "ai"],
-
-      "techStack": ["n8n", "Groq Llama 3.1", "Gmail"],
-
+      "categories": [
+        "automation",
+        "ai"
+      ],
+      "techStack": [
+        "n8n",
+        "Groq Llama 3.1",
+        "Gmail"
+      ],
       "status": "completed",
-
       "thumbnail": "/projects_imgs/n8n_2_ACFC.png",
-
-      "gallery": ["/projects_imgs/n8n_2_ACFC.png"],
-
+      "gallery": [
+        "/projects_imgs/n8n_2_ACFC.png"
+      ],
       "links": {
         "github": "",
         "live": ""
       }
     },
-
     {
       "id": "athlon",
       "featured": false,
-
       "title": "Athlon — Fitness & Community App",
-
       "summary": "Gamified fitness platform designed to improve motivation and training consistency.",
-
       "description": "A fitness and community engagement platform with a gamified avatar system. Served as Project Leader and UI/UX Designer, leading wireframing, prototyping, team coordination, and research presentation.",
-
       "problem": "",
-
       "solution": "",
-
       "highlights": [],
-
       "features": [],
-
       "impact": [],
-
-      "categories": ["web", "mobile"],
-
-      "techStack": ["Android Studio", "Java", "Kotlin", "Firebase"],
-
+      "categories": [
+        "web",
+        "mobile"
+      ],
+      "techStack": [
+        "Android Studio",
+        "Java",
+        "Kotlin",
+        "Firebase"
+      ],
       "status": "completed",
-
       "thumbnail": "/projects_imgs/athlon_web_screenshot.png",
-
-      "gallery": ["/projects_imgs/athlon_web_screenshot.png"],
-
+      "gallery": [
+        "/projects_imgs/athlon_web_screenshot.png"
+      ],
       "links": {
         "github": "https://github.com/JimuelBartolome/Athlon---Finals-Revision",
         "live": ""
       }
     },
-
     {
       "id": "portfolio-v1",
       "featured": false,
-
       "title": "Portfolio Website",
-
       "summary": "Personal portfolio showcasing projects, technical expertise, and professional experience.",
-
       "description": "The current responsive portfolio showcasing my projects and technical expertise as a full-stack developer and AI automation engineer.",
-
       "problem": "",
-
       "solution": "",
-
       "highlights": [],
-
       "features": [],
-
       "impact": [],
-
-      "categories": ["web"],
-
-      "techStack": ["Next.js", "Tailwind CSS", "TypeScript"],
-
+      "categories": [
+        "web"
+      ],
+      "techStack": [
+        "Next.js",
+        "Tailwind CSS",
+        "TypeScript"
+      ],
       "status": "ongoing",
-
       "thumbnail": "/projects_imgs/website_v1_screenshot.png",
-
-      "gallery": ["/projects_imgs/website_v1_screenshot.png"],
-
+      "gallery": [
+        "/projects_imgs/website_v1_screenshot.png"
+      ],
       "links": {
         "github": "https://github.com/ArdyErni/paulardy-erni-portfolio",
         "live": "https://paulardy-erni-portfolio.vercel.app/"
       }
     }
   ],
-
   "services": [
     {
       "title": "AI Automation",
       "description": "Design and develop AI-powered workflows that eliminate repetitive manual tasks.",
-      "deliverables": ["AI Agents", "Workflow Automation", "LLM Integration"],
-      "technologies": ["n8n", "OpenAI", "Gemini", "Supabase"]
+      "deliverables": [
+        "AI Agents",
+        "Workflow Automation",
+        "LLM Integration"
+      ],
+      "technologies": [
+        "n8n",
+        "OpenAI",
+        "Gemini",
+        "Supabase"
+      ]
     },
     {
       "title": "Backend Development",
       "description": "Develop scalable backend systems with secure APIs and database architecture.",
-      "deliverables": ["REST APIs", "Authentication", "Database Design"],
-      "technologies": ["Node.js", "MySQL", "Firebase", "Supabase"]
+      "deliverables": [
+        "REST APIs",
+        "Authentication",
+        "Database Design"
+      ],
+      "technologies": [
+        "Node.js",
+        "MySQL",
+        "Firebase",
+        "Supabase"
+      ]
     },
     {
       "title": "Full-Stack Web Applications",
@@ -384,7 +409,12 @@
         "Backend Development",
         "Deployment"
       ],
-      "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS"]
+      "technologies": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS"
+      ]
     }
   ],
   "process": [
@@ -409,7 +439,6 @@
       "description": "Launch, monitor, and continuously improve the solution based on feedback."
     }
   ],
-
   "experience": [
     {
       "id": "agentgenius",
@@ -421,24 +450,43 @@
           "title": "Lead AI Automation Engineer",
           "period": "Aug 2026 – Present",
           "bullets": [
-            "Lead module development and integration across production applications.",
-            "Work with clients and team to clarify requirements and support delivery."
+            "Lead offshore module development, coordinating with an international team across different time zones.",
+            "Oversee module implementation and integration while contributing hands-on to development and delivery."
+          ],
+          "stack": [
+            "C#",
+            "ASP.NET",
+            ".NET Framework",
+            "SSMS",
+            "Azure DevOps",
+            "Azure Cloud",
+            "Claude Code",
+            "Codex",
+            "CI/CD"
           ]
         },
         {
           "title": "AI Automation Engineer",
           "period": "May 2026 – Aug 2026",
           "bullets": [
-            "Built n8n workflows integrating LLMs, APIs and databases for invoice management and feedback intelligence.",
-            "Shipped AI-powered collection generation on a production SaaS platform."
+            "Developed n8n automation workflows and gained hands-on experience integrating services and APIs.",
+            "Implemented an end-to-end feature for a production SaaS platform focused on merchant keyword generation."
+          ],
+          "stack": [
+            "n8n",
+            "Google Gemini",
+            "VS Code",
+            "Supabase",
+            "Shopify Development"
           ]
         }
       ],
-      "stack": ["n8n", "Next.js", "Supabase", "Gemini AI"],
-      "project": {
-        "label": "Invoice Automation, Client Feedback",
-        "href": "/projects"
-      }
+      "stack": [
+        "n8n",
+        "Next.js",
+        "Supabase",
+        "Gemini AI"
+      ]
     },
     {
       "id": "sdo-balanga",
@@ -449,16 +497,24 @@
           "title": "IT Intern, Web Developer",
           "period": "Jan 2026 – Apr 2026",
           "bullets": [
-            "Built PFORMS to digitize loan application, repayment and reporting.",
-            "Gave ICT Unit support: maintenance, troubleshooting, system deployment."
+            "Developed a loan management system to digitize loan applications, repayments, and reporting.",
+            "Provided technical support to the ICT Unit, including maintenance, troubleshooting, and system deployment."
           ]
         }
       ],
-      "stack": ["Next.js", "Node.js", "Firebase", "MySQL"],
-      "project": {
-        "label": "PFORMS",
-        "href": "/projects"
-      }
+      "stack": [
+        "Web Development",
+        "Firebase",
+        "Vercel",
+        "GitHub",
+        "Git",
+        "JavaScript",
+        "TypeScript",
+        "Next.js",
+        "Railway",
+        "Render",
+        "React"
+      ]
     }
   ],
   "gear": [
@@ -466,43 +522,204 @@
       "id": "viewplus-ml-22",
       "category": "Main monitor",
       "name": "ViewPlus ML-22",
-      "image": "/gears/viewplus_ml_22.png"
+      "image": "/gears/viewplus_ml_22.png",
+      "description": "",
+      "specifications": []
     },
     {
       "id": "arzopa",
       "category": "Second monitor",
       "name": "Arzopa Z1C",
-      "image": "/gears/arzopa_z1c.png"
+      "image": "/gears/arzopa_z1c.png",
+      "description": "",
+      "specifications": []
     },
     {
       "id": "vxe-r1-se-plus",
       "category": "Mouse",
       "name": "VXE R1 SE+",
-      "image": "/gears/vxe_r1_se+.png"
+      "image": "/gears/vxe_r1_se+.png",
+      "description": "",
+      "specifications": []
     },
     {
       "id": "generic-mic",
       "category": "Microphone",
       "name": "Generic Microphone",
-      "image": "/gears/generic_mic.png"
+      "image": "/gears/generic_mic.png",
+      "description": "",
+      "specifications": []
     },
     {
       "id": "moondrop-chu-ii",
       "category": "Earphones",
       "name": "Moondrop Chu 2",
-      "image": "/gears/moondrop_chu_2.png"
+      "image": "/gears/moondrop_chu_2.png",
+      "description": "",
+      "specifications": []
     },
     {
       "id": "system-unit",
       "category": "System unit",
       "name": "Ryzen 5 5600G 16GB",
-      "image": "/gears/system_unit.png"
+      "image": "/gears/system_unit.png",
+      "description": "",
+      "specifications": []
     },
     {
       "id": "rakk-pluma-1",
       "category": "Keyboard",
       "name": "Rakk Pluma V1 (Black)",
-      "image": "/gears/rakk_pluma_1.png"
+      "image": "/gears/rakk_pluma_1.png",
+      "description": "",
+      "specifications": []
     }
-  ]
+  ],
+  "site": {
+    "title": "Ardy Erni | Full-Stack Web Developer",
+    "description": "Full-Stack Web Developer focused on building workflow-driven systems and scalable web applications.",
+    "logo": "/website_logo/portfolio_logo_trimmed.png",
+    "logoAlt": "erknst.",
+    "favicon": "/website_logo/portfolio_logo.png",
+    "brand": "erknst",
+    "brandSuffix": ".",
+    "loadingText": "PAUL ARDY",
+    "footerCredit": "Built with Next.js · TypeScript · Tailwind CSS"
+  },
+  "about": {
+    "title": "Systematic Approach. Measurable Results.",
+    "paragraphs": [
+      "I'm an Information Technology graduate from **{educationInstitution}**, specializing in full-stack development and AI-powered workflow automation. My approach is backend-first — I focus on how data flows, how processes are structured, and how systems can be made more efficient before touching the interface.",
+      "Beyond web development, I design and implement automated business workflows using **n8n**, integrating AI models, APIs, and databases to eliminate repetitive manual work. I don't just build features — I build systems that scale."
+    ],
+    "principles": [
+      {
+        "icon": "education",
+        "title": "Academic Foundation",
+        "description": "Software engineering fundamentals, system design, and analytical problem-solving."
+      },
+      {
+        "icon": "backend",
+        "title": "Backend Logic First",
+        "description": "Clear architecture, efficient data handling, and scalable database design."
+      },
+      {
+        "icon": "automation",
+        "title": "AI Automation",
+        "description": "n8n workflows, LLM integration, and business process automation at scale."
+      }
+    ],
+    "quote": "\"I don't just build features — I build systems that are dependable, scalable, and designed with long-term performance in mind.\"",
+    "focus": "Workflow Automation · System Design · AI Integration"
+  },
+  "labels": {
+    "profile": "Profile",
+    "background": "Background",
+    "projects": "Projects",
+    "gear": "Gear",
+    "viewProjects": "View Projects",
+    "downloadResume": "Download Resume",
+    "contactMe": "Contact Me",
+    "more": "More",
+    "aboutMe": "More about me",
+    "shufflePhotos": "Shuffle photos",
+    "shuffleHint": "Click the stack to shuffle",
+    "portraitAlt": "Portrait of {name}",
+    "goToProfile": "Go to Profile",
+    "mainNavigation": "Main",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "Email",
+    "website": "Website",
+    "backgroundDescription": "AI automation engineer with production experience, currently leading module development.",
+    "present": "Present",
+    "certifications": "Certifications",
+    "earned": "earned",
+    "projectsHeading": "Recent Projects",
+    "automationWorkflow": "Automation Workflow",
+    "viewDetails": "View details for {title}",
+    "viewDetailsHint": "View details",
+    "closeProject": "Close project details",
+    "problem": "Problem",
+    "solution": "Solution",
+    "impact": "Impact",
+    "highlights": "Highlights",
+    "features": "Key Features",
+    "viewCode": "View Code",
+    "code": "Code",
+    "liveDemo": "Live Demo",
+    "demo": "Demo",
+    "featuredProject": "Featured Project",
+    "gearDescription": "The hardware I use to build, ship and stay productive. - My desk setup.",
+    "productImage": "[PRODUCT IMAGE]",
+    "currentFocus": "Currently focused on",
+    "tools": "Tools I work with",
+    "contributions": "My Github Contributions",
+    "education": "Education",
+    "educationDescription": "Academic foundation and milestones that shaped my engineering journey.",
+    "academicSnapshot": "Academic Snapshot",
+    "degree": "Degree",
+    "institution": "Institution",
+    "duration": "Duration",
+    "emptyCertifications": "Certifications will appear here.",
+    "verifiedCredentials": "Verified Credentials",
+    "credentialsDescription": "Industry certifications across cybersecurity, development, and project management.",
+    "verifiedEducation": "Verified Educational Credentials",
+    "resumeHeading": "Looking for my detailed history?",
+    "resumeDescription": "Download my full professional resume to see more about my education, experience, and certifications in Information Technology.",
+    "focus": "Focus",
+    "services": "Services",
+    "servicesDescription": "Practical solutions built around your business goals — not just technology for its own sake.",
+    "deliverables": "Deliverables",
+    "technologies": "Technologies",
+    "processHeading": "How I Work",
+    "processDescription": "A straightforward process focused on understanding your problem before writing a single line of code.",
+    "contactHeading": "Ready to build something?",
+    "contactDescription": "I'm always interested in working on systems that solve meaningful problems. Let's talk about what you're building.",
+    "searchPlaceholder": "Search projects...",
+    "searchProjects": "Search projects",
+    "clearSearch": "Clear search",
+    "filterProjects": "Filter projects by category",
+    "all": "All",
+    "noProjects": "No projects found",
+    "noQueryCategory": "No results for \"{query}\" in \"{category}\"",
+    "noQuery": "No results for \"{query}\"",
+    "noCategory": "No projects in \"{category}\"",
+    "clearFilters": "Clear filters"
+  },
+  "contact": {
+    "title": "Let's work together.",
+    "description": "Have a project, opportunity, or question? Send me a message.",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "close": "Close contact form",
+    "successTitle": "Message delivered. No bugs found.",
+    "successDescription": "Your message made it through the pipeline. I'll get back to you soon.",
+    "sendAnother": "Send another message",
+    "error": "Your message could not be sent right now. Please try again shortly.",
+    "rateLimited": "Please wait a while before sending another message.",
+    "invalid": "Please check your details and try again.",
+    "honeypotLabel": "Leave this field empty",
+    "emailSubject": "New portfolio contact message",
+    "fields": {
+      "name": {
+        "label": "Name",
+        "required": "Please enter your name.",
+        "tooLong": "Please use 100 characters or fewer.",
+        "invalid": "Please enter a valid name."
+      },
+      "email": {
+        "label": "Email address",
+        "required": "Please enter your email address.",
+        "tooLong": "Please use 254 characters or fewer.",
+        "invalid": "Please enter a valid email address."
+      },
+      "message": {
+        "label": "Message",
+        "required": "Please enter a message.",
+        "tooLong": "Please use 5,000 characters or fewer.",
+        "invalid": "Please remove unsupported characters from your message."
+      }
+    }
+  }
 }

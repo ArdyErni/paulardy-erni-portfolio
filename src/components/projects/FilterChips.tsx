@@ -1,3 +1,4 @@
+import { portfolio } from "@/lib/portfolio";
 import { cn } from '@/lib/utils';
 
 interface FilterChipsProps {
@@ -13,7 +14,7 @@ export function FilterChips({ categories, selected, onSelect }: FilterChipsProps
     <div
       className="flex items-center gap-2 flex-wrap"
       role="group"
-      aria-label="Filter projects by category"
+      aria-label={portfolio.labels.filterProjects}
     >
       {all.map((cat) => (
         <button
@@ -27,7 +28,7 @@ export function FilterChips({ categories, selected, onSelect }: FilterChipsProps
               : 'bg-white border border-border text-muted-foreground hover:text-foreground hover:border-primary/40'
           )}
         >
-          {cat === 'all' ? 'All' : cat}
+          {cat === 'all' ? portfolio.labels.all : cat}
         </button>
       ))}
     </div>

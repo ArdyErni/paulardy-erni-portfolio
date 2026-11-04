@@ -1,5 +1,7 @@
 'use client';
 
+import { portfolio } from '@/lib/portfolio';
+
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { X, Github, ExternalLink, CheckCircle2, Zap, Lightbulb, BarChart3 } from 'lucide-react';
@@ -95,7 +97,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
         <button
           ref={closeButtonRef}
           onClick={onClose}
-          aria-label="Close project details"
+          aria-label={portfolio.labels.closeProject}
           className="absolute top-4 right-4 z-10 h-9 w-9 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
         >
           <X size={18} />
@@ -172,7 +174,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 {showProblem && (
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                      <Lightbulb size={14} className="text-primary" /> Problem
+                      <Lightbulb size={14} className="text-primary" /> {portfolio.labels.problem}
                     </div>
                     <p className="text-foreground/80 leading-relaxed text-sm">{project.problem}</p>
                   </div>
@@ -181,7 +183,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 {showSolution && (
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                      <Zap size={14} className="text-primary" /> Solution
+                      <Zap size={14} className="text-primary" /> {portfolio.labels.solution}
                     </div>
                     <p className="text-foreground/80 leading-relaxed text-sm">{project.solution}</p>
                   </div>
@@ -190,10 +192,10 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 {showImpact && (
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                      <BarChart3 size={14} className="text-primary" /> Impact
+                      <BarChart3 size={14} className="text-primary" /> {portfolio.labels.impact}
                     </div>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {project.impact!.map((item) => (
+                      {project.impact?.map((item) => (
                         <li key={item} className="flex items-start gap-2 text-sm text-foreground/80">
                           <CheckCircle2 size={14} className="text-primary mt-0.5 flex-shrink-0" />
                           {item}
@@ -206,10 +208,10 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 {showHighlights && (
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                      <CheckCircle2 size={14} className="text-primary" /> Highlights
+                      <CheckCircle2 size={14} className="text-primary" /> {portfolio.labels.highlights}
                     </div>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {project.highlights!.map((item) => (
+                      {project.highlights?.map((item) => (
                         <li key={item} className="flex items-start gap-2 text-sm text-foreground/80">
                           <CheckCircle2 size={14} className="text-primary mt-0.5 flex-shrink-0" />
                           {item}
@@ -222,10 +224,10 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 {showFeatures && (
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                      <Zap size={14} className="text-primary" /> Key Features
+                      <Zap size={14} className="text-primary" /> {portfolio.labels.features}
                     </div>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {project.features!.map((item) => (
+                      {project.features?.map((item) => (
                         <li key={item} className="flex items-start gap-2 text-sm text-foreground/80">
                           <CheckCircle2 size={14} className="text-primary mt-0.5 flex-shrink-0" />
                           {item}
@@ -243,14 +245,14 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 {project.links.github && (
                   <Button variant="outline" className="rounded-full gap-2" asChild>
                     <a href={project.links.github} target="_blank" rel="noopener noreferrer">
-                      <Github size={16} /> View Code
+                      <Github size={16} /> {portfolio.labels.viewCode}
                     </a>
                   </Button>
                 )}
                 {project.links.live && (
                   <Button className="rounded-full gap-2 bg-primary hover:bg-primary/90" asChild>
                     <a href={project.links.live} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink size={16} /> Live Demo
+                      <ExternalLink size={16} /> {portfolio.labels.liveDemo}
                     </a>
                   </Button>
                 )}

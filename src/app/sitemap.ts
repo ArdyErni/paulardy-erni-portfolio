@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
+import { siteUrl } from "@/lib/portfolio";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: "https://paulardy-erni-portfolio.vercel.app",
+      url: siteUrl,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,

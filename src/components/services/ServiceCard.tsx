@@ -1,3 +1,4 @@
+import { portfolio } from "@/lib/portfolio";
 import { CheckCircle2 } from 'lucide-react';
 import type { Service } from '@/types/portfolio';
 
@@ -14,7 +15,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
       </div>
 
       <div className="space-y-2">
-        <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Deliverables</p>
+        <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">{portfolio.labels.deliverables}</p>
         <ul className="space-y-1.5">
           {service.deliverables.map((item) => (
             <li key={item} className="flex items-center gap-2 text-sm text-foreground/80">
@@ -26,7 +27,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
       </div>
 
       <div className="space-y-2 mt-auto">
-        <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Technologies</p>
+        <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">{portfolio.labels.technologies}</p>
         <div className="flex flex-wrap gap-2">
           {service.technologies.map((tech) => (
             <span

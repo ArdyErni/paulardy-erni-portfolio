@@ -1,3 +1,4 @@
+import { portfolio } from "@/lib/portfolio";
 import { GraduationCap, Calendar, Award, Briefcase } from "lucide-react";
 import type { Education } from "@/types/portfolio";
 
@@ -12,10 +13,9 @@ export function EducationSection({ education }: EducationSectionProps) {
         <div className="flex items-center gap-3 mb-8">
           <GraduationCap className="text-primary" size={26} />
           <div>
-            <h2 className="text-3xl font-black">Education</h2>
+            <h2 className="text-3xl font-black">{portfolio.labels.education}</h2>
             <p className="text-sm text-muted-foreground mt-1">
-              Academic foundation and milestones that shaped my engineering
-              journey.
+              {portfolio.labels.educationDescription}
             </p>
           </div>
         </div>
@@ -45,7 +45,7 @@ export function EducationSection({ education }: EducationSectionProps) {
                     <div className="mt-8">
                       <div className="flex items-center gap-2 mb-3">
                         <Award size={18} className="text-primary" />
-                        <span className="font-semibold">Highlights</span>
+                        <span className="font-semibold">{portfolio.labels.highlights}</span>
                       </div>
 
                       <ul className="space-y-2">
@@ -68,28 +68,22 @@ export function EducationSection({ education }: EducationSectionProps) {
                 <div className="rounded-2xl bg-muted/30 p-6">
                   <div className="flex items-center gap-2 mb-5">
                     <Briefcase size={18} className="text-primary" />
-                    <span className="font-semibold">Academic Snapshot</span>
+                    <span className="font-semibold">{portfolio.labels.academicSnapshot}</span>
                   </div>
 
                   <div className="space-y-5">
                     <div>
-                      <p className="text-xs uppercase tracking-wide text-muted-foreground">
-                        Degree
-                      </p>
+                      <p className="text-xs uppercase tracking-wide text-muted-foreground">{portfolio.labels.degree}</p>
                       <p className="font-semibold mt-1">{edu.degree}</p>
                     </div>
 
                     <div>
-                      <p className="text-xs uppercase tracking-wide text-muted-foreground">
-                        Institution
-                      </p>
+                      <p className="text-xs uppercase tracking-wide text-muted-foreground">{portfolio.labels.institution}</p>
                       <p className="font-semibold mt-1">{edu.institution}</p>
                     </div>
 
                     <div>
-                      <p className="text-xs uppercase tracking-wide text-muted-foreground">
-                        Duration
-                      </p>
+                      <p className="text-xs uppercase tracking-wide text-muted-foreground">{portfolio.labels.duration}</p>
                       <p className="font-semibold mt-1">{edu.duration}</p>
                     </div>
                   </div>

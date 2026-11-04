@@ -1,8 +1,10 @@
 'use client';
 
+import { portfolio } from "@/lib/portfolio";
+
 import { useEffect, useState } from 'react';
 
-const WORD = ['P', 'A', 'U', 'L', ' ', 'A', 'R', 'D', 'Y'];
+const WORD = Array.from(portfolio.site.loadingText);
 const CHAR_DELAY = 120; // ms per letter
 const LOADER_START_DELAY = WORD.length * CHAR_DELAY + 200;
 const LOADER_DURATION = 2000;

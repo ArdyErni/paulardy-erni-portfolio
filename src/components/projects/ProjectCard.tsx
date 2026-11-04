@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { portfolio, formatContent } from '@/lib/portfolio';
 import { Bot, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { Project } from '@/types/portfolio';
@@ -18,7 +19,7 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
     <button
       onClick={() => onClick(project)}
       className="group text-left bg-white rounded-2xl border shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex flex-col h-full overflow-hidden w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-      aria-label={`View details for ${project.title}`}
+      aria-label={formatContent(portfolio.labels.viewDetails, { title: project.title })}
     >
       {/* Thumbnail */}
       <div className="relative aspect-video overflow-hidden bg-muted flex-shrink-0">
@@ -36,7 +37,7 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
               <Bot size={28} />
             </div>
             <span className="text-xs font-bold uppercase tracking-widest text-primary/60">
-              Automation Workflow
+              {portfolio.labels.automationWorkflow}
             </span>
           </div>
         )}
@@ -94,7 +95,7 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
             </span>
           )}
           <span className="ml-auto text-primary opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 text-xs font-bold">
-            View details <ArrowRight size={12} />
+            {portfolio.labels.viewDetailsHint} <ArrowRight size={12} />
           </span>
         </div>
       </div>

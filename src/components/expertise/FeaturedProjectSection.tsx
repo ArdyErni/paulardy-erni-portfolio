@@ -1,3 +1,4 @@
+import { portfolio } from '@/lib/portfolio';
 import Image from 'next/image';
 import { Github, ExternalLink, CheckCircle2, Zap, Lightbulb, BarChart3 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
@@ -27,7 +28,9 @@ export function FeaturedProjectSection({ project }: FeaturedProjectSectionProps)
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="flex items-center gap-3 mb-10">
           <div className="h-8 w-1 bg-primary rounded-full" />
-          <h2 className="text-3xl font-black tracking-tight">Featured Project</h2>
+          <h2 className="text-3xl font-black tracking-tight">
+                      {portfolio.labels.featuredProject}
+                    </h2>
         </div>
 
         <div className="bg-white rounded-[2rem] overflow-hidden border shadow-xl">
@@ -69,14 +72,14 @@ export function FeaturedProjectSection({ project }: FeaturedProjectSectionProps)
                 {project.links.github && (
                   <Button variant="outline" size="sm" className="rounded-full gap-2" asChild>
                     <a href={project.links.github} target="_blank" rel="noopener noreferrer">
-                      <Github size={16} /> Code
+                      <Github size={16} /> {portfolio.labels.code}
                     </a>
                   </Button>
                 )}
                 {project.links.live && (
                   <Button size="sm" className="rounded-full gap-2 bg-primary hover:bg-primary/90" asChild>
                     <a href={project.links.live} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink size={16} /> Live Demo
+                      <ExternalLink size={16} /> {portfolio.labels.liveDemo}
                     </a>
                   </Button>
                 )}
@@ -110,7 +113,7 @@ export function FeaturedProjectSection({ project }: FeaturedProjectSectionProps)
                   <div className="space-y-3">
                     <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-muted-foreground">
                       <Lightbulb size={16} className="text-primary" />
-                      Problem
+                      {portfolio.labels.problem}
                     </div>
                     <p className="text-foreground/80 leading-relaxed">{project.problem}</p>
                   </div>
@@ -120,7 +123,7 @@ export function FeaturedProjectSection({ project }: FeaturedProjectSectionProps)
                   <div className="space-y-3">
                     <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-muted-foreground">
                       <Zap size={16} className="text-primary" />
-                      Solution
+                      {portfolio.labels.solution}
                     </div>
                     <p className="text-foreground/80 leading-relaxed">{project.solution}</p>
                   </div>
@@ -130,10 +133,10 @@ export function FeaturedProjectSection({ project }: FeaturedProjectSectionProps)
                   <div className="space-y-3 md:col-span-2">
                     <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-muted-foreground">
                       <BarChart3 size={16} className="text-primary" />
-                      Impact
+                      {portfolio.labels.impact}
                     </div>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {project.impact!.map((item) => (
+                      {project.impact?.map((item) => (
                         <li key={item} className="flex items-start gap-2 text-foreground/80 text-sm">
                           <CheckCircle2 size={16} className="text-primary mt-0.5 flex-shrink-0" />
                           {item}
@@ -147,10 +150,10 @@ export function FeaturedProjectSection({ project }: FeaturedProjectSectionProps)
                   <div className="space-y-3 md:col-span-2">
                     <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-muted-foreground">
                       <CheckCircle2 size={16} className="text-primary" />
-                      Highlights
+                      {portfolio.labels.highlights}
                     </div>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {project.highlights!.map((item) => (
+                      {project.highlights?.map((item) => (
                         <li key={item} className="flex items-start gap-2 text-foreground/80 text-sm">
                           <CheckCircle2 size={16} className="text-primary mt-0.5 flex-shrink-0" />
                           {item}
@@ -164,10 +167,10 @@ export function FeaturedProjectSection({ project }: FeaturedProjectSectionProps)
                   <div className="space-y-3 md:col-span-2">
                     <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-muted-foreground">
                       <Zap size={16} className="text-primary" />
-                      Key Features
+                      {portfolio.labels.features}
                     </div>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {project.features!.map((item) => (
+                      {project.features?.map((item) => (
                         <li key={item} className="flex items-start gap-2 text-foreground/80 text-sm">
                           <CheckCircle2 size={16} className="text-primary mt-0.5 flex-shrink-0" />
                           {item}
