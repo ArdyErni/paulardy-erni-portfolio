@@ -223,6 +223,7 @@ export type PortfolioLabel =
   | "viewDetails"
   | "viewDetailsHint"
   | "closeProject"
+  | "closeGear"
   | "problem"
   | "solution"
   | "impact"

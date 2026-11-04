@@ -1,12 +1,12 @@
 # Contact modal: Formspree setup and verification
 
-The unchanged modal posts JSON to `POST /api/contact`. The Next.js route validates fields, checks Redis limits and duplicate records, and submits to `https://formspree.io/f/<FORMSPREE_FORM_ID>`. Formspree notifies the inbox configured in its dashboard. This submission endpoint does not require a custom sending domain or an email-provider API key.
+The Contact modal posts JSON to `POST /api/contact`. The Next.js route validates fields, checks Redis limits and duplicate records, and submits to `https://formspree.io/f/<FORMSPREE_FORM_ID>`. Formspree notifies the inbox configured in its dashboard. This submission endpoint does not require a custom sending domain or an email-provider API key.
 
-Modal fields, copy, styling, animations, focus management, Escape/outside-click closing, scroll locking, and reduced-motion support remain unchanged. Editable copy and the notification subject still come from `contact` in `src/data/portfolio.json`.
+The modal uses Radix focus management, Escape/outside-click closing, scroll locking, and reduced-motion overrides. Its compact success state replaces the form heading/description, intentionally hides the check icon, and offers a secondary reset action that clears the form and focuses Name without sending a request. Closing/reopening retains the mounted submission state. Editable copy and the notification subject come from `contact` in `src/data/portfolio.json`.
 
 ## Manual setup in your own accounts
 
-No form has been created and no live form ID is included in this repository.
+The owner has configured Formspree and Upstash and confirmed a real message reached the inbox in local development. No live form ID or private service configuration is included in the tracked template. The steps below apply to new environments; do not overwrite an existing private `.env.local` configuration.
 
 1. [Create a Formspree account](https://formspree.io/register) and verify your account email.
 2. Create a new contact form in its dashboard.
@@ -26,7 +26,7 @@ No form has been created and no live form ID is included in this repository.
 8. Use the deployed portfolio's Email/contact trigger and submit one real test message with an address you control. Verify it appears in the Formspree submissions dashboard and reaches your inbox. Inspect spam/filtering and notification settings if it is missing.
 9. Reply to the notification and confirm the reply targets the visitor's email. Formspree documents that the [`email` field sets Reply-To](https://help.formspree.io/articles/building-your-form/email-reply-to-address).
 
-Live email delivery and production readiness remain unverified until a real message reaches your inbox. Mocked tests or a successful HTTP response are not evidence of inbox delivery.
+Local inbox delivery has been confirmed by the owner. Each deployment still requires its own real inbox and Reply-To verification; that deployment validation was not performed during the documentation update. Mocked tests or a successful HTTP response alone are not evidence of inbox delivery or production readiness.
 
 ## Submission protocol
 
@@ -88,7 +88,7 @@ For `invalid_environment`, check the named variable's flag. Use only the form ID
 
 Run `npm run test:contact`, `npm run validate:content`, and `npm run typecheck`. Mocked tests cover provider success/errors, invalid fields/configuration, honeypots, origins, rate limits, and accepted/pending/uncertain duplicates. Fixtures are nonfunctional and no real messages are sent.
 
-Browser checks cover the existing modal at 1440, 1024, 390, and 320 px, its states/accessibility, no horizontal overflow, unchanged navbar coordinates, and Reveal animations. A real submission and inbox/Reply-To check remain required after manual setup.
+Earlier session browser checks covered the modal at 1440, 1024, 390, and 320 px, its states/accessibility, no horizontal overflow, unchanged navbar coordinates, and Reveal animations. They were not repeated during the documentation update. Repeat browser checks after UI changes, and perform a real inbox/Reply-To check after deployment setup.
 
 Files modified for this migration:
 

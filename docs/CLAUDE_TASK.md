@@ -1,5 +1,7 @@
 # Portfolio Redesign Implementation Task
 
+> Historical redesign brief. Navigation, composition, and transition instructions below describe an earlier plan. Use the current source, portfolio JSON, [README](../README.md), and [Codex handoff](CODEX_HANDOFF.md) for present implementation guidance; the original brief is preserved below as history.
+
 ## Overview
 
 You are responsible for implementing the redesign of the existing Ardy Portfolio.

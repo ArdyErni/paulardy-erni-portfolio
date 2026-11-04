@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Content } from "@radix-ui/react-dialog";
-import { CheckCircle2, Loader2, RotateCcw, X } from "lucide-react";
+import { Loader2, RotateCcw, X } from "lucide-react";
 import { z } from "zod";
 import {
   DialogClose,
@@ -146,8 +146,7 @@ export function ContactModal({
             tabIndex={-1}
             role="status"
           >
-            {/* <CheckCircle2 className="text-primary/80" size={24} aria-hidden="true" /> */}
-            <DialogHeader className="space-y-2 text-left">
+            <DialogHeader className="space-y-2 pr-8 text-left">
               <DialogTitle className="text-xl font-bold leading-tight">
                 {copy.successTitle}
               </DialogTitle>

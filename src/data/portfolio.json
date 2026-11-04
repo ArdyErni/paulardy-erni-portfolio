@@ -650,7 +650,7 @@
     "liveDemo": "Live Demo",
     "demo": "Demo",
     "featuredProject": "Featured Project",
-    "gearDescription": "The hardware I use to build, ship and stay productive. - My desk setup.",
+    "gearDescription": "The setup behind the commits, coffee breaks, and occasional debugging marathons.",
     "productImage": "[PRODUCT IMAGE]",
     "currentFocus": "Currently focused on",
     "tools": "Tools I work with",
@@ -685,7 +685,8 @@
     "noQueryCategory": "No results for \"{query}\" in \"{category}\"",
     "noQuery": "No results for \"{query}\"",
     "noCategory": "No projects in \"{category}\"",
-    "clearFilters": "Clear filters"
+    "clearFilters": "Clear filters",
+    "closeGear": "Close gear details"
   },
   "contact": {
     "title": "Let's work together.",

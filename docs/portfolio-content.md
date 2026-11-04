@@ -38,7 +38,7 @@ Project accessibility labels use `{title}`. Search-result labels use `{query}` a
 
 Paths beginning with `/` refer to files in `public`, such as `/user_profile/Formal Picture.jpg`. Keep collection IDs stable and unique. Use `profile.avatar` for the shared portrait and `profile.socials.website` for the website/canonical URL. Contact links are sourced from `profile.socials`.
 
-Add or remove array entries to update collections. The About Me photo stack displays up to five photos at once and cycles through the collection. Gear descriptions and specifications appear only when populated; they start empty to preserve the current display.
+Add or remove array entries to update collections. The About Me photo stack displays up to five photos at once and cycles through the collection. Gear cards open a detail modal with the item's image, category, and model name. An optional nonempty `description` appears below the name; current descriptions are empty. The optional `specifications` arrays remain supported by the data type but are not rendered by the current Gear cards or modal. Do not invent personal descriptions or specifications.
 
 Each role displays badges from its own `stack` array, falling back to the organization's `stack` when the role stack is omitted or empty. The organization stack is not repeated separately. Education uses `achievements` for academic distinctions, an optional `description` for thesis responsibilities, and an optional `stack` array for badges below the description. Experience cards do not include related-project links. Set `expertise.featuredProject` to an existing project ID, or `""` when no featured project is selected.
 
