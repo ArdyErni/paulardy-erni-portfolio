@@ -1,7 +1,17 @@
 "use client";
 
 import Image from "next/image";
+import { Content as DialogContent } from "@radix-ui/react-dialog";
 import { Reveal } from "@/components/Reveal";
+import {
+  Dialog,
+  DialogClose,
+  DialogDescription,
+  DialogOverlay,
+  DialogPortal,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { ContactTrigger } from "@/components/contact/ContactProvider";
 import { ContentText } from "@/components/ContentText";
 import { portfolio, formatContent, profileValues } from "@/lib/portfolio";
@@ -32,6 +42,15 @@ const STACK_MOBILE = [
   { z: 8, w: 91, h: 126, rotate: 7, tx: 93, ty: -12 },
 ];
 
+// Verified alternatives for legacy numbered labels; custom JSON alternatives take precedence.
+const ABOUT_PHOTO_ALTS: Record<string, string> = {
+  "/shuffle_imgs/grad_guitar.JPG": "Graduation portrait holding an acoustic guitar.",
+  "/shuffle_imgs/grad_formal.jpg": "Formal graduation portrait in a cap and gown.",
+  "/shuffle_imgs/food.jpg": "Rice bowls and side dishes on a wooden table.",
+  "/shuffle_imgs/pc_setup.jpg": "Desk setup with two monitors, a keyboard, and a PC tower.",
+  "/shuffle_imgs/with_shane.jpg": "Two people taking a selfie in a round outdoor mirror.",
+};
+
 const SOCIAL_ICONS = (profile: Profile) => [
   { href: profile.socials.github, icon: <Github size={18} />, label: portfolio.labels.github },
   {
@@ -49,7 +68,6 @@ const SOCIAL_ICONS = (profile: Profile) => [
 
 export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
   const [showModal, setShowModal] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
   const [carousel, setCarousel] = useState({ active: 0, jumping: -1 });
   const { active, jumping } = carousel;
   const photos = profile.photos;
@@ -66,20 +84,13 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
     return () => mq.removeEventListener("change", handler);
   }, []);
 
-  useEffect(() => {
-    if (showModal) {
-      const t = setTimeout(() => setModalVisible(true), 16);
-      return () => clearTimeout(t);
-    } else {
-      setModalVisible(false);
-    }
-  }, [showModal]);
-
   const advance = useCallback(() => {
     if (N < 2) return;
     setCarousel((c) => ({
       active: (c.active + 1) % N,
-      jumping: (c.active - 2 + N) % N,
+      jumping: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? -1
+        : (c.active - 2 + N) % N,
     }));
   }, [N]);
 
@@ -92,26 +103,26 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
 
   useEffect(() => {
     if (!showModal) return;
-    if (
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    )
-      return;
-    const interval = setInterval(advance, 3000);
-    return () => clearInterval(interval);
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let interval: ReturnType<typeof setInterval> | undefined;
+    const syncPlayback = () => {
+      clearInterval(interval);
+      if (!motion.matches) interval = setInterval(advance, 3000);
+    };
+    syncPlayback();
+    motion.addEventListener("change", syncPlayback);
+    return () => {
+      clearInterval(interval);
+      motion.removeEventListener("change", syncPlayback);
+    };
   }, [showModal, advance]);
-
-  const closeModal = () => {
-    setModalVisible(false);
-    setTimeout(() => setShowModal(false), 280);
-  };
 
   const stack = isMobile ? STACK_MOBILE : STACK;
   const stackW = isMobile ? 320 : 560;
   const stackH = isMobile ? 224 : 390;
 
   return (
-    <>
+    <Dialog open={showModal} onOpenChange={setShowModal}>
       <style>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px); }
@@ -126,7 +137,7 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
           content: "";
           position: absolute;
           inset: 0;
-          background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.28) 50%, transparent 100%);
+          background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.06) 50%, transparent 100%);
           transform: translateX(-100%) skewX(-12deg);
           pointer-events: none;
         }
@@ -152,11 +163,8 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
             >
               {/* Photo */}
               <div
-                className="float-photo relative overflow-hidden bg-white border border-[#dfe3df]"
+                className="float-photo relative h-[170px] w-[170px] rounded-[24px] overflow-hidden bg-white border border-[#dfe3df] md:h-[300px] md:w-[300px] md:rounded-[28px]"
                 style={{
-                  width: isMobile ? 170 : 300,
-                  height: isMobile ? 170 : 300,
-                  borderRadius: isMobile ? 24 : 28,
                   boxShadow: "rgba(10,60,30,0.12) 0px 10px 26px 0px",
                   animation: "float 4s ease-in-out infinite",
                   flexShrink: 0,
@@ -195,13 +203,15 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
                   </Reveal>
                 ))}
                 <Reveal delay={200 + 3 * 60}>
-                  <button
-                    onClick={() => setShowModal(true)}
-                    aria-label={labels.more}
-                    className="w-[44px] h-[44px] rounded-full border border-[#cfd6cf] bg-white flex items-center justify-center text-foreground hover:text-primary hover:border-primary transition-colors"
-                  >
-                    <MoreHorizontal size={18} />
-                  </button>
+                  <DialogTrigger asChild>
+                    <button
+                      type="button"
+                      aria-label={labels.more}
+                      className="w-[44px] h-[44px] rounded-full border border-[#cfd6cf] bg-white flex items-center justify-center text-foreground hover:text-primary hover:border-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    >
+                      <MoreHorizontal size={18} aria-hidden="true" />
+                    </button>
+                  </DialogTrigger>
                 </Reveal>
               </div>
             </Reveal>
@@ -228,7 +238,7 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
                   {profile.greeting}{" "}
                   <span className="text-primary">{profile.name}</span>
                   <span
-                    className="inline-block w-[3px] bg-primary ml-1 align-middle animate-pulse"
+                    className="inline-block w-[3px] bg-primary ml-1 align-middle animate-pulse motion-reduce:animate-none"
                     style={{
                       height: "clamp(26px, 7vw, 52px)",
                       borderRadius: 2,
@@ -268,7 +278,7 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
                   <button
                     onClick={() => onNavigate("projects")}
                     className="cta-shimmer px-[18px] py-[13px] md:py-[10px] rounded-full text-[15px] md:text-[14px] font-semibold text-white text-center"
-                    style={{ backgroundColor: "#0a8a47" }}
+                    style={{ backgroundColor: "hsl(var(--primary))" }}
                   >
                     {labels.viewProjects}
                   </button>
@@ -277,7 +287,7 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="cta-shimmer px-[18px] py-[13px] md:py-[10px] rounded-full text-[15px] md:text-[14px] font-semibold border text-center"
-                    style={{ color: "#0a8a47", borderColor: "#0a8a47" }}
+                    style={{ color: "hsl(var(--primary))", borderColor: "hsl(var(--primary))" }}
                   >
                     {labels.downloadResume}
                   </a>
@@ -289,74 +299,76 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
       </section>
 
       {/* MODAL */}
-      {showModal && (
-        <div
-          className="fixed inset-0 z-50 flex items-end md:items-center justify-center"
-          style={{
-            backgroundColor: modalVisible
-              ? "rgba(0,0,0,0.45)"
-              : "rgba(0,0,0,0)",
-            transition: "background-color 280ms ease",
-          }}
-          onClick={closeModal}
-        >
-          <div
-            className="relative bg-white w-full md:w-auto overflow-y-auto"
+      <DialogPortal>
+        <DialogOverlay className="z-[100] bg-black/45 motion-reduce:!animate-none" />
+          <DialogContent
+            data-about-dialog
+            aria-modal="true"
+            className="fixed inset-x-0 bottom-0 z-[101] w-full max-h-[90dvh] overflow-y-auto rounded-t-3xl bg-white px-5 pt-8 pb-10 focus:outline-none data-[state=open]:animate-[about-sheet-in_280ms_ease-out] data-[state=closed]:animate-[about-sheet-out_280ms_ease-in] md:inset-x-auto md:bottom-auto md:left-1/2 md:top-1/2 md:w-[calc(100%_-_3rem)] md:max-w-[1040px] md:max-h-[calc(100dvh_-_48px)] md:-translate-x-1/2 md:-translate-y-1/2 md:rounded-3xl md:px-11 md:py-[52px] md:data-[state=open]:animate-[about-dialog-in_280ms_ease-out] md:data-[state=closed]:animate-[about-dialog-out_280ms_ease-in] motion-reduce:!animate-none"
             style={{
-              borderRadius: isMobile ? "24px 24px 0 0" : 24,
               boxShadow: "rgba(0,0,0,0.35) 0px 30px 80px 0px",
-              padding: isMobile ? "32px 20px 40px" : "52px 44px",
-              maxWidth: isMobile ? "100%" : 1040,
-              maxHeight: isMobile ? "90dvh" : "calc(100vh - 48px)",
-              opacity: modalVisible ? 1 : 0,
-              transform: modalVisible
-                ? "scale(1) translateY(0)"
-                : isMobile
-                  ? "translateY(40px)"
-                  : "scale(0.94) translateY(16px)",
-              transition:
-                "opacity 280ms ease, transform 280ms cubic-bezier(0.32,0.72,0,1)",
             }}
-            onClick={(e) => e.stopPropagation()}
           >
+            <style>{`
+              @keyframes about-sheet-in {
+                from { opacity: 0; transform: translateY(40px); }
+                to { opacity: 1; transform: translateY(0); }
+              }
+              @keyframes about-sheet-out {
+                from { opacity: 1; transform: translateY(0); }
+                to { opacity: 0; transform: translateY(40px); }
+              }
+              @keyframes about-dialog-in {
+                from { opacity: 0; transform: translate(-50%, calc(-50% + 16px)) scale(0.94); }
+                to { opacity: 1; transform: translate(-50%, -50%); }
+              }
+              @keyframes about-dialog-out {
+                from { opacity: 1; transform: translate(-50%, -50%); }
+                to { opacity: 0; transform: translate(-50%, calc(-50% + 16px)) scale(0.94); }
+              }
+              @supports (scrollbar-gutter: stable) {
+                body[data-scroll-locked]:has([data-about-dialog]) { margin-right: 0 !important; }
+              }
+            `}</style>
             {/* Close */}
-            <button
-              onClick={closeModal}
-              className="absolute flex items-center justify-center rounded-full border border-[#e4e6e4] bg-white hover:bg-gray-50 transition-colors"
-              style={{ top: 16, right: 16, width: 40, height: 40 }}
-            >
-              <X size={18} />
-            </button>
+            <DialogClose asChild>
+              <button
+                type="button"
+                aria-label="Close About Me"
+                className="absolute flex items-center justify-center rounded-full border border-[#e4e6e4] bg-white hover:bg-gray-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                style={{ top: 16, right: 16, width: 40, height: 40 }}
+              >
+                <X size={18} aria-hidden="true" />
+              </button>
+            </DialogClose>
 
             {/* Mobile: single column | Desktop: two-column grid */}
-            <div
-              className="flex flex-col gap-8 md:grid md:items-center"
-              style={{
-                gridTemplateColumns: isMobile ? undefined : "1fr 1fr",
-                gap: isMobile ? undefined : 40,
-              }}
-            >
+            <div className="flex min-w-0 flex-col gap-8 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] lg:items-center lg:gap-10">
               {/* Text */}
-              <div className="flex flex-col" style={{ gap: 14 }}>
-                <h2
-                  style={{
-                    font: '700 clamp(22px,6vw,36px) "DM Sans", system-ui, sans-serif',
-                    letterSpacing: "-1px",
-                    margin: 0,
-                  }}
-                >
-                  {labels.aboutMe}
-                </h2>
-                <p
-                  style={{
-                    fontSize: 15,
-                    lineHeight: "24px",
-                    color: "rgb(91,98,91)",
-                    margin: 0,
-                  }}
-                >
-                  {profile.about}
-                </p>
+              <div className="flex min-w-0 flex-col" style={{ gap: 14 }}>
+                <DialogTitle asChild>
+                  <h2
+                    style={{
+                      font: '700 clamp(22px,6vw,36px) "DM Sans", system-ui, sans-serif',
+                      letterSpacing: "-1px",
+                      margin: 0,
+                    }}
+                  >
+                    {labels.aboutMe}
+                  </h2>
+                </DialogTitle>
+                <DialogDescription asChild>
+                  <p
+                    style={{
+                      fontSize: 15,
+                      lineHeight: "24px",
+                      color: "rgb(91,98,91)",
+                      margin: 0,
+                    }}
+                  >
+                    {profile.about}
+                  </p>
+                </DialogDescription>
                 <div
                   style={{
                     marginTop: 6,
@@ -385,17 +397,17 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
                       >
                         {label}
                       </span>
-                      <span style={{ fontWeight: 600 }}>{formatContent(value, values)}</span>
+                      <span className="min-w-0 break-words" style={{ fontWeight: 600 }}>{formatContent(value, values)}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Photo stack */}
-              <div className="flex flex-col items-center" style={{ gap: 14 }}>
+              <div className="flex min-w-0 flex-col items-center" style={{ gap: 14 }}>
                 <div
-                  className="relative cursor-pointer"
-                  style={{ width: stackW, height: stackH }}
+                  className="relative w-full cursor-pointer rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  style={{ maxWidth: stackW, aspectRatio: `${stackW} / ${stackH}` }}
                   role="button"
                   tabIndex={0}
                   aria-label={labels.shufflePhotos}
@@ -408,6 +420,9 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
                   }}
                 >
                   {photos.map(({ src, alt }, i) => {
+                    const photoAlt = /^Photo\s+\d+$/i.test(alt.trim())
+                      ? ABOUT_PHOTO_ALTS[src] ?? alt
+                      : alt;
                     const middle = Math.floor(N / 2);
                     const offset = ((i - active + middle + N) % N) - middle;
                     if (offset < -2 || offset > 2) return null;
@@ -416,16 +431,16 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
                     return (
                       <div
                         key={i}
-                        className="absolute overflow-hidden"
+                        className="absolute overflow-hidden motion-reduce:!transition-none"
                         style={{
-                          width: slot.w,
-                          height: slot.h,
+                          width: `${(slot.w / stackW) * 100}%`,
+                          height: `${(slot.h / stackH) * 100}%`,
                           borderRadius: 16,
                           border: "3px solid white",
                           boxShadow: "rgba(10,60,30,0.15) 0px 6px 18px 0px",
                           top: "50%",
                           left: "50%",
-                          transform: `translate(calc(-50% + ${slot.tx}px), calc(-50% + ${slot.ty}px)) rotate(${slot.rotate}deg)`,
+                          transform: `translate(${-50 + (slot.tx / slot.w) * 100}%, ${-50 + (slot.ty / slot.h) * 100}%) rotate(${slot.rotate}deg)`,
                           zIndex: slot.z,
                           opacity: isJumping ? 0 : 1,
                           transition: isJumping
@@ -435,7 +450,7 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
                       >
                         <Image
                           src={src}
-                          alt={alt}
+                          alt={photoAlt}
                           fill
                           className="object-cover object-center"
                           sizes="(max-width: 767px) 160px, 260px"
@@ -450,6 +465,7 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
                   {photos.map((_, i) => (
                     <span
                       key={i}
+                      className="motion-reduce:!transition-none"
                       style={{
                         display: "block",
                         width: i === active ? 22 : 6,
@@ -468,9 +484,8 @@ export function HeroSection({ profile, onNavigate }: HeroSectionProps) {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      )}
-    </>
+          </DialogContent>
+      </DialogPortal>
+    </Dialog>
   );
 }

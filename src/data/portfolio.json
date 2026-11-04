@@ -301,27 +301,6 @@
         "github": "https://github.com/JimuelBartolome/Athlon---Finals-Revision",
         "live": ""
       }
-    },
-    {
-      "id": "portfolio-v1",
-      "featured": false,
-      "title": "Portfolio Website",
-      "summary": "Personal portfolio showcasing projects, technical expertise, and professional experience.",
-      "description": "The current responsive portfolio showcasing my projects and technical expertise as a full-stack developer and AI automation engineer.",
-      "problem": "",
-      "solution": "",
-      "highlights": [],
-      "features": [],
-      "impact": [],
-      "categories": ["web"],
-      "techStack": ["Next.js", "Tailwind CSS", "TypeScript"],
-      "status": "ongoing",
-      "thumbnail": "/projects_imgs/website_v1_screenshot.png",
-      "gallery": ["/projects_imgs/website_v1_screenshot.png"],
-      "links": {
-        "github": "https://github.com/ArdyErni/paulardy-erni-portfolio",
-        "live": "https://paulardy-erni-portfolio.vercel.app/"
-      }
     }
   ],
   "services": [

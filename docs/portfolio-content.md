@@ -18,7 +18,7 @@ Edit `src/data/portfolio.json` for portfolio information, visible copy, links, a
 | `site` | Search metadata, logo, favicon, brand, initial loader name, and footer credit |
 | `contact` | Contact modal title, description, field labels/errors, submission states, and notification subject |
 
-The current four tabs retain their existing composition. Older sections/components are data-driven but are not newly added to the page. Existing project galleries and optional certification fields are retained without adding new gallery or credential UI.
+The current four tabs retain their existing composition. Older sections/components are data-driven but are not newly added to the page. Existing project galleries remain data-only. All 13 certification rows link to their supplied Credly credential URLs in a new tab.
 
 ## Introduction and shared facts
 
@@ -38,6 +38,10 @@ Project accessibility labels use `{title}`. Search-result labels use `{query}` a
 
 Paths beginning with `/` refer to files in `public`, such as `/user_profile/Formal Picture.jpg`. Keep collection IDs stable and unique. Use `profile.avatar` for the shared portrait and `profile.socials.website` for the website/canonical URL. Contact links are sourced from `profile.socials`.
 
+Project IDs also form shareable `?project=<id>` links. Valid IDs open Projects and the matching dialog on direct visits and refresh; invalid/missing IDs default to Profile. Closing removes the parameter. Opening/closing replaces the current history entry without adding duplicates.
+
+About Me's five current photos are informative. `HeroSection.tsx` supplies verified descriptions for their legacy `Photo 1`–`Photo 5` labels without changing JSON. Custom JSON alternatives, including deliberate empty alternatives for decorative images, take precedence. When updating a photo, provide an accurate `alt` in its JSON record rather than another numbered placeholder; no photo assets were changed for this semantic cleanup.
+
 Add or remove array entries to update collections. The About Me photo stack displays up to five photos at once and cycles through the collection. Gear cards open a detail modal with the item's image, category, and model name. An optional nonempty `description` appears below the name; current descriptions are empty. The optional `specifications` arrays remain supported by the data type but are not rendered by the current Gear cards or modal. Do not invent personal descriptions or specifications.
 
 Each role displays badges from its own `stack` array, falling back to the organization's `stack` when the role stack is omitted or empty. The organization stack is not repeated separately. Education uses `achievements` for academic distinctions, an optional `description` for thesis responsibilities, and an optional `stack` array for badges below the description. Experience cards do not include related-project links. Set `expertise.featuredProject` to an existing project ID, or `""` when no featured project is selected.
@@ -47,6 +51,8 @@ Navigation IDs, icon choices, card layout, date formatting behavior, and animati
 ## Validation and deployment
 
 Run `npm run validate:content` after editing. It checks the JSON against the TypeScript interfaces, cross-record references, unique IDs, placeholders, contact URLs, and local assets. It also runs before the production build. `npm run typecheck` checks the whole app separately.
+
+Use the [release verification sequence](../README.md#release-verification) for the supported checks and portable production build. There are no generic `validate` or `test` scripts.
 
 Next.js statically imports this content: development updates through hot reload, and production changes require a rebuild/redeployment. Portfolio content remains in JSON rather than a database or CMS.
 

@@ -11,13 +11,13 @@
     --card-foreground: 120 4% 14%;
     --popover: 0 0% 100%;
     --popover-foreground: 120 4% 14%;
-    --primary: 149 87% 29%; /* green     #0a8a47 (white text passes contrast) */
+    --primary: 149 87% 24%; /* green #08723b; maintains text contrast in pale and 90%-opacity states */
     --primary-foreground: 0 0% 100%;
     --secondary: 144 52% 90%; /* soft green #d9f2e3 (status pills, active tab) */
     --secondary-foreground: 153 87% 21%; /* dark green #07643a */
     --muted: 120 14% 91%; /* sage      #e6ece6 (image placeholders, chips) */
     --muted-foreground: 120 4% 37%; /* gray text #5b625b */
-    --accent: 149 87% 29%;
+    --accent: 149 87% 24%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
@@ -59,6 +59,12 @@
 @layer components {
   .page-container {
     @apply mx-auto w-full max-w-7xl px-5 md:px-6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.scroll-smooth {
+    scroll-behavior: auto;
   }
 }
 

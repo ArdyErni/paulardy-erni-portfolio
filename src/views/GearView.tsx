@@ -7,9 +7,9 @@ import { GearDetailModal } from "@/components/gear/GearDetailModal";
 
 export function GearView() {
   return (
-    <section className="py-12">
+    <section className="pt-6 pb-[calc(5rem_+_max(env(safe-area-inset-bottom),12px))] md:py-12">
       <div className="page-container">
-        <Reveal className="mb-10">
+        <Reveal className="mb-6 md:mb-10">
           <h1 className="text-4xl font-black tracking-tight mb-2">
             {data.labels.gear}
           </h1>
@@ -51,9 +51,9 @@ export function GearView() {
                         {item.category}
                       </span>
 
-                      <h3 className="min-w-0 text-[15px] font-bold leading-snug transition-colors group-hover:text-primary group-focus-visible:text-primary motion-reduce:transition-none sm:text-base">
+                      <h2 className="min-w-0 text-[15px] font-bold leading-snug transition-colors group-hover:text-primary group-focus-visible:text-primary motion-reduce:transition-none sm:text-base">
                         {item.name}
-                      </h3>
+                      </h2>
                     </div>
                   </button>
                 </DialogTrigger>

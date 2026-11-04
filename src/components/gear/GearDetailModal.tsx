@@ -29,7 +29,13 @@ export function GearDetailModal({ item }: { item: GearItem }) {
             body[data-scroll-locked]:has([data-gear-details]) { margin-right: 0 !important; }
           }
         `}</style>
-        <DialogClose className="absolute right-3 top-3 z-10 rounded-full border bg-white p-2 text-muted-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"></DialogClose>
+        <DialogClose
+          aria-label="Close gear details"
+          className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-border bg-white text-muted-foreground shadow-sm transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          <X className="h-4 w-4" aria-hidden="true" />
+        </DialogClose>
+
         <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
           {item.image ? (
             <Image

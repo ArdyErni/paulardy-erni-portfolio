@@ -11,11 +11,13 @@ A personal portfolio presenting Paul Ardy Erni's development work, AI automation
 
 - Next.js **15.5.9** App Router, React **19**, and TypeScript **5**.
 - Tailwind CSS **3**, CSS custom properties, DM Sans through `next/font`, and Lucide icons.
-- Radix UI for Contact/Gear dialogs; shared `Reveal` entrances using IntersectionObserver and CSS transitions with reduced-motion support.
+- Radix UI for About Me, Contact, Project, and Gear dialogs; shared `Reveal` entrances using IntersectionObserver and CSS transitions with reduced-motion support.
 - Zod validation and server-side `fetch` integrations with Formspree and Upstash Redis.
 - Node's test runner with `tsx` for contact tests.
 
 Navigation switches views within `/` without a page reload. Shared containers align the navbar and content; mobile uses a bottom navigation bar. Copy, collections, links, and asset references come from one typed JSON source.
+
+Valid `?project=<project-id>` links select Projects and open the matching dialog on direct visits, refresh, and browser navigation. Missing or invalid IDs default to Profile. Closing removes the project parameter; card opening/closing replaces the current history entry rather than adding duplicates.
 
 Firebase, Genkit, and other starter dependencies remain installed; the active portfolio/contact flow does not require a Firebase database or AI service.
 
@@ -66,19 +68,30 @@ Edit [`src/data/portfolio.json`](src/data/portfolio.json) for introductions, Abo
 | `npm run validate:content` | Check typed content, references, IDs, placeholders, contact links, and assets |
 | `npm run test:contact` | Mocked API/protection tests; sends no real email |
 | `npm run typecheck` | Whole-application TypeScript check |
-| `npm run build` | Content validation via `prebuild`, then production build |
+| `npm run build` | Content validation via `prebuild`, then portable production build with Next.js type checking |
 | `npm start` | Serve an existing production build |
 | `git diff --check` | Check patch whitespace |
 
-The build script uses a POSIX-style environment assignment. On Windows, run:
+The dependency-free Node wrapper in `scripts/build.cjs` forces `NODE_ENV=production` for Next.js on Windows and Unix-like shells, preserving the original environment override. Next.js build-time TypeScript and ESLint bypasses have been removed. The retained calendar component now uses the installed DayPicker v9 API; its three former TypeScript errors are resolved.
+
+There are no generic `npm run validate` or `npm run test` scripts; use the explicit commands above. `npm run lint` currently opens Next.js's setup prompt because ESLint configuration and dependencies are absent. It is not an automated release check, and a successful build does not establish an ESLint pass.
+
+## Release verification
+
+Run from the repository root (use `npm.cmd` if PowerShell blocks `npm.ps1`):
 
 ```sh
+npm run typecheck
 npm run validate:content
-npx --no-install next build
+npm run test:contact
+git diff --check
+npm run build
 npm start
 ```
 
-There is no `npm run validate` script. `npm run lint` exists but ESLint configuration is absent. Type checking reports three existing `calendar.tsx` errors. Next.js currently skips build-time TypeScript and ESLint checks, so a build alone does not establish that those checks pass.
+Stop the development server before building in the same working directory, or build in an isolated copy: development and production share `.next`. `npm start` serves the production build on port 3000 by default.
+
+Check all four views and dialogs at 320, 375, 390, 430, 768, 1024, and 1440px, including keyboard focus, reduced motion, bottom navigation clearance, and project links on direct visits/refresh/Back/Forward. Contact tests are mocked and send no email. After configuring the intended host, verify inbox delivery and Reply-To with an authorized real submission using the [contact guide](docs/contact-setup.md).
 
 ## Documentation and deployment
 

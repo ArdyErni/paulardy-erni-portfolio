@@ -3,50 +3,52 @@
 import { useState, useEffect, useCallback } from 'react';
 import type { Project } from '@/types/portfolio';
 
-interface UseProjectModalReturn {
+export interface UseProjectModalReturn {
   selectedProject: Project | null;
-  openProject: (project: Project) => void;
+  projectTrigger: HTMLButtonElement | null;
+  openProject: (project: Project, trigger: HTMLButtonElement) => void;
   closeProject: () => void;
 }
 
-export function useProjectModal(projects: Project[]): UseProjectModalReturn {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+export function useProjectModal(projects: Project[], initialProjectId: string | null): UseProjectModalReturn {
+  const [selection, setSelection] = useState<{
+    project: Project;
+    trigger: HTMLButtonElement | null;
+  } | null>(() => {
+    const project = projects.find((entry) => entry.id === initialProjectId);
+    return project ? { project, trigger: null } : null;
+  });
+  const selectedProject = selection?.project ?? null;
 
-  // On mount, check for ?project=<id> in the URL and open that project
+  // Keep browser history navigation in sync, even while another view is active.
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('project');
-    if (id) {
-      const match = projects.find((p) => p.id === id);
-      if (match) setSelectedProject(match);
-    }
+    const syncProject = () => {
+      const id = new URLSearchParams(window.location.search).get('project');
+      const project = projects.find((entry) => entry.id === id);
+      setSelection((current) => {
+        if ((current?.project.id ?? null) === (project?.id ?? null)) return current;
+        return project ? { project, trigger: null } : null;
+      });
+    };
+    syncProject();
+    window.addEventListener('popstate', syncProject);
+    return () => window.removeEventListener('popstate', syncProject);
   }, [projects]);
 
-  // Scroll lock while modal is open
-  useEffect(() => {
-    if (selectedProject) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [selectedProject]);
-
-  const openProject = useCallback((project: Project) => {
-    setSelectedProject(project);
+  const openProject = useCallback((project: Project, trigger: HTMLButtonElement) => {
+    setSelection({ project, trigger });
     const url = new URL(window.location.href);
     url.searchParams.set('project', project.id);
-    window.history.replaceState(null, '', url.toString());
+    window.history.replaceState(window.history.state, '', url.toString());
   }, []);
 
   const closeProject = useCallback(() => {
-    setSelectedProject(null);
+    setSelection(null);
     const url = new URL(window.location.href);
+    if (!url.searchParams.has('project')) return;
     url.searchParams.delete('project');
-    window.history.replaceState(null, '', url.toString());
+    window.history.replaceState(window.history.state, '', url.toString());
   }, []);
 
-  return { selectedProject, openProject, closeProject };
+  return { selectedProject, projectTrigger: selection?.trigger ?? null, openProject, closeProject };
 }

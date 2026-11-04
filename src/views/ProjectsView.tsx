@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import { Reveal } from "@/components/Reveal";
 import { portfolio as data } from "@/lib/portfolio";
-import { useProjectModal } from "@/hooks/useProjectModal";
+import type { UseProjectModalReturn } from "@/hooks/useProjectModal";
 import { SearchInput } from "@/components/projects/SearchInput";
 import { FilterChips } from "@/components/projects/FilterChips";
 import { ProjectsGrid } from "@/components/projects/ProjectsGrid";
@@ -15,13 +15,15 @@ const allCategories = Array.from(
   new Set(data.projects.flatMap((p) => p.categories)),
 ).sort();
 
-export function ProjectsView() {
+export function ProjectsView({
+  selectedProject,
+  projectTrigger,
+  openProject,
+  closeProject,
+}: UseProjectModalReturn) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
-
-  const { selectedProject, openProject, closeProject } = useProjectModal(
-    data.projects,
-  );
+  const headingRef = useRef<HTMLHeadingElement>(null);
 
   const filteredProjects = useMemo(() => {
     const q = searchQuery.toLowerCase().trim();
@@ -50,11 +52,11 @@ export function ProjectsView() {
   }
 
   return (
-    <section className="py-16">
+    <section className="pt-6 pb-[calc(5rem_+_max(env(safe-area-inset-bottom),12px))] md:py-16">
       <div className="page-container">
         {/* Header */}
-        <Reveal className="mb-10">
-          <h1 className="text-4xl font-black tracking-tight mb-2">
+        <Reveal className="mb-6 md:mb-10">
+          <h1 ref={headingRef} tabIndex={-1} className="text-4xl font-black tracking-tight mb-2">
             {data.labels.projectsHeading}
           </h1>
           <p className="text-muted-foreground text-[17px]">
@@ -99,7 +101,12 @@ export function ProjectsView() {
 
       {/* Modal — rendered outside the grid container to avoid stacking context issues */}
       {selectedProject && (
-        <ProjectModal project={selectedProject} onClose={closeProject} />
+        <ProjectModal
+          project={selectedProject}
+          trigger={projectTrigger}
+          fallbackFocusRef={headingRef}
+          onClose={closeProject}
+        />
       )}
     </section>
   );

@@ -4,7 +4,7 @@ import type { Project } from '@/types/portfolio';
 
 interface ProjectsGridProps {
   projects: Project[];
-  onProjectClick: (project: Project) => void;
+  onProjectClick: (project: Project, trigger: HTMLButtonElement) => void;
 }
 
 export function ProjectsGrid({ projects, onProjectClick }: ProjectsGridProps) {

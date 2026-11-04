@@ -2,7 +2,9 @@
 
 import { portfolio } from '@/lib/portfolio';
 
-import { useEffect, useRef } from 'react';
+import { useRef, type RefObject } from 'react';
+import { Content, Overlay, Title } from '@radix-ui/react-dialog';
+import { Dialog, DialogPortal } from '@/components/ui/dialog';
 import Image from 'next/image';
 import { X, Github, ExternalLink, CheckCircle2, Zap, Lightbulb, BarChart3 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
@@ -18,56 +20,13 @@ function hasContent(value: string | string[] | undefined): boolean {
 
 interface ProjectModalProps {
   project: Project;
+  trigger: HTMLButtonElement | null;
+  fallbackFocusRef: RefObject<HTMLHeadingElement | null>;
   onClose: () => void;
 }
 
-export function ProjectModal({ project, onClose }: ProjectModalProps) {
-  const overlayRef = useRef<HTMLDivElement>(null);
+export function ProjectModal({ project, trigger, fallbackFocusRef, onClose }: ProjectModalProps) {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-
-  // Focus the close button on open
-  useEffect(() => {
-    closeButtonRef.current?.focus();
-  }, []);
-
-  // Escape key closes modal
-  useEffect(() => {
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Escape') onClose();
-    }
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [onClose]);
-
-  // Focus trap — keep Tab/Shift+Tab inside the modal
-  useEffect(() => {
-    const modal = overlayRef.current;
-    if (!modal) return;
-
-    const focusable = modal.querySelectorAll<HTMLElement>(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    );
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-
-    function handleTab(e: KeyboardEvent) {
-      if (e.key !== 'Tab') return;
-      if (e.shiftKey) {
-        if (document.activeElement === first) {
-          e.preventDefault();
-          last?.focus();
-        }
-      } else {
-        if (document.activeElement === last) {
-          e.preventDefault();
-          first?.focus();
-        }
-      }
-    }
-
-    document.addEventListener('keydown', handleTab);
-    return () => document.removeEventListener('keydown', handleTab);
-  }, []);
 
   const showProblem = hasContent(project.problem);
   const showSolution = hasContent(project.solution);
@@ -77,22 +36,38 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
   const hasCaseStudy = showProblem || showSolution || showHighlights || showFeatures || showImpact;
 
   return (
-    <div
-      ref={overlayRef}
-      role="dialog"
-      aria-modal="true"
-      aria-label={project.title}
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4"
-    >
+    <Dialog open onOpenChange={(open) => { if (!open) onClose(); }}>
+      <DialogPortal>
       {/* Backdrop */}
-      <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-        onClick={onClose}
-        aria-hidden="true"
+      <Overlay
+        className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
       />
 
+      <div className="pointer-events-none fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
       {/* Panel */}
-      <div className="relative bg-white w-full sm:max-w-3xl max-h-[92dvh] sm:max-h-[88vh] rounded-t-3xl sm:rounded-3xl overflow-hidden flex flex-col shadow-2xl">
+      <Content
+        data-project-dialog
+        aria-modal="true"
+        aria-label={project.title}
+        aria-describedby={undefined}
+        className="pointer-events-auto relative bg-white w-full sm:max-w-3xl max-h-[92dvh] sm:max-h-[88vh] rounded-t-3xl sm:rounded-3xl overflow-hidden flex flex-col shadow-2xl focus:outline-none"
+        onOpenAutoFocus={(event) => {
+          event.preventDefault();
+          closeButtonRef.current?.focus({ preventScroll: true });
+        }}
+        onCloseAutoFocus={(event) => {
+          event.preventDefault();
+          const target = trigger?.isConnected && !trigger.disabled && trigger.getClientRects().length
+            ? trigger
+            : fallbackFocusRef.current;
+          if (target?.isConnected) target.focus({ preventScroll: true });
+        }}
+      >
+        <style>{`
+          @supports (scrollbar-gutter: stable) {
+            body[data-scroll-locked]:has([data-project-dialog]) { margin-right: 0 !important; }
+          }
+        `}</style>
         {/* Close button */}
         <button
           ref={closeButtonRef}
@@ -146,7 +121,9 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 ))}
               </div>
 
-              <h2 className="text-2xl sm:text-3xl font-black leading-tight">{project.title}</h2>
+              <Title asChild>
+                <h2 className="text-2xl sm:text-3xl font-black leading-tight">{project.title}</h2>
+              </Title>
               <p className="text-muted-foreground leading-relaxed">{project.summary}</p>
             </div>
 
@@ -260,7 +237,9 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             )}
           </div>
         </div>
-      </div>
+      </Content>
     </div>
+      </DialogPortal>
+    </Dialog>
   );
 }

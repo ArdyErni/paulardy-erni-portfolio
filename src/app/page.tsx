@@ -1,24 +1,14 @@
-"use client";
+import { Portfolio } from "@/components/Portfolio";
+import { portfolio } from "@/lib/portfolio";
 
-import { Navbar } from "@/components/Navbar";
-import { ProfileView } from "@/views/ProfileView";
-import { BackgroundView } from "@/views/BackgroundView";
-import { ProjectsView } from "@/views/ProjectsView";
-import { GearView } from "@/views/GearView";
-import { useView } from "@/hooks/useView";
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ project?: string | string[] }>;
+}) {
+  const query = await searchParams;
+  const id = Array.isArray(query.project) ? query.project[0] : query.project;
+  const project = portfolio.projects.find((entry) => entry.id === id);
 
-export default function Home() {
-  const { activeView, setActiveView } = useView("profile");
-
-  return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar activeView={activeView} onViewChange={setActiveView} />
-      <main className="flex-1">
-        {activeView === "profile" && <ProfileView onNavigate={setActiveView} />}
-        {activeView === "background" && <BackgroundView />}
-        {activeView === "projects" && <ProjectsView />}
-        {activeView === "gear" && <GearView />}
-      </main>
-    </div>
-  );
+  return <Portfolio initialProjectId={project?.id ?? null} />;
 }

@@ -15,15 +15,28 @@ export function LoadingScreen() {
   const [fading, setFading] = useState(false);
   const [visible, setVisible] = useState(true);
 
+  useEffect(() => {
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const skipAnimation = () => {
+      if (motion.matches) setVisible(false);
+    };
+    skipAnimation();
+    motion.addEventListener('change', skipAnimation);
+    return () => motion.removeEventListener('change', skipAnimation);
+  }, []);
+
   // Typewriter
   useEffect(() => {
-    if (visibleChars >= WORD.length) return;
+    if (!visible || window.matchMedia('(prefers-reduced-motion: reduce)').matches || visibleChars >= WORD.length) return;
     const t = setTimeout(() => setVisibleChars(v => v + 1), CHAR_DELAY);
     return () => clearTimeout(t);
-  }, [visibleChars]);
+  }, [visibleChars, visible]);
 
   // Line loader — starts after typewriter finishes
   useEffect(() => {
+    if (!visible || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let frame: number | undefined;
+    let fadeTimeout: ReturnType<typeof setTimeout> | undefined;
     const t = setTimeout(() => {
       const start = performance.now();
 
@@ -32,24 +45,28 @@ export function LoadingScreen() {
         setProgress(pct);
 
         if (pct < 100) {
-          requestAnimationFrame(tick);
+          frame = requestAnimationFrame(tick);
         } else {
           setFading(true);
-          setTimeout(() => setVisible(false), 500);
+          fadeTimeout = setTimeout(() => setVisible(false), 500);
         }
       };
 
-      requestAnimationFrame(tick);
+      frame = requestAnimationFrame(tick);
     }, LOADER_START_DELAY);
 
-    return () => clearTimeout(t);
-  }, []);
+    return () => {
+      clearTimeout(t);
+      if (frame !== undefined) cancelAnimationFrame(frame);
+      if (fadeTimeout !== undefined) clearTimeout(fadeTimeout);
+    };
+  }, [visible]);
 
   if (!visible) return null;
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black"
+      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black motion-reduce:hidden"
       style={{
         opacity: fading ? 0 : 1,
         transition: 'opacity 0.5s ease',

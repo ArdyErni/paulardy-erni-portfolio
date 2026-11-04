@@ -8,7 +8,7 @@ const MAX_TECH = 3;
 
 interface ProjectCardProps {
   project: Project;
-  onClick: (project: Project) => void;
+  onClick: (project: Project, trigger: HTMLButtonElement) => void;
 }
 
 export function ProjectCard({ project, onClick }: ProjectCardProps) {
@@ -17,7 +17,7 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
 
   return (
     <button
-      onClick={() => onClick(project)}
+      onClick={(event) => onClick(project, event.currentTarget)}
       className="group text-left bg-white rounded-2xl border shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex flex-col h-full overflow-hidden w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
       aria-label={formatContent(portfolio.labels.viewDetails, { title: project.title })}
     >
@@ -71,9 +71,9 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
           ))}
         </div>
 
-        <h3 className="text-base font-bold mb-2 group-hover:text-primary transition-colors leading-snug line-clamp-2">
+        <h2 className="text-base font-bold mb-2 group-hover:text-primary transition-colors leading-snug line-clamp-2">
           {project.title}
-        </h3>
+        </h2>
 
         <p className="text-muted-foreground text-sm line-clamp-2 mb-4 flex-grow">
           {project.summary || project.description}

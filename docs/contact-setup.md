@@ -88,6 +88,8 @@ For `invalid_environment`, check the named variable's flag. Use only the form ID
 
 Run `npm run test:contact`, `npm run validate:content`, and `npm run typecheck`. Mocked tests cover provider success/errors, invalid fields/configuration, honeypots, origins, rate limits, and accepted/pending/uncertain duplicates. Fixtures are nonfunctional and no real messages are sent.
 
+For the complete production-build and local-preview sequence, see [release verification](../README.md#release-verification). Use the explicit scripts above; generic `validate` and `test` aliases are not defined.
+
 Earlier session browser checks covered the modal at 1440, 1024, 390, and 320 px, its states/accessibility, no horizontal overflow, unchanged navbar coordinates, and Reveal animations. They were not repeated during the documentation update. Repeat browser checks after UI changes, and perform a real inbox/Reply-To check after deployment setup.
 
 Files modified for this migration:
